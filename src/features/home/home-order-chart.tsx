@@ -1,55 +1,38 @@
-"use client"
-
+import type { FC } from "react"
 import { TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  type ChartConfig,
-} from "@/components/ui/chart"
-import type { FC } from "react"
-
-export const description = "A line chart with dots"
-
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
 
 const HomeOrderChart: FC = () => {
+  const chartData = [
+    { month: "January", desktop: 186, mobile: 80 },
+    { month: "February", desktop: 305, mobile: 200 },
+    { month: "March", desktop: 237, mobile: 120 },
+    { month: "April", desktop: 73, mobile: 190 },
+    { month: "May", desktop: 209, mobile: 130 },
+    { month: "June", desktop: 214, mobile: 140 },
+  ]
+
+  const chartConfig = {
+    desktop: {
+      label: "Desktop",
+      color: "var(--chart-1)",
+    },
+    mobile: {
+      label: "Mobile",
+      color: "var(--chart-2)",
+    },
+  } satisfies ChartConfig
+
   return (
-    <Card className="w-full h-100">
+    <Card className="mb-5 w-full">
       <CardHeader>
         <CardTitle>Line Chart - Dots</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="h-full">
-        <ChartContainer config={chartConfig} className="w-full h-full">
+        <ChartContainer config={chartConfig} className="h-full w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -66,10 +49,7 @@ const HomeOrderChart: FC = () => {
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
             <Line
               dataKey="desktop"
               type="natural"
@@ -89,9 +69,7 @@ const HomeOrderChart: FC = () => {
         <div className="flex gap-2 leading-none font-medium">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
+        <div className="leading-none text-muted-foreground">Showing total visitors for the last 6 months</div>
       </CardFooter>
     </Card>
   )

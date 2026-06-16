@@ -1,5 +1,5 @@
 import { useShallow } from "zustand/shallow"
-import useLocaleStore from "@/store/locale-store"
+import useLocaleStore from "@/lib/zustand/locale-store"
 
 const useLocale = () => {
   const { lang, locale, setLang } = useLocaleStore(

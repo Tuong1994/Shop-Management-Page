@@ -1,11 +1,9 @@
-import type { FC, HTMLAttributes } from "react"
+import type { FC } from "react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
 import { Card } from "@/components/ui/card"
 
-interface HomeCashFlowChartProps extends HTMLAttributes<HTMLDivElement> {}
-
-const HomeCashFlowChart: FC<HomeCashFlowChartProps> = ({ className, ...restProps }) => {
+const HomeCashFlowChart: FC = () => {
   const chartData = [
     { month: "January", desktop: 186, mobile: 80 },
     { month: "February", desktop: 305, mobile: 200 },
@@ -26,7 +24,7 @@ const HomeCashFlowChart: FC<HomeCashFlowChartProps> = ({ className, ...restProps
   } satisfies ChartConfig
 
   return (
-    <Card className={`h-100 w-full ${className}`} {...restProps}>
+    <Card className="w-full mb-5">
       <ChartContainer config={chartConfig} className="h-full">
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />

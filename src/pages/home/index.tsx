@@ -1,14 +1,28 @@
 import type { FC } from "react"
+import { ShoppingCart, Store } from "lucide-react"
+import { routerPaths } from "@/lib/router/paths"
 import HomeOrderChart from "@/features/home/home-order-chart"
 import HomeRenevueChart from "@/features/home/home-revenue"
 import HomeCashFlowChart from "@/features/home/home-cash-flow-chart"
+import HomeItem from "@/features/home/home-item"
 
 const HomePage: FC = () => {
+  const items = [
+    { icon: <ShoppingCart size={45} />, name: "Market", path: routerPaths.MARKET },
+    { icon: <Store size={45} />, name: "Management", path: routerPaths.MANAGEMENT },
+  ]
+
   return (
-    <div className="flex h-screen overflow-hidden">
-      <div className="w-1/2"></div>
-      <div className="w-1/2 h-full pt-20 p-10 overflow-auto">
-        <HomeCashFlowChart className="mb-5" />
+    <div className="flex overflow-hidden min-h-screen md:h-screen lg:h-screen">
+      <div className="flex w-full items-center justify-center overflow-auto md:w-1/3 lg:w-1/2 lg:overflow-hidden lg:pt-0 lg:pb-0">
+        <div className="grid w-70 grid-cols-2 gap-5 p-0 md:grid-cols-1 md:px-10 md:pt-20 md:pb-5 lg:w-100 lg:grid-cols-2">
+          {items.map((item, idx) => (
+            <HomeItem key={item.name + idx} icon={item.icon} name={item.name} path={item.path} />
+          ))}
+        </div>
+      </div>
+      <div className="hidden h-full overflow-auto p-10 pt-20 sm:w-2/3 md:block lg:block lg:w-1/2">
+        <HomeCashFlowChart />
         <HomeOrderChart />
         <HomeRenevueChart />
       </div>
