@@ -4,7 +4,7 @@ import Profile from "./profile"
 
 const Header: FC = () => {
   return (
-    <div className="w-full fixed top-0 z-50 bg-background flex items-center justify-between border-b p-1 px-2.5 lg:px-16">
+    <div className="w-full h-12.5 fixed top-0 z-50 bg-background flex items-center justify-between border-b px-2.5 lg:px-16">
       <Logo />
       <Profile />
     </div>
