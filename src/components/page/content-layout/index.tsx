@@ -1,9 +1,9 @@
 import type { FC, ReactNode } from "react"
+import type { TabItems } from "./type"
 import { Title } from "@/components/ui/typography"
 import { EItemType, getItemIcon } from "@/data/item-icon"
-import useLocale from "@/locale/useLocale"
-import type { TabItems } from "./type"
 import ContentLayoutTabs from "./content-layout-tabs"
+import useLocale from "@/locale/useLocale"
 
 interface ContentLayoutProps {
   children?: ReactNode

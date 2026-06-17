@@ -12,6 +12,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Link } from "react-router"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Globe, LogOutIcon, PanelLeft } from "lucide-react"
 import { useTheme, type Theme } from "@/components/theme-provider"
@@ -23,9 +24,17 @@ const Profile: FC = () => {
 
   const { theme, setTheme } = useTheme()
 
-  const handleSwitchLocale = (locale: ELocale) => setLang(locale)
+  const currentLocale: ELocale = locale || ELocale.EN;
 
   const handleSwitchTheme = (theme: Theme) => setTheme(theme)
+
+  const handleSwitchLocale = (locale: ELocale) => setLang(locale)
+
+  const changeLocale = (newLocale: ELocale) => {
+    // Thay locale trong URL hiện tại
+    const pathWithoutLocale = window.location.pathname.replace(`/${currentLocale}`, "") || "/";
+    return `/${newLocale}${pathWithoutLocale}`;
+  };
 
   return (
     <DropdownMenu>
@@ -44,10 +53,10 @@ const Profile: FC = () => {
             <DropdownMenuSubContent>
               <DropdownMenuRadioGroup value={locale} onValueChange={handleSwitchLocale}>
                 <DropdownMenuRadioItem value={ELocale.EN}>
-                  {lang.header.profile.locale.en}
+                  <Link to={changeLocale(ELocale.EN)}>{lang.header.profile.locale.en}</Link>
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value={ELocale.VN}>
-                  {lang.header.profile.locale.vn}
+                  <Link to={changeLocale(ELocale.VN)}>{lang.header.profile.locale.vn}</Link>
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuSubContent>
