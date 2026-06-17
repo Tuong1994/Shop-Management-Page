@@ -11,6 +11,7 @@ import MusicPage from "@/pages/music"
 
 export const router = createBrowserRouter([
   {
+    path: "/:locale?",
     element: <AppLayout />,
     children: [
       {
