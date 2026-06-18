@@ -8,7 +8,7 @@ interface ContentLayoutTabsProps {
 
 const ContentLayoutTabs: FC<ContentLayoutTabsProps> = ({ tabItems }) => {
   return (
-    <div className="hidden lg:flex items-center gap-2">
+    <div className="flex items-center justify-center gap-2">
       {tabItems.map((tab) => (
         <Button
           key={tab.id}

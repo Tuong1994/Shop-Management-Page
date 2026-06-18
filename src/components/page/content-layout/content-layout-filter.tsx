@@ -5,7 +5,7 @@ interface ContentLayoutFilterProps {
 }
 
 const ContentLayoutFilter: FC<ContentLayoutFilterProps> = ({ filter }) => {
-  return <div className="hidden bg-primary-foreground px-2.5 py-2.5 lg:block lg:px-16">{filter}</div>
+  return <div className="bg-primary-foreground px-2.5 py-2.5 lg:px-16">{filter}</div>
 }
 
 export default ContentLayoutFilter
