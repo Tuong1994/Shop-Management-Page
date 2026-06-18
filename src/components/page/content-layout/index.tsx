@@ -1,33 +1,34 @@
 import type { FC, ReactNode } from "react"
 import type { TabItems } from "./type"
-import { Title } from "@/components/ui/typography"
-import { EItemType, getItemIcon } from "@/data/item-icon"
+import { EPageType } from "@/data/page"
 import ContentLayoutTabs from "./content-layout-tabs"
-import useLocale from "@/locale/use-locale"
+import ContentLayoutFilter from "./content-layout-filter"
+import ContentLayoutTitle from "./content-layout-title"
+import { Avatar, AvatarBadge, AvatarFallback } from "@/components/ui/avatar"
+import { ShoppingCart } from "lucide-react"
 
 interface ContentLayoutProps {
+  pageType: EPageType
   children?: ReactNode
-  tabItems?: TabItems;
-  filter?: ReactNode;
+  tabItems?: TabItems
+  filter?: ReactNode
 }
 
-const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter }) => {
-  const { lang } = useLocale()
-
+const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter, pageType }) => {
   return (
     <div className="pt-12.5">
       <div className="sticky top-12.5">
         <div className="flex items-center justify-between bg-primary px-2.5 py-2.5 lg:px-16">
-          <div className="flex items-center gap-2 text-white">
-            {getItemIcon(EItemType.MARKET, 20)}
-            <Title level={4}>{lang.market.title}</Title>
-          </div>
+          <ContentLayoutTitle pageType={pageType} />
           <ContentLayoutTabs tabItems={tabItems} />
-          <div>Cart</div>
+          <Avatar>
+            <AvatarFallback>
+              <ShoppingCart />
+            </AvatarFallback>
+            <AvatarBadge className="bg-green-600 dark:bg-green-800">10</AvatarBadge>
+          </Avatar>
         </div>
-        {filter &&  <div className="bg-primary-foreground px-2.5 py-2.5 lg:px-16">
-          {filter}
-        </div>}
+        {filter && <ContentLayoutFilter filter={filter} />}
       </div>
       <div className="px-2.5 py-5 lg:px-16">{children}</div>
     </div>
