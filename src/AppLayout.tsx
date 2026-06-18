@@ -3,12 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useEffect } from "react"
 import { ELocale } from "./locale/enum"
 import { Outlet } from "react-router"
-import { localStorageKeys } from "./common/local-storage-key"
 import Header from "./components/page/header"
 import useLocale from "./locale/use-locale"
 
 const AppLayout: FC = () => {
-  const { locale, setLang, navigateWithLocale } = useLocale()
+  const { locale: currentLocale, setLang, navigateWithLocale } = useLocale()
 
   const navigate = useNavigate()
 
@@ -19,22 +18,22 @@ const AppLayout: FC = () => {
   const defaultLocale = ELocale.EN
 
   useEffect(() => {
-    let currentLocale = locale as ELocale
-
     // If locale doesn't exist → redirect back to default + locale
     if (!currentLocale) {
-      navigate(`/${defaultLocale}${location.pathname}`, { replace: true })
+      setLang(defaultLocale)
+      navigateWithLocale(defaultLocale)
       return
     }
 
-    // Save current locale to localStorage API
-    if (typeof window !== undefined) {
-      localStorage.setItem(localStorageKeys.LOCALE, JSON.stringify(currentLocale))
+    // If current locale invalid → redirect back to default
+    if (!supportedLocales.includes(currentLocale)) {
+      setLang(defaultLocale)
+      navigateWithLocale(defaultLocale)
+      return
     }
 
-    // If current locale invalid → redirect back to default
-    if (!supportedLocales.includes(currentLocale)) navigateWithLocale(defaultLocale)
-  }, [locale, navigate, location.pathname])
+    setLang(currentLocale)
+  }, [currentLocale, navigate, location.pathname, setLang, navigateWithLocale])
 
   return (
     <>

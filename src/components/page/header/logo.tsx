@@ -1,11 +1,11 @@
 import type { FC } from "react"
 import { routerPaths } from "@/lib/router/paths"
-import { useNavigate } from "react-router"
+import useLocale from "@/locale/use-locale"
 
 const Logo: FC = () => {
-  const navigate = useNavigate()
+  const { locale, navigateWithLocale } = useLocale()
 
-  const handleNavigate = () => navigate(routerPaths.HOME)
+  const handleNavigate = () => navigateWithLocale(locale, routerPaths.HOME)
 
   return (
     <div className="cursor-pointer" onClick={handleNavigate}>

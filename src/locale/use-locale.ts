@@ -18,10 +18,12 @@ const useLocale = () => {
     }))
   )
 
-  const navigateWithLocale = (newLocale?: ELocale) => {
+  const navigateWithLocale = (newLocale?: ELocale, target?: string) => {
     const localeParam = newLocale ?? locale
 
-    const pathWithoutLocale = location.pathname.replace(/^\/[^/]+/, "") || "/"
+    const path = target ? target.startsWith("/") ? target : `/${target}` : undefined
+
+    const pathWithoutLocale = path ? path : location.pathname.replace(/^\/[^/]+/, "") || "/"
 
     const newPath = `/${localeParam}${pathWithoutLocale}`
 
