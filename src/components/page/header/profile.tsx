@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import { type FC } from "react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,29 +12,23 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Link } from "react-router"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Globe, LogOutIcon, PanelLeft } from "lucide-react"
 import { useTheme, type Theme } from "@/components/theme-provider"
-import { ELocale } from "@/locale/constant"
-import useLocale from "@/locale/useLocale"
+import { ELocale } from "@/locale/enum"
+import useLocale from "@/locale/use-locale"
 
 const Profile: FC = () => {
-  const { lang, locale, setLang } = useLocale()
+  const { lang, locale, setLang, navigateWithLocale } = useLocale()
 
   const { theme, setTheme } = useTheme()
 
-  const currentLocale: ELocale = locale || ELocale.EN;
-
   const handleSwitchTheme = (theme: Theme) => setTheme(theme)
 
-  const handleSwitchLocale = (locale: ELocale) => setLang(locale)
-
-  const changeLocale = (newLocale: ELocale) => {
-    // Thay locale trong URL hiện tại
-    const pathWithoutLocale = window.location.pathname.replace(`/${currentLocale}`, "") || "/";
-    return `/${newLocale}${pathWithoutLocale}`;
-  };
+  const handleSwitchLocale = (locale: ELocale) => {
+    setLang(locale)
+    navigateWithLocale(locale)
+  }
 
   return (
     <DropdownMenu>
@@ -53,10 +47,10 @@ const Profile: FC = () => {
             <DropdownMenuSubContent>
               <DropdownMenuRadioGroup value={locale} onValueChange={handleSwitchLocale}>
                 <DropdownMenuRadioItem value={ELocale.EN}>
-                  <Link to={changeLocale(ELocale.EN)}>{lang.header.profile.locale.en}</Link>
+                  {lang.header.profile.locale.en}
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value={ELocale.VN}>
-                  <Link to={changeLocale(ELocale.VN)}>{lang.header.profile.locale.vn}</Link>
+                  {lang.header.profile.locale.vn}
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuSubContent>

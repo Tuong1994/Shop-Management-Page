@@ -3,7 +3,7 @@ import type { TabItems } from "./type"
 import { Title } from "@/components/ui/typography"
 import { EItemType, getItemIcon } from "@/data/item-icon"
 import ContentLayoutTabs from "./content-layout-tabs"
-import useLocale from "@/locale/useLocale"
+import useLocale from "@/locale/use-locale"
 
 interface ContentLayoutProps {
   children?: ReactNode

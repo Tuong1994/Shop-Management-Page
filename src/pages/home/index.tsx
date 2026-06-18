@@ -5,7 +5,7 @@ import HomeOrderChart from "@/features/home/home-order-chart"
 import HomeRenevueChart from "@/features/home/home-revenue"
 import HomeCashFlowChart from "@/features/home/home-cash-flow-chart"
 import HomeItem from "@/features/home/home-item"
-import useLocale from "@/locale/useLocale"
+import useLocale from "@/locale/use-locale"
 
 const HomePage: FC = () => {
   const { lang } = useLocale()

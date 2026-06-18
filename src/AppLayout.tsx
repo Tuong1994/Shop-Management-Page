@@ -1,35 +1,41 @@
 import type { FC } from "react"
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { ELocale } from "./locale/constant";
+import { useNavigate, useLocation } from "react-router-dom"
+import { useEffect } from "react"
+import { ELocale } from "./locale/enum"
 import { Outlet } from "react-router"
+import { localStorageKeys } from "./common/local-storage-key"
 import Header from "./components/page/header"
+import useLocale from "./locale/use-locale"
 
 const AppLayout: FC = () => {
-  const { locale } = useParams();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { locale, setLang, navigateWithLocale } = useLocale()
 
-  const supportedLocales = [ELocale.EN, ELocale.VN]; // danh sách ngôn ngữ hỗ trợ
-  const defaultLocale = ELocale.EN;
+  const navigate = useNavigate()
+
+  const location = useLocation()
+
+  const supportedLocales = [ELocale.EN, ELocale.VN]
+
+  const defaultLocale = ELocale.EN
 
   useEffect(() => {
-    let currentLocale = locale as ELocale;
+    let currentLocale = locale as ELocale
 
-    // Nếu không có locale → redirect về default + locale
+    // If locale doesn't exist → redirect back to default + locale
     if (!currentLocale) {
-      navigate(`/${defaultLocale}${location.pathname}`, { replace: true });
-      return;
+      navigate(`/${defaultLocale}${location.pathname}`, { replace: true })
+      return
     }
 
-    // Nếu locale không hợp lệ → redirect về default
-    if (!supportedLocales.includes(currentLocale)) {
-      navigate(`/${defaultLocale}${location.pathname.replace(`/${locale}`, "")}`, {
-        replace: true,
-      });
+    // Save current locale to localStorage API
+    if (typeof window !== undefined) {
+      localStorage.setItem(localStorageKeys.LOCALE, JSON.stringify(currentLocale))
     }
-  }, [locale, navigate, location.pathname]);
-  
+
+    // If current locale invalid → redirect back to default
+    if (!supportedLocales.includes(currentLocale)) navigateWithLocale(defaultLocale)
+  }, [locale, navigate, location.pathname])
+
   return (
     <>
       <Header />
