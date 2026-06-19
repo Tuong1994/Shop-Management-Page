@@ -1,12 +1,12 @@
 import type { FC, ReactNode } from "react"
 import type { TabItems } from "./type"
-import { useIsMobile } from "@/hooks/use-mobile"
 import { EPageType } from "@/data/page"
 import ContentLayoutTabs from "./content-layout-tabs"
 import ContentLayoutFilter from "./content-layout-filter"
 import ContentLayoutTitle from "./content-layout-title"
 import ContentLayoutActions from "./content-layout-actions"
 import ContentLayoutMobile from "./content-layout-mobile"
+import useViewport from "@/hooks/use-viewport"
 
 interface ContentLayoutProps {
   pageType: EPageType
@@ -17,17 +17,19 @@ interface ContentLayoutProps {
 }
 
 const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter, actions, pageType }) => {
-  const isMobile = useIsMobile()
+  const { isMobile, isTablet } = useViewport()
 
   const hasTabItems = tabItems.length > 0
 
+  const isResponsive = isMobile || isTablet;
+
   const renderTabItems = () => {
-    if(isMobile) return null;
+    if (isResponsive) return null
     return hasTabItems && <ContentLayoutTabs tabItems={tabItems} />
   }
 
   const renderFilter = () => {
-    if(isMobile) return null;
+    if (isMobile) return null
     return filter && <ContentLayoutFilter filter={filter} />
   }
 
@@ -39,7 +41,7 @@ const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter
           {renderTabItems()}
           <div className="flex items-center gap-3">
             {actions && <ContentLayoutActions actions={actions} />}
-            <ContentLayoutMobile />
+            {isResponsive && <ContentLayoutMobile tabItems={tabItems} filter={filter} />}
           </div>
         </div>
         {renderFilter()}

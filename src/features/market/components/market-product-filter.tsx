@@ -14,8 +14,8 @@ import { Search } from "lucide-react"
 
 const MarketProductFilter: FC = () => {
   return (
-    <FieldGroup className="grid w-150 grid-cols-3 gap-2">
-      <Field>
+    <FieldGroup className="grid lg:w-150 grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2">
+      <Field className="w-full">
         <InputGroup>
           <InputGroupInput placeholder="Search..." />
           <InputGroupAddon align="inline-end">
@@ -25,7 +25,7 @@ const MarketProductFilter: FC = () => {
       </Field>
       <Field>
         <Select>
-          <SelectTrigger className="w-full">
+          <SelectTrigger>
             <SelectValue placeholder="Display" />
           </SelectTrigger>
           <SelectContent>
@@ -42,7 +42,7 @@ const MarketProductFilter: FC = () => {
       </Field>
       <Field>
         <Select>
-          <SelectTrigger className="w-full">
+          <SelectTrigger>
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>

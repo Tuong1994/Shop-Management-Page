@@ -1,47 +1,44 @@
-import type { FC } from "react"
+import type { FC, ReactNode } from "react"
 import { Button } from "@/components/ui/button"
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
+import { Drawer, DrawerContent, DrawerDescription, DrawerTrigger } from "@/components/ui/drawer"
 import { PanelRight } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
+import type { TabItems } from "./type"
+import LocaleLink from "@/locale/locale-link"
+import useViewport from "@/hooks/use-viewport"
 
-interface ContentLayoutMobileProps {}
+interface ContentLayoutMobileProps {
+  filter: ReactNode
+  tabItems: TabItems
+}
 
-const ContentLayoutMobile: FC<ContentLayoutMobileProps> = () => {
+const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, filter }) => {
+  const { isPhone } = useViewport()
+
   return (
     <Drawer direction="right">
       <DrawerTrigger className="cursor-pointer text-white">
         <PanelRight size={25} />
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Move Goal</DrawerTitle>
-          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-        </DrawerHeader>
-        <div className="no-scrollbar overflow-y-auto px-4">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <p key={index} className="style-lyra:mb-2 style-lyra:leading-relaxed mb-4 leading-normal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+        <div className="no-scrollbar overflow-y-auto p-1.5">
+          <DrawerDescription className="mb-2.5">Menu</DrawerDescription>
+          {tabItems.map((tab) => (
+            <LocaleLink key={tab.id} to={tab.path} className="block">
+              <Button className="mb-2 w-full justify-start">
+                {tab.icon}
+                <span className="flex-1">{tab.name}</span>
+              </Button>
+            </LocaleLink>
           ))}
+          <Separator />
+          {isPhone && (
+            <div className="mt-5">
+              <DrawerDescription className="mb-2.5">Filter</DrawerDescription>
+              {filter}
+            </div>
+          )}
         </div>
-        <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )

@@ -19,7 +19,7 @@ const getLocale = () => {
   if (typeof window === "undefined") return locale
   if (localStorage.getItem(localStorageKeys.LOCALE)) {
    const persistLocale = JSON.parse(localStorage.getItem(localStorageKeys.LOCALE) ?? "{}") as LocalePersist
-   locale = persistLocale.state.locale ?? ELocale.EN
+   locale = persistLocale.state?.locale ?? ELocale.EN
   }
   return locale
 }
