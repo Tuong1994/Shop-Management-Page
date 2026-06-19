@@ -9,19 +9,25 @@ import ContentLayoutMobile from "./content-layout-mobile"
 import useViewport from "@/hooks/use-viewport"
 
 interface ContentLayoutProps {
-  pageType: EPageType
+  pageType?: EPageType
   children?: ReactNode
   tabItems?: TabItems
   bottomContent?: ReactNode
   actions?: ReactNode
 }
 
-const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], bottomContent, actions, pageType }) => {
+const ContentLayout: FC<ContentLayoutProps> = ({
+  children,
+  tabItems = [],
+  bottomContent,
+  actions,
+  pageType = EPageType.MARKET,
+}) => {
   const { isMobile, isTablet } = useViewport()
 
   const hasTabItems = tabItems.length > 0
 
-  const isResponsive = isMobile || isTablet;
+  const isResponsive = isMobile || isTablet
 
   const renderTabItems = () => {
     if (isResponsive) return null
