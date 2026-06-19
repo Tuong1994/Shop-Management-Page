@@ -14,7 +14,7 @@ const MarketPage: FC = () => {
       pageType={EPageType.MARKET}
       tabItems={getTabItems(lang)}
       actions={<MarketProductCart />}
-      filter={<MarketProductFilter />}
+      bottomContent={<MarketProductFilter />}
     >
       Market Page
     </ContentLayout>

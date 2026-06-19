@@ -11,53 +11,62 @@ import {
 } from "@/components/ui/select"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Search } from "lucide-react"
+import useLocale from "@/locale/use-locale"
+import useViewport from "@/hooks/use-viewport"
 
 const MarketProductFilter: FC = () => {
+  const { lang } = useLocale()
+
+  const { isPhone } = useViewport()
+
   return (
-    <FieldGroup className="grid lg:w-150 grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2">
-      <Field className="w-full">
-        <InputGroup>
-          <InputGroupInput placeholder="Search..." />
-          <InputGroupAddon align="inline-end">
-            <Search />
-          </InputGroupAddon>
-        </InputGroup>
-      </Field>
-      <Field>
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Display" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </Field>
-      <Field>
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </Field>
-    </FieldGroup>
+    <>
+      {isPhone && <div className="mb-2.5 text-muted-foreground">{lang.market.filter}</div>}
+      <FieldGroup className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-3 lg:w-150 lg:grid-cols-3">
+        <Field className="w-full">
+          <InputGroup>
+            <InputGroupInput placeholder={`${lang.common.form.placeholder.search}...`} />
+            <InputGroupAddon align="inline-end">
+              <Search />
+            </InputGroupAddon>
+          </InputGroup>
+        </Field>
+        <Field>
+          <Select>
+            <SelectTrigger>
+              <SelectValue placeholder={lang.common.form.placeholder.display} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+        <Field>
+          <Select>
+            <SelectTrigger>
+              <SelectValue placeholder={lang.common.form.placeholder.category} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+      </FieldGroup>
+    </>
   )
 }
 

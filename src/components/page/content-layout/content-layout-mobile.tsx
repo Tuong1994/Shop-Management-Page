@@ -6,14 +6,17 @@ import { Separator } from "@/components/ui/separator"
 import type { TabItems } from "./type"
 import LocaleLink from "@/locale/locale-link"
 import useViewport from "@/hooks/use-viewport"
+import useLocale from "@/locale/use-locale"
 
 interface ContentLayoutMobileProps {
-  filter: ReactNode
+  bottomContent: ReactNode
   tabItems: TabItems
 }
 
-const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, filter }) => {
+const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, bottomContent }) => {
   const { isPhone } = useViewport()
+
+  const { lang } = useLocale()
 
   return (
     <Drawer direction="right">
@@ -22,7 +25,7 @@ const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, filter })
       </DrawerTrigger>
       <DrawerContent>
         <div className="no-scrollbar overflow-y-auto p-1.5">
-          <DrawerDescription className="mb-2.5">Menu</DrawerDescription>
+          <DrawerDescription className="mb-2.5">{lang.market.menu}</DrawerDescription>
           {tabItems.map((tab) => (
             <LocaleLink key={tab.id} to={tab.path} className="block">
               <Button className="mb-2 w-full justify-start">
@@ -31,12 +34,11 @@ const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, filter })
               </Button>
             </LocaleLink>
           ))}
-          <Separator />
           {isPhone && (
-            <div className="mt-5">
-              <DrawerDescription className="mb-2.5">Filter</DrawerDescription>
-              {filter}
-            </div>
+            <>
+              <Separator />
+              <div className="mt-5">{bottomContent}</div>
+            </>
           )}
         </div>
       </DrawerContent>

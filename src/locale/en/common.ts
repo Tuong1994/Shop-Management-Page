@@ -27,6 +27,8 @@ const common_en = {
       enter: "Enter infomation",
       select: "Select",
       search: "Search",
+      display: "Display",
+      category: "Category",
       imagesUpload: "Select or drag image here",
       filesUpload: "Choose file",
     },

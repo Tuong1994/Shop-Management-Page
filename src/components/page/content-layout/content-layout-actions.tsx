@@ -5,7 +5,7 @@ interface ContentLayoutActionsProps {
 }
 
 const ContentLayoutActions: FC<ContentLayoutActionsProps> = ({ actions }) => {
-  return <div className="">{actions}</div>
+  return <div>{actions}</div>
 }
 
 export default ContentLayoutActions

@@ -27,6 +27,8 @@ const common_vn = {
       enter: "Nhập thông tin",
       select: "Chọn",
       search: "Tìm kiếm",
+      display: "Trưng bày",
+      category: "Danh mục",
       imagesUpload: "Chọn hoặc kéo thả hình ảnh vào khu vực này",
       filesUpload: "Chọn tập tin",
     },

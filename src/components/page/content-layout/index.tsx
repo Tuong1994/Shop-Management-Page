@@ -2,7 +2,7 @@ import type { FC, ReactNode } from "react"
 import type { TabItems } from "./type"
 import { EPageType } from "@/data/page"
 import ContentLayoutTabs from "./content-layout-tabs"
-import ContentLayoutFilter from "./content-layout-filter"
+import ContentLayoutBottom from "./content-layout-bottom"
 import ContentLayoutTitle from "./content-layout-title"
 import ContentLayoutActions from "./content-layout-actions"
 import ContentLayoutMobile from "./content-layout-mobile"
@@ -12,11 +12,11 @@ interface ContentLayoutProps {
   pageType: EPageType
   children?: ReactNode
   tabItems?: TabItems
-  filter?: ReactNode
+  bottomContent?: ReactNode
   actions?: ReactNode
 }
 
-const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter, actions, pageType }) => {
+const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], bottomContent, actions, pageType }) => {
   const { isMobile, isTablet } = useViewport()
 
   const hasTabItems = tabItems.length > 0
@@ -28,9 +28,9 @@ const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter
     return hasTabItems && <ContentLayoutTabs tabItems={tabItems} />
   }
 
-  const renderFilter = () => {
+  const renderBottomContent = () => {
     if (isMobile) return null
-    return filter && <ContentLayoutFilter filter={filter} />
+    return bottomContent && <ContentLayoutBottom bottomContent={bottomContent} />
   }
 
   return (
@@ -41,10 +41,10 @@ const ContentLayout: FC<ContentLayoutProps> = ({ children, tabItems = [], filter
           {renderTabItems()}
           <div className="flex items-center gap-3">
             {actions && <ContentLayoutActions actions={actions} />}
-            {isResponsive && <ContentLayoutMobile tabItems={tabItems} filter={filter} />}
+            {isResponsive && <ContentLayoutMobile tabItems={tabItems} bottomContent={bottomContent} />}
           </div>
         </div>
-        {renderFilter()}
+        {renderBottomContent()}
       </div>
       <div className="px-2.5 py-5 lg:px-16">{children}</div>
     </div>

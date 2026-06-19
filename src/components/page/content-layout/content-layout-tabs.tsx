@@ -12,7 +12,7 @@ const ContentLayoutTabs: FC<ContentLayoutTabsProps> = ({ tabItems }) => {
     <div className="flex items-center justify-center gap-2">
       {tabItems.map((tab) => (
         <LocaleLink key={tab.id} to={tab.path} className="block">
-          <Button className="min-w-25 text-back cursor-pointer bg-white transition-colors hover:bg-black hover:text-white">
+          <Button className="min-w-25 text-black cursor-pointer bg-white transition-colors hover:bg-black hover:text-white">
             {tab.icon}
             <span>{tab.name}</span>
           </Button>
