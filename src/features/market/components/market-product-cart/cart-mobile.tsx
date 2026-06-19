@@ -5,6 +5,8 @@ import CartTable from "./cart-table"
 import useLocale from "@/locale/use-locale"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import CartSummary from "./cart-summary"
+import { Separator } from "@/components/ui/separator"
 
 interface CartMobileProps {}
 
@@ -21,13 +23,18 @@ const CartMobile: FC<CartMobileProps> = () => {
         <CartIcon />
       </DrawerTrigger>
       <DrawerContent className="min-w-screen">
-        <DrawerHeader className="flex flex-row justify-between items-center">
+        <DrawerHeader className="flex flex-row items-center justify-between p-2">
           <DrawerTitle>{lang.market.cart.title}</DrawerTitle>
-          <Button className="w-8 h-8 p-0" onClick={handleTrigger}>
+          <Button className="h-8 w-8 p-0" onClick={handleTrigger}>
             <X />
           </Button>
         </DrawerHeader>
-        <CartTable />
+        <div className="no-scroll overflow-y-auto">
+          <CartTable />
+          <div className="mt-1 rounded-[20px] bg-primary p-2 text-white">
+            <CartSummary />
+          </div>
+        </div>
       </DrawerContent>
     </Drawer>
   )

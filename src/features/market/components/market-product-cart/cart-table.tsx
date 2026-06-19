@@ -8,73 +8,61 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { ButtonGroup } from "@/components/ui/button-group"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import type { Product } from "@/models/product/product.type"
 
 interface CartTableProps {}
 
-const invoices = [
+const products: Pick<Product, "id" | "name" | "price">[] = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    id: "P_1",
+    name: "Apple Juice",
+    price: 6.5,
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    id: "P_2",
+    name: "Beer Blonde Ale Keg",
+    price: 4.5,
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
+    id: "P_3",
+    name: "Beer Blonde Ale",
+    price: 4.5,
   },
   {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
+    id: "P_4",
+    name: "Beer Blonde Ale 6-Pack",
+    price: 22.0,
   },
 ]
 
 const CartTable: FC<CartTableProps> = () => {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>A list of your recent products.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-25 font-bold">Invoice</TableHead>
-          <TableHead className="font-bold">Status</TableHead>
-          <TableHead className="font-bold">Method</TableHead>
-          <TableHead className="text-right font-bold">Amount</TableHead>
+          <TableHead className="w-25 font-bold">Product name</TableHead>
+          <TableHead className="font-bold">Unit</TableHead>
+          <TableHead className="font-bold">Price</TableHead>
+          <TableHead className="text-right font-bold">Total</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+        {products.map((product) => (
+          <TableRow key={product.id}>
+            <TableCell className="font-medium">{product.name}</TableCell>
+            <TableCell>
+              <ButtonGroup>
+                <Button>-</Button>
+                <Input className="w-10" />
+                <Button>+</Button>
+              </ButtonGroup>
+            </TableCell>
+            <TableCell>${product.price}</TableCell>
+            <TableCell className="text-right">${product.price}</TableCell>
           </TableRow>
         ))}
       </TableBody>
