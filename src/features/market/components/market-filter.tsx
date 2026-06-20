@@ -14,7 +14,7 @@ import { Search } from "lucide-react"
 import { useViewport } from "@/hooks"
 import useLocale from "@/locale/use-locale"
 
-const ProductFilter: FC = () => {
+const MarketFilter: FC = () => {
   const { lang } = useLocale()
 
   const { isPhone } = useViewport()
@@ -70,4 +70,4 @@ const ProductFilter: FC = () => {
   )
 }
 
-export default ProductFilter
+export default MarketFilter

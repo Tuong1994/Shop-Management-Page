@@ -3,7 +3,7 @@ import { useViewport } from "@/hooks"
 import CartDesktop from "./cart-desktop"
 import CartMobile from "./cart-mobile"
 
-const ProductCart: FC = () => {
+const MarketCart: FC = () => {
   const { isSmPhone, isPhone, isLgPhone, isSmTablet } = useViewport()
 
   const responsive = isSmPhone || isPhone || isLgPhone || isSmTablet
@@ -11,4 +11,4 @@ const ProductCart: FC = () => {
   return !responsive ? <CartDesktop /> : <CartMobile />
 }
 
-export default ProductCart
+export default MarketCart
