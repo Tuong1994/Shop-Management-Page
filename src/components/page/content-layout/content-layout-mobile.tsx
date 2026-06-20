@@ -1,11 +1,11 @@
 import type { FC, ReactNode } from "react"
+import type { TabItems } from "./type"
 import { Button } from "@/components/ui/button"
 import { Drawer, DrawerContent, DrawerDescription, DrawerTrigger } from "@/components/ui/drawer"
 import { PanelRight } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import type { TabItems } from "./type"
+import { useViewport } from "@/hooks"
 import LocaleLink from "@/locale/locale-link"
-import useViewport from "@/hooks/use-viewport"
 import useLocale from "@/locale/use-locale"
 
 interface ContentLayoutMobileProps {

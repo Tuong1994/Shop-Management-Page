@@ -1,12 +1,12 @@
 import type { FC, ReactNode } from "react"
 import type { TabItems } from "./type"
 import { EPageType } from "@/data/page"
+import { useViewport } from "@/hooks"
 import ContentLayoutTabs from "./content-layout-tabs"
 import ContentLayoutBottom from "./content-layout-bottom"
 import ContentLayoutTitle from "./content-layout-title"
 import ContentLayoutActions from "./content-layout-actions"
 import ContentLayoutMobile from "./content-layout-mobile"
-import useViewport from "@/hooks/use-viewport"
 
 interface ContentLayoutProps {
   pageType?: EPageType
@@ -41,7 +41,7 @@ const ContentLayout: FC<ContentLayoutProps> = ({
 
   return (
     <div className="pt-12.5">
-      <div className="sticky top-12.5">
+      <div className="sticky top-12.5 z-50">
         <div className="flex items-center justify-between bg-primary px-2.5 py-2.5 lg:px-16">
           <ContentLayoutTitle pageType={pageType} />
           {renderTabItems()}

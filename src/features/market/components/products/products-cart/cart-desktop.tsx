@@ -26,7 +26,7 @@ const CartDesktop: FC<CartDesktopProps> = () => {
             <CartTable />
           </div>
 
-          <div className="flex h-full min-w-40 flex-col justify-between rounded-[20px] bg-primary p-2.5 text-white">
+          <div className="flex h-full min-w-50 flex-col justify-between rounded-[20px] bg-primary p-2.5 text-white">
             <CartSummary />
           </div>
         </div>

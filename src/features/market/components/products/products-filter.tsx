@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/select"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Search } from "lucide-react"
+import { useViewport } from "@/hooks"
 import useLocale from "@/locale/use-locale"
-import useViewport from "@/hooks/use-viewport"
 
-const MarketProductFilter: FC = () => {
+const ProductFilter: FC = () => {
   const { lang } = useLocale()
 
   const { isPhone } = useViewport()
@@ -70,4 +70,4 @@ const MarketProductFilter: FC = () => {
   )
 }
 
-export default MarketProductFilter
+export default ProductFilter

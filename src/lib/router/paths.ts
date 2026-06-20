@@ -14,4 +14,4 @@ export const routerPaths = {
   AUTH_SIGN_IN: "/auth/signIn",
   AUTH_FORGOT_PASSWORD: "/auth/forgotPassword",
   AUTH_RESET_PASSWORD: "/auth/resetPassword/:token",
-}
+} as const

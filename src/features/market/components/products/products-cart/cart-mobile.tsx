@@ -1,12 +1,11 @@
 import { useState, type FC } from "react"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
-import CartIcon from "./cart-icon"
-import CartTable from "./cart-table"
-import useLocale from "@/locale/use-locale"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import CartIcon from "./cart-icon"
+import CartTable from "./cart-table"
 import CartSummary from "./cart-summary"
-import { Separator } from "@/components/ui/separator"
+import useLocale from "@/locale/use-locale"
 
 interface CartMobileProps {}
 
