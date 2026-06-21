@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import { useMemo, type FC } from "react"
 import { routerPaths } from "@/lib/router/paths"
 import { EPageType, getPageIcon, getPageTitle } from "@/data/page"
 import HomeOrderChart from "@/features/home/home-order-chart"
@@ -10,33 +10,36 @@ import useLocale from "@/locale/use-locale"
 const HomePage: FC = () => {
   const { lang } = useLocale()
 
-  const items = [
-    {
-      icon: getPageIcon(EPageType.MARKET),
-      name: getPageTitle(EPageType.MARKET, lang),
-      path: routerPaths.MARKET,
-    },
-    {
-      icon: getPageIcon(EPageType.MANAGEMENT),
-      name: getPageTitle(EPageType.MANAGEMENT, lang),
-      path: routerPaths.MANAGEMENT,
-    },
-    {
-      icon: getPageIcon(EPageType.BANK),
-      name: getPageTitle(EPageType.BANK, lang),
-      path: routerPaths.BANK,
-    },
-    {
-      icon: getPageIcon(EPageType.PRICING),
-      name: getPageTitle(EPageType.PRICING, lang),
-      path: routerPaths.PRICING,
-    },
-    {
-      icon: getPageIcon(EPageType.MUSIC),
-      name: getPageTitle(EPageType.MUSIC, lang),
-      path: routerPaths.MUSIC,
-    },
-  ]
+  const items = useMemo(
+    () => [
+      {
+        icon: getPageIcon(EPageType.MARKET),
+        name: getPageTitle(EPageType.MARKET, lang),
+        path: routerPaths.MARKET,
+      },
+      {
+        icon: getPageIcon(EPageType.MANAGEMENT),
+        name: getPageTitle(EPageType.MANAGEMENT, lang),
+        path: routerPaths.MANAGEMENT,
+      },
+      {
+        icon: getPageIcon(EPageType.BANK),
+        name: getPageTitle(EPageType.BANK, lang),
+        path: routerPaths.BANK,
+      },
+      {
+        icon: getPageIcon(EPageType.PRICING),
+        name: getPageTitle(EPageType.PRICING, lang),
+        path: routerPaths.PRICING,
+      },
+      {
+        icon: getPageIcon(EPageType.MUSIC),
+        name: getPageTitle(EPageType.MUSIC, lang),
+        path: routerPaths.MUSIC,
+      },
+    ],
+    [lang]
+  )
 
   return (
     <div className="flex min-h-screen overflow-hidden md:h-screen lg:h-screen">
