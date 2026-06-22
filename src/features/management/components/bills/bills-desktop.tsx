@@ -1,6 +1,6 @@
 import type { FC } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import BillsCard from "@/features/management/components/bills-card"
+import BillsCard from "@/features/management/components/bills/bills-card"
 
 const BillsDesktop: FC = () => {
   const titleClassName = "bg-primary text-center text-xl text-white font-bold rounded-[20px] p-2 mb-5"

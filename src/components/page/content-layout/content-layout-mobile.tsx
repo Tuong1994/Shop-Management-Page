@@ -34,7 +34,7 @@ const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, bottomCon
               </Button>
             </LocaleLink>
           ))}
-          {isPhone && (
+          {isPhone && bottomContent && (
             <>
               <Separator />
               <div className="mt-5">{bottomContent}</div>

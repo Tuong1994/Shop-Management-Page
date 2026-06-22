@@ -93,4 +93,30 @@ const TextMuted: FC<TextMutedProps> = forwardRef(
   }
 )
 
-export { Title, Paragraph, Blockquote, TextSmall, TextMuted }
+interface ListProps extends HTMLAttributes<HTMLUListElement> {
+  children?: ReactNode
+}
+const List: FC<ListProps> = forwardRef(
+  ({ children, className, ...restProps }, ref: Ref<HTMLUListElement>) => {
+    return (
+      <ul ref={ref} className={cn("my-6 ml-6 list-disc [&>li]:mt-2", className)} {...restProps}>
+        {children}
+      </ul>
+    )
+  }
+)
+
+interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
+  children?: ReactNode
+}
+const ListItem: FC<ListItemProps> = forwardRef(
+  ({ children, className, ...restProps }, ref: Ref<HTMLLIElement>) => {
+    return (
+      <li ref={ref} {...restProps}>
+        {children}
+      </li>
+    )
+  }
+)
+
+export { Title, Paragraph, Blockquote, TextSmall, TextMuted, List, ListItem }
