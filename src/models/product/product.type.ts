@@ -26,3 +26,5 @@ export type Product = {
   createdAt: Date | string
   updatedAt: Date | string
 }
+
+export type ProductDataTable = Omit<Product, "nameEn" | "nameVn" | "isDelete" | "isNew" | "createdAt" | "updatedAt" | "image" | "categoryId" | "category">[]
