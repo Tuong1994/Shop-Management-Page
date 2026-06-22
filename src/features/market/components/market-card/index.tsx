@@ -10,6 +10,7 @@ import CardFurnitures from "./card-furnitures"
 import CardPaints from "./card-paints"
 import CardFloor from "./card-floor"
 import CardTools from "./card-tools"
+import CardVehicles from "./card-vehicles"
 import useLocale from "@/locale/use-locale"
 
 interface MarketCardProps {
@@ -26,14 +27,14 @@ const MarketCard: FC<MarketCardProps> = ({ tabType = ETabType.PRODUCTS }) => {
       [ETabType.PAINTS]: <CardPaints />,
       [ETabType.FLOOR]: <CardFloor />,
       [ETabType.TOOLS]: <CardTools />,
-      [ETabType.VEHICLES]: "",
+      [ETabType.VEHICLES]: <CardVehicles />,
     }
     return card[tabType]
   }, [tabType])
 
   return (
     <Card className="p-0">
-      {tabType === ETabType.TOOLS ? (
+      {tabType === ETabType.TOOLS || tabType === ETabType.VEHICLES ? (
         <CardContent className="p-2.5">
           {renderCards()}
           <Separator className="my-2.5" />
