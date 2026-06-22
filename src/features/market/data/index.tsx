@@ -4,44 +4,44 @@ import { routerPaths } from "@/lib/router/paths"
 import { Brush, Layers, Package, ShelvingUnit, Van, Wrench } from "lucide-react"
 import { getRouteWithSub } from "@/lib/router/helper"
 
-export const getTabItems = (lang: Locale): TabItems => {
-  const baseUrl = routerPaths.MARKET
+export const getMarketTabItems = (lang: Locale): TabItems => {
+  const baseUrl = routerPaths.MARKET.INDEX
   return [
     {
-      id: routerPaths.PRODUCTS,
+      id: routerPaths.MARKET.PRODUCTS,
       name: lang.market.tabItems.products,
       icon: <Package />,
-      path: getRouteWithSub(baseUrl, routerPaths.PRODUCTS),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.PRODUCTS),
     },
     {
-      id: routerPaths.FURNITURES,
+      id: routerPaths.MARKET.FURNITURES,
       name: lang.market.tabItems.furnitures,
       icon: <ShelvingUnit />,
-      path: getRouteWithSub(baseUrl, routerPaths.FURNITURES),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.FURNITURES),
     },
     {
-      id: routerPaths.PAINTS,
+      id: routerPaths.MARKET.PAINTS,
       name: lang.market.tabItems.paints,
       icon: <Brush />,
-      path: getRouteWithSub(baseUrl, routerPaths.PAINTS),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.PAINTS),
     },
     {
-      id: routerPaths.FLOOR,
+      id: routerPaths.MARKET.FLOOR,
       name: lang.market.tabItems.floor,
       icon: <Layers />,
-      path: getRouteWithSub(baseUrl, routerPaths.FLOOR),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.FLOOR),
     },
     {
-      id: routerPaths.TOOLS,
+      id: routerPaths.MARKET.TOOLS,
       name: lang.market.tabItems.tools,
       icon: <Wrench />,
-      path: getRouteWithSub(baseUrl, routerPaths.TOOLS),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.TOOLS),
     },
     {
-      id: routerPaths.VEHICLES,
+      id: routerPaths.MARKET.VEHICLES,
       name: lang.market.tabItems.vehicles,
       icon: <Van />,
-      path: getRouteWithSub(baseUrl, routerPaths.VEHICLES),
+      path: getRouteWithSub(baseUrl, routerPaths.MARKET.VEHICLES),
     },
   ]
 }

@@ -2,7 +2,7 @@ import type { FC } from "react"
 import { EPageType } from "@/data/page"
 import { Outlet, useLocation } from "react-router"
 import { routerPaths } from "@/lib/router/paths"
-import { getTabItems } from "@/features/market/data"
+import { getMarketTabItems } from "@/features/market/data"
 import { getRouteSubname } from "@/lib/router/helper"
 import {
   Pagination,
@@ -25,12 +25,12 @@ const MarketPage: FC = () => {
 
   const pathname = getRouteSubname(location)
 
-  const hasFilter = pathname === routerPaths.PRODUCTS
+  const hasFilter = pathname === routerPaths.MARKET.PRODUCTS
 
   return (
     <ContentLayout
       pageType={EPageType.MARKET}
-      tabItems={getTabItems(lang)}
+      tabItems={getMarketTabItems(lang)}
       actions={<MarketCart />}
       bottomContent={hasFilter && <MarketFilter />}
     >

@@ -14,6 +14,10 @@ import PaintsPage from "@/pages/market/paints"
 import FloorPage from "@/pages/market/floor"
 import ToolsPage from "@/pages/market/tools"
 import VehiclesPage from "@/pages/market/vehicles"
+import BillsPage from "@/pages/management/bills"
+import GrowthPage from "@/pages/management/growth"
+import StoragePage from "@/pages/management/storage"
+import HiringPage from "@/pages/management/hiring"
 
 export const router = createBrowserRouter([
   {
@@ -25,42 +29,64 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: routerPaths.MARKET,
+        path: routerPaths.MARKET.INDEX,
         element: <MarketPage />,
         children: [
           {
             index: true,
-            element: <Navigate to={routerPaths.PRODUCTS} replace />
+            element: <Navigate to={routerPaths.MARKET.PRODUCTS} replace />
           },
           {
-            path: routerPaths.PRODUCTS,
+            path: routerPaths.MARKET.PRODUCTS,
             element: <ProductPage />
           },
           {
-            path: routerPaths.FURNITURES,
+            path: routerPaths.MARKET.FURNITURES,
             element: <FurnituresPage />
           },
           {
-            path: routerPaths.PAINTS,
+            path: routerPaths.MARKET.PAINTS,
             element: <PaintsPage />
           },
           {
-            path: routerPaths.FLOOR,
+            path: routerPaths.MARKET.FLOOR,
             element: <FloorPage />
           },
           {
-            path: routerPaths.TOOLS,
+            path: routerPaths.MARKET.TOOLS,
             element: <ToolsPage />
           },
           {
-            path: routerPaths.VEHICLES,
+            path: routerPaths.MARKET.VEHICLES,
             element: <VehiclesPage />
           },
         ]
       },
       {
-        path: routerPaths.MANAGEMENT,
+        path: routerPaths.MANAGEMENT.INDEX,
         element: <ManagementPage />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to={routerPaths.MANAGEMENT.BILLS} replace />
+          },
+          {
+            path: routerPaths.MANAGEMENT.BILLS,
+            element: <BillsPage />
+          },
+          {
+            path: routerPaths.MANAGEMENT.GROWTH,
+            element: <GrowthPage />
+          },
+          {
+            path: routerPaths.MANAGEMENT.STORAGE,
+            element: <StoragePage />
+          },
+          {
+            path: routerPaths.MANAGEMENT.HIRING,
+            element: <HiringPage />
+          },
+        ]
       },
       {
         path: routerPaths.BANK,

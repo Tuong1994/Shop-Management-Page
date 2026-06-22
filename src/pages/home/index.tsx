@@ -15,12 +15,12 @@ const HomePage: FC = () => {
       {
         icon: getPageIcon(EPageType.MARKET),
         name: getPageTitle(EPageType.MARKET, lang),
-        path: routerPaths.MARKET,
+        path: routerPaths.MARKET.INDEX,
       },
       {
         icon: getPageIcon(EPageType.MANAGEMENT),
         name: getPageTitle(EPageType.MANAGEMENT, lang),
-        path: routerPaths.MANAGEMENT,
+        path: routerPaths.MANAGEMENT.INDEX,
       },
       {
         icon: getPageIcon(EPageType.BANK),
