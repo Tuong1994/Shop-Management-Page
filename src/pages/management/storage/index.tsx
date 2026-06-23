@@ -1,14 +1,15 @@
-import type { FC } from "react"
+import { useMemo, type FC } from "react"
 import type { ProductDataTable } from "@/models/product/product.type"
+import type { ColumnDef } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/product.enum"
 import { ERecordStatus } from "@/models/common.enum"
-import { renderProductDisplay, renderProductUnit, renderStorageStatus } from "@/models/product/product.helper"
-import { Badge } from "@/components/ui/badge"
-import useLocale from "@/locale/use-locale"
+import { renderProductDisplay, renderProductUnit, renderStorageStatus } from "@/data/product"
 import { renderRecordStatus } from "@/data/record-status"
+import useLocale from "@/locale/use-locale"
+import DataTable from "@/components/page/data-table"
 
-const products: ProductDataTable = [
+const products: ProductDataTable[] = [
   {
     id: "P_1",
     name: "Apple Juice",
@@ -140,9 +141,27 @@ const products: ProductDataTable = [
 const StoragePage: FC = () => {
   const { lang } = useLocale()
 
+  const columns: ColumnDef<ProductDataTable>[] = useMemo(
+    () => [
+      { accessorKey: "name", header: "Product name", },
+      { accessorKey: "unit", header: "Unit" },
+      { accessorKey: "cost", header: "Cost" },
+      { accessorKey: "price", header: "Price" },
+      { accessorKey: "items", header: "Items per box" },
+      { accessorKey: "boxes", header: "Boxes" },
+      { accessorKey: "amount", header: "Amount" },
+      { accessorKey: "display", header: "Display" },
+      { accessorKey: "supplier", header: "Supplier" },
+      { accessorKey: "storageStatus", header: "Storage" },
+      { accessorKey: "status", header: "Status" },
+    ],
+    [lang]
+  )
+
   return (
     <>
-      <Table>
+      <DataTable<ProductDataTable> data={products} columns={columns} />
+      {/* <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-25 font-bold">Product name</TableHead>
@@ -162,32 +181,20 @@ const StoragePage: FC = () => {
           {products.map((product) => (
             <TableRow key={product.id}>
               <TableCell className="font-medium">{product.name}</TableCell>
-              <TableCell>
-                <Badge className="bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300">
-                  {renderProductUnit(product.unit, lang)}
-                </Badge>
-              </TableCell>
+              <TableCell>{renderProductUnit(product.unit, lang)}</TableCell>
               <TableCell>{product.cost}</TableCell>
               <TableCell>{product.price}</TableCell>
               <TableCell className="text-center">{product.items}</TableCell>
               <TableCell>{product.boxes}</TableCell>
               <TableCell>{product.amount}</TableCell>
-              <TableCell>
-                <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">{renderProductDisplay(product.display, lang)}</Badge>
-              </TableCell>
+              <TableCell>{renderProductDisplay(product.display, lang)}</TableCell>
               <TableCell>{product.supplier}</TableCell>
-              <TableCell>
-                <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">{renderStorageStatus(product.storageStatus, lang)}</Badge>
-              </TableCell>
-              <TableCell>
-                <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
-                  {renderRecordStatus(product.status, lang)}
-                </Badge>
-              </TableCell>
+              <TableCell>{renderStorageStatus(product.storageStatus, lang)}</TableCell>
+              <TableCell>{renderRecordStatus(product.status, lang)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
     </>
   )
 }
