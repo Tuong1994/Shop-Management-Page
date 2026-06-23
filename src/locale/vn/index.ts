@@ -5,6 +5,7 @@ import management_vn from "./management"
 import market_vn from "./market"
 import music_vn from "./music"
 import pricing_vn from "./pricing"
+import product_vn from "./product"
 
 export const vn = {
   common: common_vn,
@@ -14,6 +15,7 @@ export const vn = {
   bank: bank_vn,
   pricing: pricing_vn,
   music: music_vn,
+  product: product_vn
 }
 
 export type VN = typeof vn

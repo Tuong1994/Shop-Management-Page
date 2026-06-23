@@ -5,7 +5,7 @@ const management_en = {
     growth: "Growth",
     storage: "Storage",
     hiring: "Hiring",
-  }
+  },
 }
 
 export default management_en

@@ -99,6 +99,11 @@ const common_en = {
       api: "Api network failed",
     },
   },
-};
+  status: {
+    draft: "Draft",
+    active: "Active",
+    all: "All",
+  },
+}
 
-export default common_en;
+export default common_en

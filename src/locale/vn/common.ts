@@ -99,6 +99,11 @@ const common_vn = {
       api: "Đã xảy ra lỗi",
     },
   },
+  status: {
+    draft: "Nháp",
+    active: "Kích hoạt",
+    all: "Tất cả",
+  },
 }
 
 export default common_vn
