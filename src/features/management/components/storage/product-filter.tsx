@@ -24,7 +24,7 @@ const ProductFilter: FC<ProductFilterProps> = ({ table }) => {
   const { lang } = useLocale()
 
   return (
-    <FieldGroup className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-8">
+    <FieldGroup className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
       <Field className="w-full">
         <InputGroup>
           <InputGroupInput placeholder={`${lang.common.form.placeholder.search}...`} />

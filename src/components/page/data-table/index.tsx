@@ -1,12 +1,4 @@
-import {
-  type ForwardedRef,
-  forwardRef,
-  type HTMLAttributes,
-  type ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { type ForwardedRef, forwardRef, type HTMLAttributes, type ReactNode, useEffect, useMemo, useState } from "react"
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -20,9 +12,12 @@ import {
 import { cn } from "@/lib/utils"
 import { Table } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button"
+import { Trash, X } from "lucide-react"
 import DataTablePagination from "./data-table-pagination"
 import DataTableHeader from "./data-table-header"
 import DataTableBody from "./data-table-body"
+import useLocale from "@/locale/use-locale"
 
 interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
   columns: ColumnDef<T>[]
@@ -50,7 +45,10 @@ const DataTable = <T extends object>(
   }: DataTableProps<T>,
   ref: ForwardedRef<HTMLTableElement>
 ) => {
-  let rows: T[] = []
+  const { lang } = useLocale()
+
+  const [rows, setRows] = useState<T[]>([])
+
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -64,10 +62,9 @@ const DataTable = <T extends object>(
             table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
           )}
           onCheckedChange={(value) => {
-            const allRows = table.getRowModel().rows.map((row) => ({ ...row.original }))
             table.toggleAllPageRowsSelected(!!value)
-            if (!value) onRowSelection?.([])
-            onRowSelection?.(allRows)
+            setRows(table.getRowModel().rows.map((row) => ({ ...row.original })))
+            if (!value) setRows([])
           }}
           aria-label="Select all"
         />
@@ -77,9 +74,8 @@ const DataTable = <T extends object>(
           checked={row.getIsSelected()}
           onCheckedChange={(value) => {
             row.toggleSelected(!!value)
-            rows = [...rows, row.original]
-            if (!value) rows = rows.filter((selectRow) => selectRow[rowKey] !== row.original[rowKey])
-            onRowSelection?.(rows)
+            setRows(prev => [...prev, row.original])
+            if (!value) setRows(prev => [...prev].filter(selectedRow => selectedRow[rowKey] !== row.original[rowKey]))
           }}
           aria-label="Select row"
         />
@@ -103,9 +99,32 @@ const DataTable = <T extends object>(
     state: { rowSelection, columnFilters },
   })
 
+  const isSelection = table.getIsSomePageRowsSelected() || table.getIsAllRowsSelected()
+
+  useEffect(() => {
+    onRowSelection?.(rows)
+  }, [rows.length, isSelection])
+
   return (
     <>
       {hasFilter && <div className="flex items-center py-4">{renderFilter?.(table)}</div>}
+      {isSelection && (
+        <div className="flex items-center gap-2 pb-4">
+          <Button variant="destructive">
+            <Trash />
+            <span>Delete</span>
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              console.log(rows)
+            }}
+          >
+            <X />
+            <span>Cancel</span>
+          </Button>
+        </div>
+      )}
       <div className="overflow-hidden rounded-md border">
         <Table ref={ref} {...restProps} className={cn("text-[15px]", className)}>
           <DataTableHeader table={table} />
