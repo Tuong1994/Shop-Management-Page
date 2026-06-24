@@ -1,6 +1,7 @@
 import type { Locale } from "@/locale/type"
 import { Badge } from "@/components/ui/badge"
 import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/product.enum"
+import type { ReactNode } from "react"
 
 export const renderProductDisplay = (display: EProductDisplay, lang: Locale) => {
   const displays: Record<EProductDisplay, string> = {
@@ -8,7 +9,11 @@ export const renderProductDisplay = (display: EProductDisplay, lang: Locale) => 
     [EProductDisplay.FRIDGE]: lang.product.display.fridge,
     [EProductDisplay.FREEZER]: lang.product.display.freezer,
   }
-  return <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">{displays[display]}</Badge>
+  return (
+    <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+      {displays[display]}
+    </Badge>
+  )
 }
 
 export const renderProductUnit = (unit: EProductUnit, lang: Locale) => {
@@ -28,14 +33,25 @@ export const renderProductUnit = (unit: EProductUnit, lang: Locale) => {
     [EProductUnit.LOAF]: lang.product.unit.loaf,
     [EProductUnit.TUBE]: lang.product.unit.tube,
   }
-  return <Badge className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">{units[unit]}</Badge>
+  return (
+    <Badge className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+      {units[unit]}
+    </Badge>
+  )
 }
 
 export const renderStorageStatus = (storage: EStorageStatus, lang: Locale) => {
-  const storages: Record<EStorageStatus, string> = {
-    [EStorageStatus.IN_STOCK]: lang.product.storage.inStock,
-    [EStorageStatus.OUT_OF_STOCK]: lang.product.storage.outOfStock,
+  const storages: Record<EStorageStatus, ReactNode> = {
+    [EStorageStatus.IN_STOCK]: (
+      <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
+        {lang.product.storage.inStock}
+      </Badge>
+    ),
+    [EStorageStatus.OUT_OF_STOCK]: (
+      <Badge className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300">
+        {lang.product.storage.outOfStock}
+      </Badge>
+    ),
   }
-  const color = storage === EStorageStatus.IN_STOCK ? "green" : "red"
-  return <Badge className={`bg-${color}-50 text-${color}-700 dark:bg-${color}-950 dark:text-${color}-300`}>{storages[storage]}</Badge>
+  return storages[storage]
 }
