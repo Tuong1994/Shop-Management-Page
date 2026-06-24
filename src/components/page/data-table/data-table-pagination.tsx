@@ -2,21 +2,29 @@ import { type Table } from "@tanstack/react-table"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useViewport } from "@/hooks"
+import useLocale from "@/locale/use-locale"
 
 interface DataTablePaginationProps<T> {
   table: Table<T>
 }
 
 const DataTablePagination = <T extends object>({ table }: DataTablePaginationProps<T>) => {
+  const { lang } = useLocale()
+
+  const { isMobile } = useViewport()
+
+  const content = `${table.getFilteredSelectedRowModel().rows.length} ${lang.common.pagination.of} ${table.getFilteredRowModel().rows.length} ${lang.common.pagination.rows} ${lang.common.pagination.selected}`
+
   return (
-    <div className="flex items-center justify-between px-2">
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
-        selected.
-      </div>
-      <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+    <div className="flex items-center justify-center py-4 lg:justify-between">
+      {!isMobile && <div className="flex-1 text-sm text-muted-foreground">{content}</div>}
+
+      <div className="flex flex-wrap items-center justify-center gap-5">
+        <div className="flex items-center">
+          <p className="mr-1 text-sm font-medium">
+            {lang.common.pagination.rowsLimit}
+          </p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
@@ -35,9 +43,11 @@ const DataTablePagination = <T extends object>({ table }: DataTablePaginationPro
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-25 items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+
+        <div className="flex items-center justify-center text-sm font-medium">
+          {lang.common.pagination.page} {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
         </div>
+
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"

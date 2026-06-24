@@ -1,4 +1,12 @@
-import { type ForwardedRef, forwardRef, type HTMLAttributes, type ReactNode, useEffect, useMemo, useState } from "react"
+import {
+  type ForwardedRef,
+  forwardRef,
+  type HTMLAttributes,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -23,7 +31,7 @@ interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
   hasSelection?: boolean
   hasFilter?: boolean
   hasPaging?: boolean
-  renderFilter?: (table: TableTanstack<T>) => ReactNode;
+  renderFilter?: (table: TableTanstack<T>) => ReactNode
   onRowSelection?: (rows: T[]) => void
 }
 
@@ -97,22 +105,14 @@ const DataTable = <T extends object>(
 
   return (
     <>
-      {hasFilter && (
-        <div className="flex items-center py-4">
-          {renderFilter?.(table)}
-        </div>
-      )}
+      {hasFilter && <div className="flex items-center py-4">{renderFilter?.(table)}</div>}
       <div className="overflow-hidden rounded-md border">
         <Table ref={ref} {...restProps} className={cn("text-[15px]", className)}>
           <DataTableHeader table={table} />
           <DataTableBody table={table} columns={columns} />
         </Table>
       </div>
-      {hasPaging && (
-        <div className="flex items-center justify-end space-x-2 py-4">
-          <DataTablePagination table={table} />
-        </div>
-      )}
+      {hasPaging && <DataTablePagination table={table} />}
     </>
   )
 }

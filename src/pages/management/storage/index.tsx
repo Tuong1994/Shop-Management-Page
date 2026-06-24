@@ -5,19 +5,8 @@ import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/
 import { ERecordStatus } from "@/models/common.enum"
 import { renderProductDisplay, renderProductUnit, renderStorageStatus } from "@/data/product"
 import { renderRecordStatus } from "@/data/record-status"
-import { Field, FieldGroup } from "@/components/ui/field"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
-import { Search } from "lucide-react"
 import DataTable from "@/components/page/data-table"
+import ProductFilter from "@/features/management/components/storage/product-filter"
 import useLocale from "@/locale/use-locale"
 
 const products: ProductDataTable[] = [
@@ -154,35 +143,44 @@ const StoragePage: FC = () => {
 
   const columns: ColumnDef<ProductDataTable>[] = useMemo(
     () => [
-      { accessorKey: "name", header: () => <div className="font-bold">Product name</div> },
+      {
+        accessorKey: "name",
+        header: () => <div className="font-bold">{lang.common.table.head.productName}</div>,
+      },
       {
         accessorKey: "unit",
-        header: () => <div className="font-bold">Unit</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.unit}</div>,
         cell: ({ row }) => renderProductUnit(row.getValue("unit"), lang),
       },
-      { accessorKey: "cost", header: () => <div className="font-bold">Cost</div> },
-      { accessorKey: "price", header: () => <div className="font-bold">Price</div> },
+      { accessorKey: "cost", header: () => <div className="font-bold">{lang.common.table.head.cost}</div> },
+      { accessorKey: "price", header: () => <div className="font-bold">{lang.common.table.head.price}</div> },
       {
         accessorKey: "items",
-        header: () => <div className="text-center font-bold">Items per box</div>,
+        header: () => <div className="text-center font-bold">{lang.common.table.head.items}</div>,
         cell: ({ row }) => <div className="text-center">{row.getValue("items")}</div>,
       },
-      { accessorKey: "boxes", header: () => <div className="font-bold">Boxes</div> },
-      { accessorKey: "amount", header: () => <div className="font-bold">Amount</div> },
+      { accessorKey: "boxes", header: () => <div className="font-bold">{lang.common.table.head.boxes}</div> },
+      {
+        accessorKey: "amount",
+        header: () => <div className="font-bold">{lang.common.table.head.amount}</div>,
+      },
       {
         accessorKey: "display",
-        header: () => <div className="font-bold">Display</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.display}</div>,
         cell: ({ row }) => renderProductDisplay(row.getValue("display"), lang),
       },
-      { accessorKey: "supplier", header: () => <div className="font-bold">Supplier</div> },
+      {
+        accessorKey: "supplier",
+        header: () => <div className="font-bold">{lang.common.table.head.supplier}</div>,
+      },
       {
         accessorKey: "storageStatus",
-        header: () => <div className="font-bold">Storage</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.storage}</div>,
         cell: ({ row }) => renderStorageStatus(row.getValue("storageStatus"), lang),
       },
       {
         accessorKey: "status",
-        header: () => <div className="font-bold">Status</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.status}</div>,
         cell: ({ row }) => renderRecordStatus(row.getValue("status"), lang),
       },
     ],
@@ -198,52 +196,7 @@ const StoragePage: FC = () => {
       data={products}
       columns={columns}
       onRowSelection={(rows) => console.log(rows)}
-      renderFilter={(table) => (
-        <FieldGroup className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-3 lg:w-150 lg:grid-cols-3">
-          <Field className="w-full">
-            <InputGroup>
-              <InputGroupInput placeholder={`${lang.common.form.placeholder.search}...`} />
-              <InputGroupAddon align="inline-end">
-                <Search />
-              </InputGroupAddon>
-            </InputGroup>
-          </Field>
-          <Field>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder={lang.common.form.placeholder.display} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </Field>
-          <Field>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder={lang.common.form.placeholder.category} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </Field>
-        </FieldGroup>
-      )}
+      renderFilter={(table) => <ProductFilter table={table} />}
     />
   )
 }
