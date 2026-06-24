@@ -1,4 +1,12 @@
-import { type ForwardedRef, forwardRef, type HTMLAttributes, type ReactNode, useEffect, useMemo, useState } from "react"
+import {
+  type ForwardedRef,
+  forwardRef,
+  type HTMLAttributes,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -27,7 +35,8 @@ interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
   hasFilter?: boolean
   hasPaging?: boolean
   renderFilter?: (table: TableTanstack<T>) => ReactNode
-  onRowSelection?: (rows: T[]) => void
+  onRowSelection?: (rows: T[]) => void;
+  onRowRemove?: (rows: T[]) => void;
 }
 
 const DataTable = <T extends object>(
@@ -41,6 +50,7 @@ const DataTable = <T extends object>(
     className,
     renderFilter,
     onRowSelection,
+    onRowRemove,
     ...restProps
   }: DataTableProps<T>,
   ref: ForwardedRef<HTMLTableElement>
@@ -74,8 +84,11 @@ const DataTable = <T extends object>(
           checked={row.getIsSelected()}
           onCheckedChange={(value) => {
             row.toggleSelected(!!value)
-            setRows(prev => [...prev, row.original])
-            if (!value) setRows(prev => [...prev].filter(selectedRow => selectedRow[rowKey] !== row.original[rowKey]))
+            setRows((prev) => [...prev, row.original])
+            if (!value)
+              setRows((prev) =>
+                [...prev].filter((selectedRow) => selectedRow[rowKey] !== row.original[rowKey])
+              )
           }}
           aria-label="Select row"
         />
@@ -105,23 +118,25 @@ const DataTable = <T extends object>(
     onRowSelection?.(rows)
   }, [rows.length, isSelection])
 
+  const handleCancelSelect = () => {
+    setRows([])
+    setRowSelection({})
+  }
+
+  const handleRowRemove = () => onRowRemove?.(rows)
+
   return (
     <>
       {hasFilter && <div className="flex items-center py-4">{renderFilter?.(table)}</div>}
       {isSelection && (
         <div className="flex items-center gap-2 pb-4">
-          <Button variant="destructive">
+          <Button variant="destructive" onClick={handleRowRemove}>
             <Trash />
-            <span>Delete</span>
+            <span>{lang.common.actions.remove}</span>
           </Button>
-          <Button
-            variant="outline"
-            onClick={() => {
-              console.log(rows)
-            }}
-          >
+          <Button variant="outline" onClick={handleCancelSelect}>
             <X />
-            <span>Cancel</span>
+            <span>{lang.common.actions.cancel}</span>
           </Button>
         </div>
       )}

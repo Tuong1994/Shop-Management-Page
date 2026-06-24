@@ -196,6 +196,7 @@ const StoragePage: FC = () => {
       data={products}
       columns={columns}
       onRowSelection={(rows) => console.log(rows)}
+      onRowRemove={(rows) => console.log(rows)}
       renderFilter={(table) => <ProductFilter table={table} />}
     />
   )
