@@ -1,20 +1,18 @@
 import {
   type ForwardedRef,
-  forwardRef,
   type HTMLAttributes,
   type ReactNode,
+  forwardRef,
   useEffect,
   useMemo,
   useState,
 } from "react"
 import {
   type ColumnDef,
-  type ColumnFiltersState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
   type RowSelectionState,
   type Table as TableTanstack,
+  getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table"
 import { cn } from "@/lib/utils"
@@ -35,8 +33,8 @@ interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
   hasFilter?: boolean
   hasPaging?: boolean
   renderFilter?: (table: TableTanstack<T>) => ReactNode
-  onRowSelection?: (rows: T[]) => void;
-  onRowRemove?: (rows: T[]) => void;
+  onRowSelection?: (rows: T[]) => void
+  onRowRemove?: (rows: T[]) => void
 }
 
 const DataTable = <T extends object>(
@@ -60,8 +58,6 @@ const DataTable = <T extends object>(
   const [rows, setRows] = useState<T[]>([])
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
-
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const selectionColumn: ColumnDef<T> = useMemo(
     () => ({
@@ -106,10 +102,8 @@ const DataTable = <T extends object>(
     columns: defaultColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,
-    onColumnFiltersChange: setColumnFilters,
-    state: { rowSelection, columnFilters },
+    state: { rowSelection },
   })
 
   const isSelection = table.getIsSomePageRowsSelected() || table.getIsAllRowsSelected()
