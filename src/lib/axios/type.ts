@@ -37,10 +37,10 @@ export type ApiQuery = {
   cityCode?: number
   districtCode?: number
   price?: number
-  unit?: EProductUnit
-  display?: EProductDisplay
-  status?: ERecordStatus
-  storageStatus?: EStorageStatus
+  unit?: EProductUnit | null
+  display?: EProductDisplay | null
+  status?: ERecordStatus | null
+  storageStatus?: EStorageStatus | null
 
   admin?: boolean
 
