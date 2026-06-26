@@ -33,6 +33,8 @@ const common_en = {
       storage: "Storage",
       status: "Status",
       category: "Category",
+      gender: "Gender",
+      role: "Role",
       imagesUpload: "Select or drag image here",
       filesUpload: "Choose file",
     },
@@ -89,6 +91,7 @@ const common_en = {
       display: "Display",
       supplier: "Supplier",
       storage: "Storage",
+      role: "Role",
     },
   },
   pagination: {

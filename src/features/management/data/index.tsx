@@ -27,10 +27,10 @@ export const getManagementTabItems = (lang: Locale): TabItems => {
       path: getRouteWithSub(baseUrl, routerPaths.MANAGEMENT.STORAGE),
     },
     {
-      id: routerPaths.MANAGEMENT.HIRING,
-      name: lang.management.tabItems.hiring,
+      id: routerPaths.MANAGEMENT.STAFFS,
+      name: lang.management.tabItems.staffs,
       icon: <Users />,
-      path: getRouteWithSub(baseUrl, routerPaths.MANAGEMENT.HIRING),
+      path: getRouteWithSub(baseUrl, routerPaths.MANAGEMENT.STAFFS),
     },
   ]
 }

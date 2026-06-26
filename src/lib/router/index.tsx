@@ -17,7 +17,7 @@ import VehiclesPage from "@/pages/market/vehicles"
 import BillsPage from "@/pages/management/bills"
 import GrowthPage from "@/pages/management/growth"
 import StoragePage from "@/pages/management/storage"
-import HiringPage from "@/pages/management/hiring"
+import StaffsPage from "@/pages/management/staffs"
 
 export const router = createBrowserRouter([
   {
@@ -83,8 +83,8 @@ export const router = createBrowserRouter([
             element: <StoragePage />
           },
           {
-            path: routerPaths.MANAGEMENT.HIRING,
-            element: <HiringPage />
+            path: routerPaths.MANAGEMENT.STAFFS,
+            element: <StaffsPage />
           },
         ]
       },

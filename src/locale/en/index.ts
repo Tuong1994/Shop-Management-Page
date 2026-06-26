@@ -6,6 +6,7 @@ import market_en from "./market"
 import music_en from "./music"
 import pricing_en from "./pricing"
 import product_en from "./product"
+import user_en from "./user"
 
 export const en = {
   common: common_en,
@@ -15,7 +16,8 @@ export const en = {
   bank: bank_en,
   pricing: pricing_en,
   music: music_en,
-  product: product_en
+  product: product_en,
+  user: user_en
 }
 
 export type EN = typeof en

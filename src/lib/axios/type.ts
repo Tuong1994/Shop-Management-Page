@@ -44,8 +44,8 @@ export type ApiQuery = {
 
   admin?: boolean
 
-  role?: ERole
-  gender?: EGender
+  role?: ERole | null
+  gender?: EGender | null
   locale?: ELocale
 }
 

@@ -4,6 +4,7 @@ const management_vn = {
     bills: "Hóa đơn",
     growth: "Mở rộng mặt bằng",
     storage: "Mở rộng kho",
+    staffs: "Nhân viên",
     hiring: "Tuyển dụng",
   }
 }

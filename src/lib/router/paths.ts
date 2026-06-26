@@ -15,7 +15,7 @@ export const routerPaths = {
     BILLS: "bills",
     GROWTH: "growth",
     STORAGE: "storage",
-    HIRING: "hiring",
+    STAFFS: "staffs",
   },
   BANK: "bank",
   PRICING: "pricing",

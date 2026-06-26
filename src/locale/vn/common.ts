@@ -33,6 +33,8 @@ const common_vn = {
       storage: "Tồn kho",
       status: "Trạng thái",
       category: "Danh mục",
+      gender: "Giới tính",
+      role: "Vai trò",
       imagesUpload: "Chọn hoặc kéo thả hình ảnh vào khu vực này",
       filesUpload: "Chọn tập tin",
     },
@@ -89,6 +91,7 @@ const common_vn = {
       display: "Trưng bày",
       supplier: "Nhà cung cấp",
       storage: "Tồn kho",
+      role: "Vai trò"
     },
   },
   pagination: {

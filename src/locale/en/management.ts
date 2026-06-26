@@ -4,6 +4,7 @@ const management_en = {
     bills: "Bills",
     growth: "Growth",
     storage: "Storage",
+    staffs: "Staffs",
     hiring: "Hiring",
   },
 }

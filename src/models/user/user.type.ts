@@ -52,3 +52,5 @@ export type UserPermission = {
   createdAt: Date | string
   updatedAt: Date | string
 }
+
+export type UserDataTable = Pick<User, "id" | "fullName" | "email" | "phone" | "gender" | "role" | "birthday">

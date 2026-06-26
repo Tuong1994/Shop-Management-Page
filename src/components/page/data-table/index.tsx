@@ -28,7 +28,7 @@ import useLocale from "@/locale/use-locale"
 interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
   columns: ColumnDef<T>[]
   data: T[]
-  rowKey: keyof T
+  rowKey?: keyof T
   hasSelection?: boolean
   hasFilter?: boolean
   hasPaging?: boolean
@@ -83,7 +83,9 @@ const DataTable = <T extends object>(
             setRows((prev) => [...prev, row.original])
             if (!value)
               setRows((prev) =>
-                [...prev].filter((selectedRow) => selectedRow[rowKey] !== row.original[rowKey])
+                [...prev].filter(
+                  (selectedRow) => selectedRow[rowKey as keyof T] !== row.original[rowKey as keyof T]
+                )
               )
           }}
           aria-label="Select row"
