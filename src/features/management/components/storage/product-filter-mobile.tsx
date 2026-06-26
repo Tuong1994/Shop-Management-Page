@@ -1,7 +1,7 @@
 import { useState, type FC } from "react"
 import type { ProductDataTable } from "@/models/product/product.type"
 import type { Table } from "@tanstack/react-table"
-import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer"
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Filter } from "lucide-react"
 import useLocale from "@/locale/use-locale"
@@ -11,27 +11,29 @@ interface ProductFilterMobileProps {
   table: Table<ProductDataTable>
 }
 
-const ProductFilterMobile: FC<ProductFilterMobileProps> = ({table}) => {
+const ProductFilterMobile: FC<ProductFilterMobileProps> = ({ table }) => {
   const { lang } = useLocale()
 
   const [open, setOpen] = useState<boolean>(false)
 
-  const handleTrigger = () => {
-    setOpen(!open)
+  const handleTrigger = (open: boolean) => {
+    setOpen(open)
   }
 
   return (
-    <Drawer direction="right" open={open} onOpenChange={handleTrigger}>
-      <DrawerTrigger asChild>
-        <Button variant="outline">
-          <Filter />
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader className="font-semibold">{lang.common.actions.filter}</DrawerHeader>
-        <ProductFilterForm table={table} onCancel={handleTrigger} />
-      </DrawerContent>
-    </Drawer>
+    <Sheet open={open} onOpenChange={handleTrigger}>
+      <SheetTrigger
+        render={
+          <Button variant="outline">
+            <Filter />
+          </Button>
+        }
+      />
+      <SheetContent showCloseButton={false} className="p-2 overflow-y-auto">
+        <SheetHeader className="font-semibold px-2">{lang.common.actions.filter}</SheetHeader>
+        <ProductFilterForm table={table} onCancel={() => handleTrigger(false)} />
+      </SheetContent>
+    </Sheet>
   )
 }
 
