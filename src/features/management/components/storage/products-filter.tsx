@@ -19,13 +19,13 @@ import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import useLocale from "@/locale/use-locale"
 
-interface ProductFilterFormProps {
+interface ProductsFilterProps {
   table: Table<ProductDataTable>
   onCancel?: () => void
 }
 
-const ProductFilterForm: FC<ProductFilterFormProps> = ({ onCancel }) => {
-  const initialQuery: ApiQuery = {
+const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
+    const initialQuery: ApiQuery = {
     keywords: "",
     categoryId: "",
     supplier: "",
@@ -62,9 +62,8 @@ const ProductFilterForm: FC<ProductFilterFormProps> = ({ onCancel }) => {
     onCancel?.()
   }
 
-  return (
-    <form className="w-full" action={handleFilter}>
-      <FieldGroup className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
+ return   <form className="w-full" action={handleFilter}>
+      <FieldGroup className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
         <Field className="w-full">
           <InputGroup>
             <InputGroupInput
@@ -219,7 +218,6 @@ const ProductFilterForm: FC<ProductFilterFormProps> = ({ onCancel }) => {
         </Field>
       </FieldGroup>
     </form>
-  )
 }
 
-export default ProductFilterForm
+export default ProductsFilter

@@ -22,6 +22,19 @@ const common_vn = {
       note: "Ghi chú",
       status: "Trạng thái",
       optional: "Không bắt buộc",
+      unit: "Đơn vị",
+      productNameEn: "Tên sản phẩm (EN)",
+      productNameVn: "Tên sản phẩm (VN)",
+      storageStatus: "Tồn kho",
+      cost: "Giá vốn",
+      price: "Giá",
+      unitPrice: "Đơn giá",
+      category: "Danh mục",
+      supplier: "Nhà cung cấp",
+      display: "Trưng bày",
+      items: "Sản phẩm mỗi thùng",
+      boxes: "Số thùng",
+      amount: "Tổng số lượng",
     },
     placeholder: {
       enter: "Nhập thông tin",
@@ -91,7 +104,7 @@ const common_vn = {
       display: "Trưng bày",
       supplier: "Nhà cung cấp",
       storage: "Tồn kho",
-      role: "Vai trò"
+      role: "Vai trò",
     },
   },
   pagination: {

@@ -1,12 +1,22 @@
-import { useMemo, type FC } from "react"
+import { useMemo, useState, type FC } from "react"
 import type { ProductDataTable } from "@/models/product/product.type"
 import type { ColumnDef } from "@tanstack/react-table"
 import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/product.enum"
 import { ERecordStatus } from "@/models/common.enum"
 import { renderProductDisplay, renderProductUnit, renderStorageStatus } from "@/data/product"
 import { renderRecordStatus } from "@/data/record-status"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { MoreHorizontal, Pen } from "lucide-react"
 import DataTable from "@/components/page/data-table"
-import ProductFilter from "@/features/management/components/storage/product-filter"
+import ProductsFilter from "@/features/management/components/storage/products-filter"
+import ProductsForm from "@/features/management/components/storage/products-form"
 import useLocale from "@/locale/use-locale"
 
 const products: ProductDataTable[] = [
@@ -141,6 +151,10 @@ const products: ProductDataTable[] = [
 const StoragePage: FC = () => {
   const { lang } = useLocale()
 
+  const [openForm, setOpenForm] = useState<boolean>(false)
+
+  const handleTrigger = (open: boolean) => setOpenForm(open)
+
   const columns: ColumnDef<ProductDataTable>[] = useMemo(
     () => [
       {
@@ -183,12 +197,40 @@ const StoragePage: FC = () => {
         header: () => <div className="font-bold">{lang.common.table.head.status}</div>,
         cell: ({ row }) => renderRecordStatus(row.getValue("status"), lang),
       },
+      {
+        id: "action",
+        cell: ({ row }) => {
+          const payment = row.original
+
+          return (
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">Open menu</span>
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                }
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem onClick={() => handleTrigger(true)}>
+                    <Pen />
+                    <span>{lang.common.actions.update}</span>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )
+        },
+      },
     ],
     [lang]
   )
 
   return (
-    <DataTable<ProductDataTable>
+   <>
+     <DataTable<ProductDataTable>
       hasSelection
       hasFilter
       hasPaging
@@ -197,8 +239,10 @@ const StoragePage: FC = () => {
       columns={columns}
       onRowSelection={(rows) => console.log(rows)}
       onRowRemove={(rows) => console.log(rows)}
-      renderFilter={(table) => <ProductFilter table={table} />}
+      renderFilter={(table) => <ProductsFilter table={table} />}
     />
+    <ProductsForm open={openForm} onOpenChange={handleTrigger} />
+   </>
   )
 }
 
