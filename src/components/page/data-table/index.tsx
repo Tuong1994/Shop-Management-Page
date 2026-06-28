@@ -1,6 +1,6 @@
 import {
   type ForwardedRef,
-  type HTMLAttributes,
+  type TableHTMLAttributes,
   type ReactNode,
   forwardRef,
   useEffect,
@@ -25,7 +25,7 @@ import DataTableHeader from "./data-table-header"
 import DataTableBody from "./data-table-body"
 import useLocale from "@/locale/use-locale"
 
-interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
+interface DataTableProps<T> extends TableHTMLAttributes<HTMLTableElement> {
   columns: ColumnDef<T>[]
   data: T[]
   rowKey?: keyof T

@@ -1,7 +1,7 @@
 import type { FC } from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
-import { Field, FieldLabel } from "@/components/ui/field"
+import { Field, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -12,46 +12,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import useLocale from "@/locale/use-locale"
+import InfoRow from "@/components/page/info-row"
 import FormLayout from "@/components/page/form-layout"
+import FileUpload from "@/components/page/file-upload"
+import useLocale from "@/locale/use-locale"
 
 interface ProductsFormProps extends DialogPrimitive.Root.Props {}
 
 const ProductsForm: FC<ProductsFormProps> = ({ ...restProps }) => {
   const { lang } = useLocale()
 
-  //   export type Product = {
-  //     id: string
-  //     name: string;
-  //     nameEn: string
-  //     nameVn: string
-  //     unit: EProductUnit
-  //     display: EProductDisplay
-  //     cost: number
-  //     price: number
-  //     status: ERecordStatus
-  //     items: number
-  //     boxes: number
-  //     amount: number
-  //     storageStatus: EStorageStatus
-  //     supplier: string
-  //     isNew: boolean
-  //     isDelete: boolean
-  //     categoryId: string
-  //     category: Category
-  //     image: Image
-  //     createdAt: Date | string
-  //     updatedAt: Date | string
-  //   }
-
   return (
     <Dialog {...restProps}>
-      <DialogContent className="min-w-150">
-        <DialogHeader>Update form</DialogHeader>
+      <DialogContent className="min-w-200">
+        <DialogHeader className="text-lg font-bold">Update form</DialogHeader>
         <FormLayout
           left={
             <>
-              <div className="grid grid-cols-2 gap-2">
+              <FieldGroup className="grid grid-cols-2 gap-2">
                 <Field>
                   <FieldLabel>{lang.common.form.label.productNameEn}</FieldLabel>
                   <Input />
@@ -60,69 +38,158 @@ const ProductsForm: FC<ProductsFormProps> = ({ ...restProps }) => {
                   <FieldLabel>{lang.common.form.label.productNameVn}</FieldLabel>
                   <Input />
                 </Field>
-              </div>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.unit}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.unit} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.display}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.display} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+              </FieldGroup>
 
-              <div className="my-2 grid grid-cols-2 gap-2">
-                <Field>
-                  <FieldLabel>{lang.common.form.label.productNameEn}</FieldLabel>
-                  <Input />
-                </Field>
-                <Field>
-                  <FieldLabel>{lang.common.form.label.productNameVn}</FieldLabel>
-                  <Input />
-                </Field>
-              </div>
-              <div className="my-2 grid grid-cols-2 gap-2">
+              <FieldSeparator className="my-4">Pricing</FieldSeparator>
+              <FieldGroup className="grid grid-cols-2 gap-2">
                 <Field>
                   <FieldLabel>{lang.common.form.label.cost}</FieldLabel>
-                  <Input />
+                  <Input placeholder={lang.common.form.placeholder.unit} />
                 </Field>
                 <Field>
                   <FieldLabel>{lang.common.form.label.price}</FieldLabel>
+                  <Input placeholder={lang.common.form.placeholder.unit} />
+                </Field>
+              </FieldGroup>
+
+              <FieldSeparator className="my-4">Storage</FieldSeparator>
+              <FieldGroup className="my-2 grid grid-cols-2 gap-2">
+                <Field>
+                  <FieldLabel>{lang.common.form.label.items}</FieldLabel>
                   <Input />
                 </Field>
-              </div>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.boxes}</FieldLabel>
+                  <Input />
+                </Field>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.storageStatus}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.display} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <InfoRow
+                  className="mt-8 justify-end gap-2"
+                  name={lang.common.form.label.amount + ":"}
+                  descript="800"
+                  descriptProps={{ className: "text-[16px] font-bold" }}
+                />
+              </FieldGroup>
             </>
           }
           right={
-            <div className="my-2 grid grid-cols-2 gap-2">
-              <Field>
-                <FieldLabel>{lang.common.form.label.cost}</FieldLabel>
-                <Select name="storageStatus">
-                  <SelectTrigger>
-                    <SelectValue placeholder={lang.common.form.placeholder.storage} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
-                      <SelectItem value="banana">Banana</SelectItem>
-                      <SelectItem value="blueberry">Blueberry</SelectItem>
-                      <SelectItem value="grapes">Grapes</SelectItem>
-                      <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </Field>
-              <Field>
-                <FieldLabel>{lang.common.form.label.price}</FieldLabel>
-                <Select name="storageStatus">
-                  <SelectTrigger>
-                    <SelectValue placeholder={lang.common.form.placeholder.storage} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
-                      <SelectItem value="banana">Banana</SelectItem>
-                      <SelectItem value="blueberry">Blueberry</SelectItem>
-                      <SelectItem value="grapes">Grapes</SelectItem>
-                      <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </Field>
-            </div>
+            <>
+              <FieldGroup className="flex-row justify-center">
+                <FileUpload />
+              </FieldGroup>
+
+              <FieldSeparator className="my-4" />
+
+              <FieldGroup className="gap-2">
+                <Field>
+                  <FieldLabel>{lang.common.form.label.supplier}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.storage} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.category}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.storage} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field>
+                  <FieldLabel>{lang.common.form.label.status}</FieldLabel>
+                  <Select name="storageStatus">
+                    <SelectTrigger>
+                      <SelectValue placeholder={lang.common.form.placeholder.storage} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+              </FieldGroup>
+            </>
           }
         />
       </DialogContent>

@@ -74,6 +74,7 @@ const common_en = {
   },
   actions: {
     ok: "Ok",
+    add: "Add",
     send: "Send",
     save: "Save",
     edit: "Edit",

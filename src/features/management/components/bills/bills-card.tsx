@@ -11,7 +11,7 @@ interface BillsCardProps extends HTMLAttributes<HTMLDivElement> {
 
 const BillsCard: FC<BillsCardProps> = ({ billType, className, ...restProps }) => {
   return (
-    <Card {...restProps} className={cn("bg-primary-foreground", className)}>
+    <Card {...restProps} className={cn("text-black bg-primary-foreground", className)}>
       <CardHeader className="text-lg">{billType === "bill" ? "Bill" : "Rent"}</CardHeader>
       <CardContent className="grid grid-cols-2 gap-2">
         <div className="flex gap-2">
