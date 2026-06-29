@@ -30,7 +30,10 @@ const ProductsForm: FC<ProductsFormProps> = ({ ...restProps }) => {
           left={
             <>
               <FieldGroup className="grid grid-cols-3 gap-2">
-                <FileUpload className="col-span-1" />
+                <FileUpload
+                  className="col-span-1"
+                  defaultImage="https://www.equinetmedia.com/hubfs/How-to-find-b2b-blog-images.png"
+                />
                 <div className="col-span-2">
                   <Field>
                     <FieldLabel>{lang.common.form.label.productNameEn}</FieldLabel>

@@ -20,7 +20,7 @@ export const DEFAULT_FILE_SIZE = 1024 * 1024 * 2
 
 interface FileUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   fileSize?: number
-  defaultImage?: string;
+  defaultImage?: string
   controlClassName?: string
   onUpload?: (file: File | null) => void
 }
@@ -53,7 +53,7 @@ const FileUpload: ForwardRefRenderFunction<HTMLInputElement, FileUploadProps> = 
   useImperativeHandle(ref, () => inputRef.current as HTMLInputElement)
 
   useEffect(() => {
-    if(defaultImage) setImage(defaultImage)
+    if (defaultImage) setImage(defaultImage)
   }, [defaultImage])
 
   useEffect(() => {
@@ -82,6 +82,7 @@ const FileUpload: ForwardRefRenderFunction<HTMLInputElement, FileUploadProps> = 
   }
 
   const handleRemove = () => {
+    setImage("")
     if (!inputRef.current || !file) return
     const inputFiles = inputRef.current.files
     if (!inputFiles) return
@@ -90,7 +91,6 @@ const FileUpload: ForwardRefRenderFunction<HTMLInputElement, FileUploadProps> = 
       .filter((f) => !(f.name === file.name && f.size === file.size && f.lastModified === file.lastModified))
       .forEach((f) => dataTransfer.items.add(f))
     inputRef.current.files = dataTransfer.files
-    setImage("")
     setFile(null)
     onUpload?.(null)
   }
@@ -118,6 +118,8 @@ const FileUpload: ForwardRefRenderFunction<HTMLInputElement, FileUploadProps> = 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) handleUpload(e.dataTransfer.files[0])
   }
 
+  const handleReUpload = () => inputRef.current?.click()
+
   return (
     <div className="flex flex-col items-center">
       <div
@@ -137,7 +139,7 @@ const FileUpload: ForwardRefRenderFunction<HTMLInputElement, FileUploadProps> = 
           onChange={handleChange}
         />
         {image && (
-          <FileUploadImage src={image} accept={accept} onUpload={handleChange} onRemove={handleRemove} />
+          <FileUploadImage src={image} accept={accept} onUpload={handleReUpload} onRemove={handleRemove} />
         )}
       </div>
       {error && <div className="mt-4 text-red-400">{error}</div>}
