@@ -1,9 +1,9 @@
 import { forwardRef, type ForwardRefRenderFunction, type InputHTMLAttributes } from "react"
 import { ImagePlus } from "lucide-react"
 import { TextMuted } from "@/components/ui/typography"
+import { Spinner } from "@/components/ui/spinner"
 import { cn } from "@/lib/utils"
 import useLocale from "@/locale/use-locale"
-import { Spinner } from "@/components/ui/spinner"
 
 interface FileUploadControlProps extends InputHTMLAttributes<HTMLInputElement> {
   isLoading?: boolean
