@@ -7,10 +7,11 @@ import useLocale from "@/locale/use-locale"
 
 interface FileUploadControlProps extends InputHTMLAttributes<HTMLInputElement> {
   isLoading?: boolean
+  isDragging?: boolean;
 }
 
 const FileUploadControl: ForwardRefRenderFunction<HTMLInputElement, FileUploadControlProps> = (
-  { className, isLoading, ...restProps },
+  { className, isLoading, isDragging, ...restProps },
   ref
 ) => {
   const { lang } = useLocale()
@@ -19,6 +20,7 @@ const FileUploadControl: ForwardRefRenderFunction<HTMLInputElement, FileUploadCo
     <label
       className={cn(
         "flex h-full w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed transition-colors hover:bg-gray-50",
+        isDragging && "opacity-50",
         className
       )}
     >
