@@ -7,6 +7,13 @@ const management_en = {
     staffs: "Staffs",
     hiring: "Hiring",
   },
+  storage: {
+    productForm: {
+      title: "Update product",
+      pricing: "Pricing",
+      storage: "Storage",
+    },
+  },
 }
 
 export default management_en

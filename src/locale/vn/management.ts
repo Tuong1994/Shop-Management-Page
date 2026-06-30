@@ -6,7 +6,14 @@ const management_vn = {
     storage: "Mở rộng kho",
     staffs: "Nhân viên",
     hiring: "Tuyển dụng",
-  }
+  },
+  storage: {
+    productForm: {
+      title: "Cập nhật sản phẩm",
+      pricing: "Định giá",
+      storage: "Kho",
+    },
+  },
 }
 
 export default management_vn

@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { MoreHorizontal, Pen } from "lucide-react"
 import DataTable from "@/components/page/data-table"
 import ProductsFilter from "@/features/management/components/storage/products-filter"
-import ProductsForm from "@/features/management/components/storage/products-form"
+import ProductsForm from "@/features/management/components/storage/product-form"
 import useLocale from "@/locale/use-locale"
 
 const products: ProductDataTable[] = [
