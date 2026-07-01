@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import FileUpload from "@/components/page/file-upload"
 import useLocale from "@/locale/use-locale"
+import DatePicker from "@/components/page/date-picker"
 
 interface ListFormLeftProps {}
 
@@ -68,10 +69,6 @@ const ListFormLeft: FC<ListFormLeftProps> = () => {
           </Select>
         </Field>
         <Field>
-          <FieldLabel>{lang.common.form.label.birthday}</FieldLabel>
-          <Input placeholder={lang.common.form.placeholder.enter} />
-        </Field>
-        <Field>
           <FieldLabel>{lang.common.form.label.role}</FieldLabel>
           <Select name="role">
             <SelectTrigger>
@@ -88,6 +85,10 @@ const ListFormLeft: FC<ListFormLeftProps> = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
+        </Field>
+        <Field>
+          <FieldLabel>{lang.common.form.label.birthday}</FieldLabel>
+          <DatePicker />
         </Field>
       </FieldGroup>
 
