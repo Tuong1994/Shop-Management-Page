@@ -1,13 +1,23 @@
-import { useMemo, type FC } from "react"
+import { useMemo, useState, type FC } from "react"
 import type { UserDataTable } from "@/models/user/user.type"
 import type { ColumnDef } from "@tanstack/react-table"
 import { renderUserGender, renderUserRole } from "@/data/user"
 import { formatPhoneNumber } from "@/lib/utils"
 import { EGender, ERole } from "@/models/user/user.enum"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { MoreHorizontal, Pen } from "lucide-react"
 import dayjs from "dayjs"
 import DataTable from "@/components/page/data-table"
+import StaffsListFilter from "./staffs-list-filter"
 import useLocale from "@/locale/use-locale"
-import StaffsListFilter from "./list-filter"
+import StaffsListForm from "./staffs-list-form"
 
 const users: UserDataTable[] = [
   {
@@ -109,6 +119,10 @@ const StaffsList: FC<StaffsListProps> = () => {
 
   const { lang } = useLocale()
 
+  const [openForm, setOpenForm] = useState<boolean>(false)
+
+  const handleTrigger = (open: boolean) => setOpenForm(open)
+
   const columns: ColumnDef<UserDataTable>[] = useMemo(
     () => [
       {
@@ -139,20 +153,48 @@ const StaffsList: FC<StaffsListProps> = () => {
         header: () => <div className="font-bold">{lang.common.table.head.role}</div>,
         cell: ({ row }) => renderUserRole(row.getValue("role"), lang),
       },
+      {
+        id: "action",
+        cell: () => {
+          return (
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">Open menu</span>
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                }
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem onClick={() => handleTrigger(true)}>
+                    <Pen />
+                    <span>{lang.common.actions.update}</span>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )
+        },
+      },
     ],
     [lang]
   )
 
   return (
-    <DataTable<UserDataTable>
-      hasSelection
-      hasFilter
-      hasPaging
-      rowKey="id"
-      data={users}
-      columns={columns}
-      renderFilter={() => <StaffsListFilter />}
-    />
+    <>
+      <DataTable<UserDataTable>
+        hasSelection
+        hasFilter
+        hasPaging
+        rowKey="id"
+        data={users}
+        columns={columns}
+        renderFilter={() => <StaffsListFilter />}
+      />
+      <StaffsListForm open={openForm} onOpenChange={handleTrigger} />
+    </>
   )
 }
 

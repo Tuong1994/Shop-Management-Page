@@ -199,9 +199,7 @@ const StoragePage: FC = () => {
       },
       {
         id: "action",
-        cell: ({ row }) => {
-          const payment = row.original
-
+        cell: () => {
           return (
             <DropdownMenu>
               <DropdownMenuTrigger

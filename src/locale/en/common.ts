@@ -13,6 +13,7 @@ const common_en = {
       email: "Email",
       gender: "Gender",
       birthday: "Birthday",
+      role: "Role",
       fullAddress: "Address",
       address_en: "Address (EN)",
       address_vn: "Address (VN)",
