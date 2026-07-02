@@ -25,7 +25,7 @@ const HiringListCarousel: FC<HiringListCarouselProps> = ({ role = ERole.CASHIER,
             {Array.from({ length: 10 }).map((_, index) => (
               <CarouselItem
                 key={index}
-                className="basis-1/1 sm:basis-1/2 md:basis-1/2 lg:basis-1/3 xl:basis-1/3"
+                className="basis-1/1 sm:basis-1/2 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
                 {children}
               </CarouselItem>
