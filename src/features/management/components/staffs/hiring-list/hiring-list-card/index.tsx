@@ -11,29 +11,32 @@ interface HiringListCardProps {
 
 const HiringListCard: FC<HiringListCardProps> = ({ onMore }) => {
   return (
-    <Card className="p-1">
+    <Card className="p-1 gap-2">
       <CardContent className="p-2">
         <Card className="bg-primary text-white">
           <CardContent>
-            <div className="mb-4 grid grid-cols-3 gap-2">
-              <HandCoins className="col-span-1 size-18" />
-              <div className="col-span-2">
+            <div className="mb-4 grid grid-cols-1 lg:grid-cols-3 gap-2">
+              <HandCoins className="col-span-1 size-16 hidden lg:block" />
+
+              <div className="col-span-1 lg:col-span-2">
                 <Title level={4}>Cashier 1</Title>
                 <TextMuted className="mb-4 text-gray-300">Checkouts</TextMuted>
                 <InfoRow name="Daily wage" descript="$80.00" />
                 <InfoRow name="Hiring cost" descript="$100.00" />
               </div>
             </div>
+
             <Paragraph className="text-[16px]">Candidate name</Paragraph>
           </CardContent>
         </Card>
-        <CardFooter className="flex justify-center gap-2 p-2">
-          <Button variant="secondary" onClick={() => onMore?.(true)}>
-            More
-          </Button>
-          <Button>Hire</Button>
-        </CardFooter>
       </CardContent>
+
+      <CardFooter className="flex justify-center gap-2 pb-2">
+        <Button variant="secondary" onClick={() => onMore?.(true)}>
+          More
+        </Button>
+        <Button>Hire</Button>
+      </CardFooter>
     </Card>
   )
 }
