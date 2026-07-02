@@ -6,7 +6,11 @@ export enum EGender {
 export enum ERole {
   MANAGER = 1,
   LEADER = 2,
-  STAFF = 3,
+  CASHIER = 3,
+  STOCKER = 4,
+  CUSTOMER_SERVICE = 5,
+  JANITOR = 6,
+  SECURITY = 7,
 }
 
 export enum EPermission {

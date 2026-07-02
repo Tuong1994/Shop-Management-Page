@@ -45,7 +45,7 @@ const users: UserDataTable[] = [
     phone: "0793886681",
     birthday: "1984-01-15T00:00:00.000Z",
     gender: EGender.MALE,
-    role: ERole.STAFF,
+    role: ERole.STOCKER,
   },
   {
     id: "US_4",
@@ -54,7 +54,7 @@ const users: UserDataTable[] = [
     phone: "0854266700",
     birthday: "1994-01-15T00:00:00.000Z",
     gender: EGender.MALE,
-    role: ERole.STAFF,
+    role: ERole.STOCKER,
   },
   {
     id: "US_5",
@@ -63,7 +63,7 @@ const users: UserDataTable[] = [
     phone: "0793886671",
     birthday: "1997-02-28T00:00:00.000Z",
     gender: EGender.FEMALE,
-    role: ERole.STAFF,
+    role: ERole.CASHIER,
   },
   {
     id: "US_6",
@@ -72,7 +72,7 @@ const users: UserDataTable[] = [
     phone: "0593886651",
     birthday: "2000-11-15T00:00:00.000Z",
     gender: EGender.FEMALE,
-    role: ERole.STAFF,
+    role: ERole.CASHIER,
   },
   {
     id: "US_7",
@@ -81,7 +81,7 @@ const users: UserDataTable[] = [
     phone: "0793886651",
     birthday: "1999-09-28T00:00:00.000Z",
     gender: EGender.MALE,
-    role: ERole.STAFF,
+    role: ERole.STOCKER,
   },
   {
     id: "US_8",
@@ -90,7 +90,7 @@ const users: UserDataTable[] = [
     phone: "0793664475",
     birthday: "1993-01-15T00:00:00.000Z",
     gender: EGender.MALE,
-    role: ERole.STAFF,
+    role: ERole.JANITOR,
   },
   {
     id: "US_9",
@@ -99,7 +99,7 @@ const users: UserDataTable[] = [
     phone: "0793886687",
     birthday: "1990-11-15T00:00:00.000Z",
     gender: EGender.FEMALE,
-    role: ERole.STAFF,
+    role: ERole.CUSTOMER_SERVICE,
   },
   {
     id: "US_10",
@@ -108,7 +108,7 @@ const users: UserDataTable[] = [
     phone: "0793885541",
     birthday: "1995-03-10T00:00:00.000Z",
     gender: EGender.MALE,
-    role: ERole.STAFF,
+    role: ERole.SECURITY,
   },
 ]
 

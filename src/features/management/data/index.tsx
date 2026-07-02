@@ -34,4 +34,3 @@ export const getManagementTabItems = (lang: Locale): TabItems => {
     },
   ]
 }
-

@@ -6,8 +6,13 @@ const user_vn = {
   role: {
     manager: "Quản lý",
     leader: "Trưởng nhóm",
-    staff: "Nhân viên"
-  }
+    staff: "Nhân viên",
+    cashier: "Thu ngân",
+    stocker: "Nhân viên xếp hàng",
+    customerService: "Chăm sóc khách hàng",
+    janitor: "Lao công",
+    security: "Bảo vệ",
+  },
 }
 
 export default user_vn

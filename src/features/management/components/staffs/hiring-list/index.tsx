@@ -1,9 +1,8 @@
 import { useState, type FC } from "react"
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Title } from "@/components/ui/typography"
+import { ERole } from "@/models/user/user.enum"
 import HiringListCard from "./hiring-list-card"
 import HiringCardModal from "./hiring-list-card/card-modal"
+import HiringListCarousel from "./hiring-list-carousel"
 
 interface HiringListProps {}
 
@@ -14,22 +13,25 @@ const HiringList: FC<HiringListProps> = () => {
 
   return (
     <>
-      <Card className="gap-2 p-2">
-        <CardHeader>
-          <Title level={4}>Cashier</Title>
-        </CardHeader>
-        <CardContent className="p-2">
-          <Carousel opts={{ align: "start" }} className="w-full">
-            <CarouselContent className="p-4">
-              {Array.from({ length: 10 }).map((_, index) => (
-                <CarouselItem key={index} className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
-                  <HiringListCard onMore={handleTriggerModal} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </CardContent>
-      </Card>
+      <HiringListCarousel role={ERole.CASHIER}>
+        <HiringListCard role={ERole.CASHIER} onMore={handleTriggerModal} />
+      </HiringListCarousel>
+
+       <HiringListCarousel role={ERole.CUSTOMER_SERVICE}>
+        <HiringListCard role={ERole.CUSTOMER_SERVICE} onMore={handleTriggerModal} />
+      </HiringListCarousel>
+
+       <HiringListCarousel role={ERole.STOCKER}>
+        <HiringListCard role={ERole.STOCKER} onMore={handleTriggerModal} />
+      </HiringListCarousel>
+
+       <HiringListCarousel role={ERole.JANITOR}>
+        <HiringListCard role={ERole.JANITOR} onMore={handleTriggerModal} />
+      </HiringListCarousel>
+
+       <HiringListCarousel role={ERole.SECURITY}>
+        <HiringListCard role={ERole.SECURITY} onMore={handleTriggerModal} />
+      </HiringListCarousel>
 
       <HiringCardModal open={openModal} onOpenChange={handleTriggerModal} />
     </>
