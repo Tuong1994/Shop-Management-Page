@@ -2,12 +2,12 @@ import type { FC, ReactNode } from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 
-interface ModalFormProps extends DialogPrimitive.Root.Props {
+interface ModalLayoutProps extends DialogPrimitive.Root.Props {
   header?: ReactNode
   body?: ReactNode;
 }
 
-const ModalForm: FC<ModalFormProps> = ({ body, header, ...restProps }) => {
+const ModalLayout: FC<ModalLayoutProps> = ({ body, header, ...restProps }) => {
   return (
     <Dialog {...restProps}>
       <DialogContent className="p-0 py-2 md:min-w-150 lg:min-w-200">
@@ -20,4 +20,4 @@ const ModalForm: FC<ModalFormProps> = ({ body, header, ...restProps }) => {
   )
 }
 
-export default ModalForm
+export default ModalLayout

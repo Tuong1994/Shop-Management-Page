@@ -1,6 +1,6 @@
 import type { FC } from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-import ModalForm from "@/components/page/modal-form"
+import ModalLayout from "@/components/page/modal-layout"
 import FormLayout from "@/components/page/form-layout"
 import ProductFormLeft from "./product-form-left"
 import ProductFormRight from "./product-form-right"
@@ -12,7 +12,7 @@ const ProductsForm: FC<ProductsFormProps> = ({ ...restProps }) => {
   const { lang } = useLocale()
 
   return (
-    <ModalForm
+    <ModalLayout
       {...restProps}
       header={lang.management.storage.productForm.title}
       body={<FormLayout left={<ProductFormLeft />} right={<ProductFormRight />} />}

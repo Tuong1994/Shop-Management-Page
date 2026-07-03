@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils"
 interface InfoRowProps extends HTMLAttributes<HTMLDivElement> {
   name?: ReactNode
   descript?: ReactNode
+  hasColon?: boolean
   nameProps?: HTMLAttributes<HTMLDivElement>
   descriptProps?: HTMLAttributes<HTMLDivElement>
 }
 
 const InfoRow: ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
-  { className, name = "Name", descript = "Descript", nameProps, descriptProps, ...restProps },
+  { className, name = "Name", descript = "Descript", hasColon, nameProps, descriptProps, ...restProps },
   ref
 ) => {
   const defaultClassName = cn("mb-2 flex min-w-max items-center justify-between", className)
@@ -21,7 +22,7 @@ const InfoRow: ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
   return (
     <div ref={ref} {...restProps} className={defaultClassName}>
       <div {...nameProps} className={nameDefaultClassName}>
-        {name}
+        {name} {hasColon && ":"}
       </div>
       <div {...descriptProps} className={descriptDefaultClassName}>
         {descript}
