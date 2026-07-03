@@ -14,9 +14,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import ContentLayout from "@/components/page/content-layout"
-import MarketFilter from "@/features/market/components/market-filter"
 import MarketCart from "@/features/market/components/market-cart"
 import useLocale from "@/locale/use-locale"
+import ProductFilter from "@/components/page/product-filter"
 
 const MarketPage: FC = () => {
   const { lang } = useLocale()
@@ -32,7 +32,7 @@ const MarketPage: FC = () => {
       pageType={EPageType.MARKET}
       tabItems={getMarketTabItems(lang)}
       actions={<MarketCart />}
-      bottomContent={hasFilter && <MarketFilter />}
+      bottomContent={hasFilter && <ProductFilter />}
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
         <Outlet />

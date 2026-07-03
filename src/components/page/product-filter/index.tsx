@@ -10,11 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
+import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
 import { useViewport } from "@/hooks"
 import useLocale from "@/locale/use-locale"
 
-const MarketFilter: FC = () => {
+const ProductFilter: FC = () => {
   const { lang } = useLocale()
 
   const { isPhone } = useViewport()
@@ -22,7 +23,7 @@ const MarketFilter: FC = () => {
   return (
     <>
       {isPhone && <div className="mb-2.5 text-muted-foreground">{lang.market.filter}</div>}
-      <FieldGroup className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-3 lg:w-150 lg:grid-cols-3">
+      <FieldGroup className="grid grid-cols-1 gap-2 sm:grid-cols-4 md:grid-cols-4 lg:w-170 lg:grid-cols-4">
         <Field className="w-full">
           <InputGroup>
             <InputGroupInput placeholder={`${lang.common.form.placeholder.search}...`} />
@@ -31,6 +32,7 @@ const MarketFilter: FC = () => {
             </InputGroupAddon>
           </InputGroup>
         </Field>
+
         <Field>
           <Select>
             <SelectTrigger>
@@ -48,6 +50,7 @@ const MarketFilter: FC = () => {
             </SelectContent>
           </Select>
         </Field>
+
         <Field>
           <Select>
             <SelectTrigger>
@@ -65,9 +68,14 @@ const MarketFilter: FC = () => {
             </SelectContent>
           </Select>
         </Field>
+
+        <Field orientation="horizontal" className="gap-2">
+          <Button>{lang.common.actions.filter}</Button>
+          <Button variant="secondary">{lang.common.actions.cancel}</Button>
+        </Field>
       </FieldGroup>
     </>
   )
 }
 
-export default MarketFilter
+export default ProductFilter

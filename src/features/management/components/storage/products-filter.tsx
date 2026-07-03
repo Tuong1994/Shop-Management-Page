@@ -25,7 +25,7 @@ interface ProductsFilterProps {
 }
 
 const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
-    const initialQuery: ApiQuery = {
+  const initialQuery: ApiQuery = {
     keywords: "",
     categoryId: "",
     supplier: "",
@@ -62,7 +62,8 @@ const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
     onCancel?.()
   }
 
- return   <form className="w-full" action={handleFilter}>
+  return (
+    <form className="w-full" action={handleFilter}>
       <FieldGroup className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
         <Field className="w-full">
           <InputGroup>
@@ -218,6 +219,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
         </Field>
       </FieldGroup>
     </form>
+  )
 }
 
 export default ProductsFilter
