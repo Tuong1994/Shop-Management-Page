@@ -28,3 +28,8 @@ export type Product = {
 }
 
 export type ProductDataTable = Omit<Product, "nameEn" | "nameVn" | "isDelete" | "isNew" | "createdAt" | "updatedAt" | "image" | "categoryId" | "category">
+
+export type ProductPricingData = Pick<Product, "id" | "name" | "price" | "cost"> & {
+  changeDate?: Date | string;
+  profit?: number;
+}

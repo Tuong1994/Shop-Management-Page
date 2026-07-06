@@ -166,8 +166,16 @@ const StoragePage: FC = () => {
         header: () => <div className="font-bold">{lang.common.table.head.unit}</div>,
         cell: ({ row }) => renderProductUnit(row.getValue("unit"), lang),
       },
-      { accessorKey: "cost", header: () => <div className="font-bold">{lang.common.table.head.cost}</div> },
-      { accessorKey: "price", header: () => <div className="font-bold">{lang.common.table.head.price}</div> },
+      {
+        accessorKey: "cost",
+        header: () => <div className="font-bold">{lang.common.table.head.cost}</div>,
+        cell: ({ row }) => "$" + row.original.cost,
+      },
+      {
+        accessorKey: "price",
+        header: () => <div className="font-bold">{lang.common.table.head.price}</div>,
+        cell: ({ row }) => "$" + row.original.price,
+      },
       {
         accessorKey: "items",
         header: () => <div className="text-center font-bold">{lang.common.table.head.items}</div>,
@@ -227,20 +235,20 @@ const StoragePage: FC = () => {
   )
 
   return (
-   <>
-     <DataTable<ProductDataTable>
-      hasSelection
-      hasFilter
-      hasPaging
-      rowKey="id"
-      data={products}
-      columns={columns}
-      onRowSelection={(rows) => console.log(rows)}
-      onRowRemove={(rows) => console.log(rows)}
-      renderFilter={(table) => <ProductsFilter table={table} />}
-    />
-    <ProductsForm open={openForm} onOpenChange={handleTrigger} />
-   </>
+    <>
+      <DataTable<ProductDataTable>
+        hasSelection
+        hasFilter
+        hasPaging
+        rowKey="id"
+        data={products}
+        columns={columns}
+        onRowSelection={(rows) => console.log(rows)}
+        onRowRemove={(rows) => console.log(rows)}
+        renderFilter={(table) => <ProductsFilter table={table} />}
+      />
+      <ProductsForm open={openForm} onOpenChange={handleTrigger} />
+    </>
   )
 }
 
