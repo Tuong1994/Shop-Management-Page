@@ -1,6 +1,9 @@
 import { useMemo, useState, type FC } from "react"
 import type { ProductPricingData } from "@/models/product/product.type"
 import type { ColumnDef } from "@tanstack/react-table"
+import { Button } from "@/components/ui/button"
+import { MoreHorizontal, Pen } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +11,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { MoreHorizontal, Pen } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { format } from "date-fns"
 import DataTable from "@/components/page/data-table"
 import useLocale from "@/locale/use-locale"
@@ -97,11 +97,16 @@ const PricingTable: FC = () => {
 
   const [updatedRowIds, setUpdatedRowIds] = useState<string[]>([])
 
-  const handleTrigger = (rowIds: string) => {
-    setUpdatedRowIds((ids) => {
-      if (ids.includes(rowIds)) return ids.filter((id) => id !== rowIds)
-      return [...ids, rowIds]
-    })
+  const handleTriggerUpdate = (rowIds: string) => setUpdatedRowIds((ids) => [...ids, rowIds])
+
+  const handleCancelUpdate = (rowIds: string) => {
+    setUpdatedRowIds((ids) => ids.filter((id) => id !== rowIds))
+    setProducts((products) =>
+      products.map((product) => ({
+        ...product,
+        price: initialData.find((data) => data.id === product.id)?.price || 1,
+      }))
+    )
   }
 
   const handleChangePrice = (id: string, newPrice: number) => {
@@ -152,7 +157,7 @@ const PricingTable: FC = () => {
         cell: ({ row }) => {
           return updatedRowIds.includes(row.original.id) ? (
             <div className="flex max-w-min gap-1">
-              <Button variant="secondary" onClick={() => handleTrigger(row.original.id)}>
+              <Button variant="secondary" onClick={() => handleCancelUpdate(row.original.id)}>
                 {lang.common.actions.cancel}
               </Button>
             </div>
@@ -168,7 +173,7 @@ const PricingTable: FC = () => {
               />
               <DropdownMenuContent align="end">
                 <DropdownMenuGroup>
-                  <DropdownMenuItem onClick={() => handleTrigger(row.original.id)}>
+                  <DropdownMenuItem onClick={() => handleTriggerUpdate(row.original.id)}>
                     <Pen />
                     <span>{lang.common.actions.update}</span>
                   </DropdownMenuItem>
