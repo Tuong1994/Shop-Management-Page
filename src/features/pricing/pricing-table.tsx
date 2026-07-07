@@ -14,6 +14,7 @@ import {
 import { format } from "date-fns"
 import DataTable from "@/components/page/data-table"
 import useLocale from "@/locale/use-locale"
+import { formatMoney } from "@/lib/utils"
 
 const initialData: ProductPricingData[] = [
   {
@@ -44,7 +45,7 @@ const initialData: ProductPricingData[] = [
     id: "P_4",
     name: "Beer Blonde Ale 6-Pack",
     cost: 21.97,
-    price: 22.0,
+    price: 22.27,
     profit: 0.3,
     changeDate: new Date(),
   },
@@ -52,7 +53,7 @@ const initialData: ProductPricingData[] = [
     id: "P_5",
     name: "Beer Blonde Ale 6-Pack",
     cost: 21.97,
-    price: 22.0,
+    price: 22.27,
     profit: 0.3,
     changeDate: new Date(),
   },
@@ -60,7 +61,7 @@ const initialData: ProductPricingData[] = [
     id: "P_6",
     name: "Beer Blonde Ale Keg",
     cost: 44.97,
-    price: 45.0,
+    price: 45.27,
     profit: 0.3,
     changeDate: new Date(),
   },
@@ -68,7 +69,7 @@ const initialData: ProductPricingData[] = [
     id: "P_7",
     name: "Beer Blonde Ale Keg",
     cost: 44.97,
-    price: 45.0,
+    price: 45.27,
     profit: 0.3,
     changeDate: new Date(),
   },
@@ -84,7 +85,7 @@ const initialData: ProductPricingData[] = [
     id: "P_9",
     name: "Beer Lager 6-Pack",
     cost: 23.97,
-    price: 24.0,
+    price: 24.27,
     profit: 0.3,
     changeDate: new Date(),
   },
@@ -97,21 +98,24 @@ const PricingTable: FC = () => {
 
   const [updatedRowIds, setUpdatedRowIds] = useState<string[]>([])
 
-  const handleTriggerUpdate = (rowIds: string) => setUpdatedRowIds((ids) => [...ids, rowIds])
+  const handleTriggerUpdate = (rowId: string) => setUpdatedRowIds((ids) => [...ids, rowId])
 
-  const handleCancelUpdate = (rowIds: string) => {
-    setUpdatedRowIds((ids) => ids.filter((id) => id !== rowIds))
+  const handleCancelUpdate = (rowId: string) => {
+    setUpdatedRowIds((ids) => ids.filter((id) => id !== rowId))
     setProducts((products) =>
       products.map((product) => ({
         ...product,
-        price: initialData.find((data) => data.id === product.id)?.price || 1,
+        price:
+          product.id === rowId
+            ? initialData.find((data) => data.id === product.id)?.price || 1
+            : product.price,
       }))
     )
   }
 
-  const handleChangePrice = (id: string, newPrice: number) => {
+  const handleChangePrice = (id: string, newPrice: string) => {
     setProducts((products) =>
-      products.map((product) => (product.id === id ? { ...product, price: newPrice } : product))
+      products.map((product) => (product.id === id ? { ...product, price: parseInt(newPrice) } : product))
     )
   }
 
@@ -135,8 +139,8 @@ const PricingTable: FC = () => {
           updatedRowIds.includes(row.original.id) ? (
             <Input
               className="w-20"
-              value={row.original.price}
-              onChange={(e) => handleChangePrice(row.original.id, parseInt(e.target.value) | 1)}
+              defaultValue={row.original.price}
+              onChange={(e) => handleChangePrice(row.original.id, e.target.value)}
             />
           ) : (
             "$" + row.original.price
@@ -145,7 +149,11 @@ const PricingTable: FC = () => {
       {
         accessorKey: "profit",
         header: () => <div className="font-bold">Profit</div>,
-        cell: ({ row }) => "$" + row.original.profit,
+        cell: ({ row }) => {
+          const profit = row.original.price - row.original.cost
+          const className = profit > 0 ? "text-green-400" : "text-red-400"
+          return <div className={className}>{formatMoney(profit)}</div>
+        },
       },
       {
         accessorKey: "changeDate",
