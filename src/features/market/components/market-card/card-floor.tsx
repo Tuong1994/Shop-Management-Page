@@ -3,6 +3,7 @@ import { CardTitle } from "@/components/ui/card"
 import { Paragraph, TextMuted, TextSmall } from "@/components/ui/typography"
 import { PackageOpen } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { formatMoney } from "@/lib/utils"
 import Image from "@/components/page/image"
 import useLocale from "@/locale/use-locale"
 
@@ -18,7 +19,7 @@ const CardFloor: FC<CardFloorProps> = () => {
         <div>
           <CardTitle>Floor name</CardTitle>
           <Paragraph>{lang.market.unitPrice}</Paragraph>
-          <TextMuted>$3.92</TextMuted>
+          <TextMuted>{formatMoney(3.92)}</TextMuted>
         </div>
       </div>
       <div className="flex justify-end mt-5">

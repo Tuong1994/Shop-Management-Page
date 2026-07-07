@@ -1,6 +1,7 @@
 import type { FC } from "react"
 import { CardTitle } from "@/components/ui/card"
 import { Paragraph, TextMuted } from "@/components/ui/typography"
+import { formatMoney } from "@/lib/utils"
 import Image from "@/components/page/image"
 import useLocale from "@/locale/use-locale"
 
@@ -15,7 +16,7 @@ const CardPaints: FC<CardPaintsProps> = () => {
       <div>
         <CardTitle>Paints name</CardTitle>
         <Paragraph>{lang.market.unitPrice}</Paragraph>
-        <TextMuted>$3.92</TextMuted>
+        <TextMuted>{formatMoney(3.92)}</TextMuted>
       </div>
     </div>
   )

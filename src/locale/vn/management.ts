@@ -7,6 +7,17 @@ const management_vn = {
     staffs: "Nhân viên",
     hiring: "Tuyển dụng",
   },
+   bills: {
+    title: "Danh sách hóa đơn",
+    rents: "Danh sách tiền thuê",
+    bill: "Hóa đơn",
+    rent: "Tiền thuê",
+    billDate: "Ngày lập",
+    dueDate: "Thời hạn",
+    date: "Ngày",
+    day: "Ngày",
+    pay: "Trả",
+  },
   storage: {
     productForm: {
       title: "Cập nhật sản phẩm",

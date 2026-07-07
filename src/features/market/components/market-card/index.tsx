@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Paragraph, TextSmall } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import { formatMoney } from "@/lib/utils"
 import QuantityControl from "@/components/page/quantity-control"
 import CardProducts from "./card-products"
 import CardFurnitures from "./card-furnitures"
@@ -58,7 +59,7 @@ const MarketCard: FC<MarketCardProps> = ({ tabType = ETabType.PRODUCTS }) => {
             </div>
             <Separator />
             <TextSmall className="mt-2.5 block text-center">{lang.market.total}</TextSmall>
-            <Paragraph className="mt-1! text-center font-bold">$47.04</Paragraph>
+            <Paragraph className="mt-1! text-center font-bold">{formatMoney(47.04)}</Paragraph>
             <Button variant="secondary" className="w-full">
               {lang.market.add}
             </Button>

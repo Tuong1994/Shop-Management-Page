@@ -100,6 +100,7 @@ const common_vn = {
       unit: "Đơn vị",
       cost: "Vốn",
       price: "Giá",
+      profit: "Lợi nhuận",
       items: "Sản phẩm mỗi thùng",
       boxes: "Số thùng",
       amount: "Tổng số lượng",
@@ -107,6 +108,7 @@ const common_vn = {
       supplier: "Nhà cung cấp",
       storage: "Tồn kho",
       role: "Chức vụ",
+      changeDate: "Ngày thay đổi"
     },
   },
   pagination: {

@@ -47,7 +47,7 @@ export const formatMoney = (amount: number, options: FormatMoneyOptions = {}) =>
   // Nếu số có phần thập phân thì hiển thị ít nhất 2 chữ số (rất hữu ích)
   if (minDecimals === null && Math.abs(amount) % 1 !== 0) {
     minimumFractionDigits = 1
-    maximumFractionDigits = 1
+    maximumFractionDigits = 2
   }
 
   const formatter = new Intl.NumberFormat(locale, {

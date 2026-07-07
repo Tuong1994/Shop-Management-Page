@@ -1,6 +1,7 @@
 import type { FC } from "react"
 import { CardDescription, CardTitle } from "@/components/ui/card"
 import { Paragraph, TextMuted } from "@/components/ui/typography"
+import { formatMoney } from "@/lib/utils"
 import Image from "@/components/page/image"
 import useLocale from "@/locale/use-locale"
 
@@ -19,7 +20,7 @@ const CardVehicles: FC<CardVehiclesProps> = () => {
           delectus quia reiciendis praesentium quam ea.
         </CardDescription>
         <Paragraph>{lang.market.tools.price}</Paragraph>
-        <TextMuted>$3.92</TextMuted>
+        <TextMuted>{formatMoney(3.92)}</TextMuted>
       </div>
     </div>
   )

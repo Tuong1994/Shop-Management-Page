@@ -7,6 +7,17 @@ const management_en = {
     staffs: "Staffs",
     hiring: "Hiring",
   },
+  bills: {
+    title: "Bills",
+    rents: "Rents",
+    bill: "Bill",
+    rent: "Rent",
+    billDate: "Bill date",
+    dueDate: "Due date",
+    date: "Date",
+    day: "Day",
+    pay: "Pay",
+  },
   storage: {
     productForm: {
       title: "Update product",

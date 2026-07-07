@@ -1,13 +1,16 @@
 import type { FC } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BillsCard from "./bills-card"
+import useLocale from "@/locale/use-locale"
 
 const BillsMobile: FC = () => {
+  const { lang } = useLocale()
+
   return (
     <Tabs defaultValue="bills">
       <TabsList className="w-full">
-        <TabsTrigger value="bills">Bills</TabsTrigger>
-        <TabsTrigger value="rents">Rents</TabsTrigger>
+        <TabsTrigger value="bills">{lang.management.bills.title}</TabsTrigger>
+        <TabsTrigger value="rents">{lang.management.bills.rents}</TabsTrigger>
       </TabsList>
       <TabsContent value="bills">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

@@ -130,7 +130,7 @@ const PricingTable: FC = () => {
       {
         accessorKey: "cost",
         header: () => <div className="font-bold">{lang.common.table.head.cost}</div>,
-        cell: ({ row }) => "$" + row.original.cost,
+        cell: ({ row }) => formatMoney(row.original.cost),
       },
       {
         accessorKey: "price",
@@ -143,12 +143,12 @@ const PricingTable: FC = () => {
               onChange={(e) => handleChangePrice(row.original.id, e.target.value)}
             />
           ) : (
-            "$" + row.original.price
+            formatMoney(row.original.price)
           ),
       },
       {
         accessorKey: "profit",
-        header: () => <div className="font-bold">Profit</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.profit}</div>,
         cell: ({ row }) => {
           const profit = row.original.price - row.original.cost
           const className = profit > 0 ? "text-green-400" : "text-red-400"
@@ -157,7 +157,7 @@ const PricingTable: FC = () => {
       },
       {
         accessorKey: "changeDate",
-        header: () => <div className="font-bold">Last change</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.changeDate}</div>,
         cell: ({ row }) => row.original.changeDate && format(row.original.changeDate, "dd/MM/yyyy"),
       },
       {

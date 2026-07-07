@@ -100,6 +100,7 @@ const common_en = {
       unit: "Unit",
       cost: "Cost",
       price: "Price",
+      profit: "Profit",
       items: "Items per box",
       boxes: "Boxes",
       amount: "Amount",
@@ -107,6 +108,7 @@ const common_en = {
       supplier: "Supplier",
       storage: "Storage",
       role: "Role",
+      changeDate: "Last change"
     },
   },
   pagination: {

@@ -3,6 +3,7 @@ import { CardDescription, CardTitle } from "@/components/ui/card"
 import { Paragraph, TextMuted, TextSmall } from "@/components/ui/typography"
 import { PackageOpen, Warehouse } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { formatMoney } from "@/lib/utils"
 import Image from "@/components/page/image"
 import useLocale from "@/locale/use-locale"
 
@@ -23,7 +24,7 @@ const CardProducts: FC<CardProductsProps> = () => {
             <Paragraph>{lang.market.products.display}</Paragraph>
             <TextMuted>Shelf</TextMuted>
             <Paragraph>{lang.market.unitPrice}</Paragraph>
-            <TextMuted>$3.92</TextMuted>
+            <TextMuted>{formatMoney(3.92)}</TextMuted>
           </div>
         </div>
         <div className="col-span-1 flex flex-col justify-end">
