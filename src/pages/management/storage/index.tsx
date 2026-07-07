@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal, Pen } from "lucide-react"
+import { formatMoney } from "@/lib/utils"
 import DataTable from "@/components/page/data-table"
 import ProductsFilter from "@/features/management/components/storage/products-filter"
 import ProductsForm from "@/features/management/components/storage/product-form"
@@ -169,12 +170,12 @@ const StoragePage: FC = () => {
       {
         accessorKey: "cost",
         header: () => <div className="font-bold">{lang.common.table.head.cost}</div>,
-        cell: ({ row }) => "$" + row.original.cost,
+        cell: ({ row }) => formatMoney(row.original.cost),
       },
       {
         accessorKey: "price",
         header: () => <div className="font-bold">{lang.common.table.head.price}</div>,
-        cell: ({ row }) => "$" + row.original.price,
+        cell: ({ row }) => formatMoney(row.original.price),
       },
       {
         accessorKey: "items",

@@ -2,6 +2,7 @@ import type { FC } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { List, ListItem, Paragraph } from "@/components/ui/typography"
+import { formatMoney } from "@/lib/utils"
 
 const GrowthCard: FC = () => {
   return (
@@ -18,7 +19,7 @@ const GrowthCard: FC = () => {
       </CardContent>
       <CardFooter className="flex justify-end">
         <div className="flex items-center gap-2 border rounded-[20px] p-2">
-          <span>$800.00</span>
+          <span>{formatMoney(800.00)}</span>
           <Button>Purchase</Button>
         </div>
       </CardFooter>

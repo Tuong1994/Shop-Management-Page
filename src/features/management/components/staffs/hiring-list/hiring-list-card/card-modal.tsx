@@ -1,11 +1,11 @@
 import type { FC } from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-import Image from "@/components/page/image"
-import InfoRow from "@/components/page/info-row"
-import useLocale from "@/locale/use-locale"
-import ModalLayout from "@/components/page/modal-layout"
 import { Separator } from "@/components/ui/separator"
 import { Paragraph } from "@/components/ui/typography"
+import Image from "@/components/page/image"
+import InfoRow from "@/components/page/info-row"
+import ModalLayout from "@/components/page/modal-layout"
+import useLocale from "@/locale/use-locale"
 
 interface HiringCardModalProps extends DialogPrimitive.Root.Props {}
 

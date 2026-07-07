@@ -3,7 +3,7 @@ import { Title } from "@/components/ui/typography"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { ERole } from "@/models/user/user.enum"
-import { renderJobTitle } from "./hiring-list-card/ helper"
+import { renderJobTitle } from "./hiring-list-card/helper"
 import useLocale from "@/locale/use-locale"
 
 interface HiringListCarouselProps {

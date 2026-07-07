@@ -10,7 +10,7 @@ const Logo: FC = () => {
   return (
     <div className="cursor-pointer" onClick={handleNavigate}>
       <div className="text-xl font-bold text-primary">Shop</div>
-      <div className="text-[10px] text-black">Management</div>
+      <div className="text-[10px]">Management</div>
     </div>
   )
 }

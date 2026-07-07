@@ -17,6 +17,7 @@ const management_en = {
     date: "Date",
     day: "Day",
     pay: "Pay",
+    daysLeft: "Days left"
   },
   storage: {
     productForm: {

@@ -12,11 +12,12 @@ const management_vn = {
     rents: "Danh sách tiền thuê",
     bill: "Hóa đơn",
     rent: "Tiền thuê",
-    billDate: "Ngày lập",
+    billDate: "Ngày tạo",
     dueDate: "Thời hạn",
     date: "Ngày",
     day: "Ngày",
     pay: "Trả",
+    daysLeft: "Ngày còn lại"
   },
   storage: {
     productForm: {
