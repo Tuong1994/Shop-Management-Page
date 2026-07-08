@@ -7,6 +7,9 @@ import ContentLayoutBottom from "./content-layout-bottom"
 import ContentLayoutTitle from "./content-layout-title"
 import ContentLayoutActions from "./content-layout-actions"
 import ContentLayoutMobile from "./content-layout-mobile"
+import { getRouteSubname } from "@/lib/router/helper"
+import { useLocation } from "react-router"
+import { routerPaths } from "@/lib/router/paths"
 
 interface ContentLayoutProps {
   pageType?: EPageType
@@ -25,9 +28,13 @@ const ContentLayout: FC<ContentLayoutProps> = ({
 }) => {
   const { isMobile, isTablet } = useViewport()
 
+  const location = useLocation()
+
+  const pathname = getRouteSubname(location)
+
   const hasTabItems = tabItems.length > 0
 
-  const isResponsive = isMobile || isTablet
+  const isResponsive = (isMobile || isTablet) && pathname !== routerPaths.BANK
 
   const renderTabItems = () => {
     if (isResponsive) return null
