@@ -27,7 +27,7 @@ const LoansListCard: FC<LoansListCardProps> = ({ loanType = ELoanType.BASIC }) =
           {formatMoney(renderLoanAmount(loanType))}
         </Paragraph>
         <Separator className="my-4" />
-        <div className="rounded-[20px] bg-primary p-4 text-white">
+        <div className="rounded-[20px] bg-primary p-4 text-white text-[15px]">
           <InfoRow name={lang.bank.interest} descript={`%${renderLoanInterest(loanType)}`} />
           <InfoRow name={lang.bank.return} descript={formatMoney(862.5)} />
           <InfoRow name={lang.bank.daily} descript={formatMoney(57.5)} />

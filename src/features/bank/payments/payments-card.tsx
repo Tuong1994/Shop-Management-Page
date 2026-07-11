@@ -5,6 +5,7 @@ import { MailOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { differenceInDays, format } from "date-fns"
 import { formatMoney } from "@/lib/utils"
+import { useViewport } from "@/hooks"
 import useLocale from "@/locale/use-locale"
 
 interface PaymentsCardProps {}
@@ -12,19 +13,19 @@ interface PaymentsCardProps {}
 const PaymentsCard: FC<PaymentsCardProps> = () => {
   const { lang } = useLocale()
 
+  const { isMobile, isTabletOnly } = useViewport()
+
+  const isResponsive = isMobile || isTabletOnly
+
   const billDate = new Date()
 
   const dueDate = new Date(new Date().setDate(new Date().getDate() + 10))
 
   return (
     <Card>
-      <CardHeader>Repayment</CardHeader>
-      <CardContent className="grid grid-cols-3 gap-2">
-        <div>
-          <MailOpen size={70} />
-          <Paragraph>Late fee</Paragraph>
-          <TextMuted>{formatMoney(0)}</TextMuted>
-        </div>
+      <CardHeader className="text-lg">Repayment</CardHeader>
+      <CardContent className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-[15px]">
+        {!isResponsive && <MailOpen size={70} />}
 
         <div>
           <Paragraph>{lang.management.bills.billDate}</Paragraph>
@@ -41,9 +42,13 @@ const PaymentsCard: FC<PaymentsCardProps> = () => {
           </TextMuted>
         </div>
       </CardContent>
-      <CardFooter className="justify-between">
-        <Paragraph className="text-xl">{formatMoney(96.68)}</Paragraph>
-        <Button>{lang.management.bills.pay}</Button>
+      <CardFooter className="items-center justify-between">
+        <div>
+          <Paragraph>Late fee</Paragraph>
+          <TextMuted>{formatMoney(0)}</TextMuted>
+          <Paragraph className="text-xl">{formatMoney(96.68)}</Paragraph>
+        </div>
+        <Button className="w-20">{lang.management.bills.pay}</Button>
       </CardFooter>
     </Card>
   )
