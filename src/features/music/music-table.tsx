@@ -3,6 +3,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import AudioPlayer, { type AudioData, type InitialStates, type PlayList } from "react-modern-audio-player"
 import useLocale from "@/locale/use-locale"
 import DataTable from "@/components/page/data-table"
+import { useTheme } from "@/components/theme-provider"
 
 const playList: PlayList = [
   {
@@ -42,15 +43,12 @@ const playList: PlayList = [
   },
 ]
 
-const initialState: InitialStates = {
-  volume: 0.2,
-  curPlayId: 1,
-}
-
 interface MusicTableProps {}
 
 const MusicTable: FC<MusicTableProps> = () => {
   const { lang } = useLocale()
+
+  const { theme } = useTheme()
 
   const columns: ColumnDef<AudioData>[] = useMemo(
     () => [
@@ -65,9 +63,7 @@ const MusicTable: FC<MusicTableProps> = () => {
       {
         id: "action",
         cell: ({ row }) => {
-          const track = row.original // Lấy dữ liệu của row hiện tại
-
-          // Tạo playlist chỉ có 1 bài cho row này
+          const track = row.original
           const singleTrackPlaylist: PlayList = [
             {
               name: track.name,
@@ -77,38 +73,17 @@ const MusicTable: FC<MusicTableProps> = () => {
               id: track.id,
             },
           ]
-
           return (
-            <div className="w-full">
-              <AudioPlayer
-                playList={singleTrackPlaylist}
-                audioInitialState={{
-                  volume: 0.2,
-                  curPlayId: track.id,
-                }}
-                activeUI={{
-                  playButton: true,
-                  progress: "waveform",
-                  volume: true,
-                  trackInfo: false,
-                  artwork: false,
-                }}
-                placement={{
-                  player: "static",
-                  playList: "bottom",
-                  interface: {
-                    templateArea: {
-                      progress: "row1-2",
-                    }
-                  }
-                }}
-                rootContainerProps={{
-                  style: { width: "100%" },
-                  className: "rmap-full-width",
-                }}
-                colorScheme="light"
-              />
-            </div>
+            <AudioPlayer
+              playList={singleTrackPlaylist}
+              audioInitialState={{
+                volume: 0.2,
+                curPlayId: track.id,
+              }}
+              activeUI={{ all: true, progress: "waveform" }}
+              rootContainerProps={{ className: "w-full" }}
+            >
+            </AudioPlayer>
           )
         },
       },
