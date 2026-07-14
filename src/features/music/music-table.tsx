@@ -80,10 +80,26 @@ const MusicTable: FC<MusicTableProps> = () => {
                 volume: 0.2,
                 curPlayId: track.id,
               }}
-              activeUI={{ all: true, progress: "waveform" }}
+              activeUI={{
+                all: true,
+                artwork: false,
+                trackInfo: false,
+                playList: false,
+                playbackRate: false,
+                prevNnext: false,
+                progress: "waveform",
+              }}
+              placement={{
+                interface: {
+                  templateArea: {
+                    playButton: "row1-1",
+                    volume: "row1-2",
+                    progress: "row1-5",
+                  }
+                }
+              }}
               rootContainerProps={{ className: "w-full" }}
-            >
-            </AudioPlayer>
+            ></AudioPlayer>
           )
         },
       },
