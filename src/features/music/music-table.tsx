@@ -1,6 +1,6 @@
 import { useMemo, type FC } from "react"
 import type { ColumnDef } from "@tanstack/react-table"
-import AudioPlayer, { type AudioData, type InitialStates, type PlayList } from "react-modern-audio-player"
+import AudioPlayer, { type AudioData, type PlayList } from "react-modern-audio-player"
 import useLocale from "@/locale/use-locale"
 import DataTable from "@/components/page/data-table"
 import { useTheme } from "@/components/theme-provider"
@@ -84,6 +84,7 @@ const MusicTable: FC<MusicTableProps> = () => {
                 all: true,
                 artwork: false,
                 trackInfo: false,
+                repeatType: false,
                 playList: false,
                 playbackRate: false,
                 prevNnext: false,
@@ -91,15 +92,17 @@ const MusicTable: FC<MusicTableProps> = () => {
               }}
               placement={{
                 interface: {
-                  templateArea: {
-                    playButton: "row1-1",
-                    volume: "row1-2",
-                    progress: "row1-5",
-                  }
-                }
+                  // Explains: row(rowNums-colNums) / colNums / row(rowNums-colNums) / colNums 
+                  itemCustomArea: {
+                    playButton: "row1-1 / 1 / row1-1 / 1",
+                    progress: "row1-2 / 2 / row1-2 / 7",
+                    volume: "row1-9 /9 / row1-9 / 9",
+                    trackTimeDuration: "row1-10 / 10 / row1-10 / 10",
+                  },
+                },
               }}
-              rootContainerProps={{ className: "w-full" }}
-            ></AudioPlayer>
+              rootContainerProps={{ className: "audio-player-custom" }}
+            />
           )
         },
       },

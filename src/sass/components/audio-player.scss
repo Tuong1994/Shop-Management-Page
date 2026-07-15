@@ -1,0 +1,12 @@
+.audio-player-custom {
+  @apply rounded-3xl bg-none;
+
+  --rm-audio-player-interface-container: #fff;
+  --rm-audio-player-progress-bar: oklch(0.511 0.096 186.391);
+  --rm-audio-player-progress-bar-background: #3f3f46;
+  --rm-audio-player-waveform-bar: oklch(0.511 0.096 186.391);
+  --rm-audio-player-text-color: #f1f5f9;
+  --rm-audio-player-volume-fill: oklch(0.511 0.096 186.391);
+  --rm-audio-player-track-current-time: oklch(0.511 0.096 186.391);
+  --rm-audio-player-track-duration: #94a3b8;
+}
