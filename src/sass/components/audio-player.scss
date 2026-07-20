@@ -1,8 +1,6 @@
 .audio-player-custom {
-  @apply rounded-3xl bg-none;
-
   --rm-audio-player-shadow: 0 0 0;
-  --rm-audio-player-interface-container: #fff;
+  --rm-audio-player-interface-container: transparent;
   --rm-audio-player-text-color: #2c2c2c;
 
   --rm-audio-player-progress-bar-background: #3f3f46;

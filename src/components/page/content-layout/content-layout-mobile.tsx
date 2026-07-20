@@ -19,7 +19,7 @@ const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, bottomCon
   const { lang } = useLocale()
 
   return (
-    <Drawer direction="right">
+    <Drawer swipeDirection="right">
       <DrawerTrigger className="cursor-pointer text-white">
         <PanelRight size={25} />
       </DrawerTrigger>

@@ -1,8 +1,9 @@
-import type { FC } from "react"
-import type { PlayList } from "react-modern-audio-player"
+import { useState, type FC } from "react"
 import { EPageType } from "@/data/page"
+import { AudioPlayerStateProvider, type PlayList } from "react-modern-audio-player"
 import ContentLayout from "@/components/page/content-layout"
-import MusicItem from "@/features/music/music-item"
+import MusicList from "@/features/music/music-list"
+import MusicAudio from "@/features/music/music-audio"
 
 const playList: PlayList = [
   {
@@ -43,12 +44,40 @@ const playList: PlayList = [
 ]
 
 const MusicPage: FC = () => {
+  const [currentTrackId, setCurrentTrackId] = useState<number | null>(null)
+
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+
+  const handleOpenAudio = (id: number) => {
+    setCurrentTrackId(id)
+    setIsPlaying(true)
+  }
+
+  const handleCloseAudio = () => {
+    setCurrentTrackId(null)
+    setIsPlaying(false)
+  }
+
+  const handlePlayingStatus = (isPlaying: boolean) => setIsPlaying(isPlaying)
+
   return (
-    <ContentLayout pageType={EPageType.MUSIC}>
-      {playList.map(audio => (
-        <MusicItem key={audio.id} audio={audio} />
-      ))}
-    </ContentLayout>
+    <AudioPlayerStateProvider playList={playList}>
+      <ContentLayout pageType={EPageType.MUSIC}>
+        <MusicList
+          playList={playList}
+          currentTrackId={currentTrackId}
+          isPlaying={isPlaying}
+          onPlay={handleOpenAudio}
+        />
+      </ContentLayout>
+      <MusicAudio
+        playList={playList}
+        currentTrackId={currentTrackId}
+        open={currentTrackId !== null}
+        onOpenChange={handleCloseAudio}
+        onPlayingChange={handlePlayingStatus}
+      />
+    </AudioPlayerStateProvider>
   )
 }
 
