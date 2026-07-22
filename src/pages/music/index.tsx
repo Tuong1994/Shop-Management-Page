@@ -4,6 +4,7 @@ import { AudioPlayerStateProvider, type PlayList } from "react-modern-audio-play
 import ContentLayout from "@/components/page/content-layout"
 import MusicList from "@/features/music/music-list"
 import MusicAudio from "@/features/music/music-audio"
+import 'react-h5-audio-player/lib/styles.css';
 
 const playList: PlayList = [
   {
@@ -68,10 +69,12 @@ const MusicPage: FC = () => {
           currentTrackId={currentTrackId}
           isPlaying={isPlaying}
           onPlay={handleOpenAudio}
+          onPlayingChange={handlePlayingStatus}
         />
       </ContentLayout>
       <MusicAudio
         playList={playList}
+        isPlaying={isPlaying}
         currentTrackId={currentTrackId}
         open={currentTrackId !== null}
         onOpenChange={handleCloseAudio}

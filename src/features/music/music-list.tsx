@@ -12,10 +12,16 @@ interface MusicListProps {
   currentTrackId: number | null
   isPlaying: boolean
   onPlay?: (id: number) => void
+  onPlayingChange?: (isPlaying: boolean) => void
 }
 
-const MusicList: FC<MusicListProps> = ({ playList, currentTrackId, isPlaying, onPlay }) => {
+const MusicList: FC<MusicListProps> = ({ playList, currentTrackId, isPlaying, onPlay, onPlayingChange }) => {
   const { lang } = useLocale()
+
+  const handlePlay = (id: number, isPlaying: boolean) => {
+    onPlay?.(id);
+    onPlayingChange?.(isPlaying);
+  }
 
   const columns: ColumnDef<AudioData>[] = useMemo(
     () => [
@@ -37,9 +43,17 @@ const MusicList: FC<MusicListProps> = ({ playList, currentTrackId, isPlaying, on
         cell: ({ row }) => {
           const isCurrent = currentTrackId === row.original.id
           return (
-            <Button variant="secondary" onClick={() => onPlay?.(row.original.id)}>
-              {isCurrent && isPlaying ? <Pause size={20} /> : <Play size={20} />}
-            </Button>
+            <>
+              {isCurrent && isPlaying ? (
+                <Button variant="secondary" onClick={() => handlePlay(row.original.id, false)}>
+                  <Pause size={20} />
+                </Button>
+              ) : (
+                <Button variant="secondary" onClick={() => handlePlay(row.original.id, true)}>
+                  <Play size={20} />
+                </Button>
+              )}
+            </>
           )
         },
       },
