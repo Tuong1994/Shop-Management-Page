@@ -1,26 +1,22 @@
 import { useEffect, useRef, type FC } from "react"
-import type { PlayList } from "react-modern-audio-player"
 import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import AudioPlayer from "react-h5-audio-player"
+import useAudio from "../hooks/use-audio"
 
 interface MusicAudioProps {
-  playList: PlayList
-  currentTrackId: number | null
-  open?: boolean
-  isPlaying?: boolean
   onOpenChange?: (open: boolean) => void
   onPlayingChange?: (isPlaying: boolean) => void
 }
 
-const MusicAudio: FC<MusicAudioProps> = ({
-  playList,
-  currentTrackId,
-  open,
-  isPlaying,
-  onOpenChange,
-  onPlayingChange,
-}) => {
+const MusicAudio: FC<MusicAudioProps> = () => {
+  const { playList, currentTrackId, isPlaying, setCurrentTrackId, setIsPlaying } = useAudio()
+
   const playerRef = useRef<AudioPlayer>(null)
+
+  const handleCloseAudio = () => {
+    setCurrentTrackId(null)
+    setIsPlaying(false)
+  }
 
   useEffect(() => {
     if (!playerRef.current) return
@@ -31,7 +27,13 @@ const MusicAudio: FC<MusicAudioProps> = ({
   }, [isPlaying])
 
   return (
-    <Drawer modal={false} showSwipeHandle disablePointerDismissal open={open} onOpenChange={onOpenChange}>
+    <Drawer
+      modal={false}
+      showSwipeHandle
+      disablePointerDismissal
+      open={currentTrackId !== null}
+      onOpenChange={handleCloseAudio}
+    >
       <DrawerContent>
         <div className="p-3 pt-5">
           <div className="rounded-[20px] bg-primary-foreground">
@@ -39,8 +41,8 @@ const MusicAudio: FC<MusicAudioProps> = ({
               ref={playerRef}
               autoPlay
               src={playList.find((audio) => audio.id === currentTrackId)?.src}
-              onPlay={() => onPlayingChange?.(true)}
-              onPause={() => onPlayingChange?.(false)}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
             />
           </div>
         </div>

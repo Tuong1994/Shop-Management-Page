@@ -1,29 +1,31 @@
-import type { AudioData } from "react-modern-audio-player"
 import type { ColumnDef } from "@tanstack/react-table"
+import type { Audio, AudioList } from "@/models/audio/audio.type"
 import { useMemo, type FC } from "react"
 import { Button } from "@/components/ui/button"
 import { Pause, Play } from "lucide-react"
 import Image from "@/components/page/image"
 import DataTable from "@/components/page/data-table"
 import useLocale from "@/locale/use-locale"
+import useAudio from "../hooks/use-audio"
 
 interface MusicListProps {
-  playList: AudioData[]
-  currentTrackId: number | null
-  isPlaying: boolean
-  onPlay?: (id: number) => void
+  playList: AudioList
+  onPlay?: (id: string) => void
   onPlayingChange?: (isPlaying: boolean) => void
 }
 
-const MusicList: FC<MusicListProps> = ({ playList, currentTrackId, isPlaying, onPlay, onPlayingChange }) => {
+const MusicList: FC<MusicListProps> = ({ playList, onPlay, onPlayingChange }) => {
   const { lang } = useLocale()
 
-  const handlePlay = (id: number, isPlaying: boolean) => {
-    onPlay?.(id);
-    onPlayingChange?.(isPlaying);
+  const { currentTrackId, isPlaying, setIsPlaying } = useAudio()
+
+  const handlePlay = (id: string, isPlaying: boolean) => {
+    setIsPlaying(isPlaying)
+    onPlay?.(id)
+    // onPlayingChange?.(isPlaying)
   }
 
-  const columns: ColumnDef<AudioData>[] = useMemo(
+  const columns: ColumnDef<Audio>[] = useMemo(
     () => [
       {
         accessorKey: "img",
@@ -61,7 +63,7 @@ const MusicList: FC<MusicListProps> = ({ playList, currentTrackId, isPlaying, on
     [lang, currentTrackId, isPlaying]
   )
 
-  return <DataTable<AudioData> data={playList} columns={columns} />
+  return <DataTable<Audio> data={playList} columns={columns} />
 }
 
 export default MusicList
