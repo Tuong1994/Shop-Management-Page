@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table"
-import type { Audio, AudioList } from "@/models/audio/audio.type"
+import type { Audio } from "@/models/audio/audio.type"
 import { useMemo, type FC } from "react"
 import { Button } from "@/components/ui/button"
 import { Pause, Play } from "lucide-react"
@@ -9,20 +9,17 @@ import useLocale from "@/locale/use-locale"
 import useAudio from "../hooks/use-audio"
 
 interface MusicListProps {
-  playList: AudioList
   onPlay?: (id: string) => void
-  onPlayingChange?: (isPlaying: boolean) => void
 }
 
-const MusicList: FC<MusicListProps> = ({ playList, onPlay, onPlayingChange }) => {
+const MusicList: FC<MusicListProps> = ({ onPlay}) => {
   const { lang } = useLocale()
 
-  const { currentTrackId, isPlaying, setIsPlaying } = useAudio()
+  const { playList, currentTrackId, isPlaying, setIsPlaying } = useAudio()
 
   const handlePlay = (id: string, isPlaying: boolean) => {
     setIsPlaying(isPlaying)
     onPlay?.(id)
-    // onPlayingChange?.(isPlaying)
   }
 
   const columns: ColumnDef<Audio>[] = useMemo(
