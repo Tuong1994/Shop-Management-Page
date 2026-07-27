@@ -8,18 +8,23 @@ import DataTable from "@/components/page/data-table"
 import useLocale from "@/locale/use-locale"
 import useAudio from "../hooks/use-audio"
 
-interface MusicListProps {
-  onPlay?: (id: string) => void
-}
-
-const MusicList: FC<MusicListProps> = ({ onPlay}) => {
+const MusicList: FC = () => {
   const { lang } = useLocale()
 
-  const { playList, currentTrackId, isPlaying, setIsPlaying } = useAudio()
+  const {
+    playList,
+    currentTrackId,
+    currentTrackIdx,
+    isPlaying,
+    setIsPlaying,
+    setCurrentTrackId,
+    setCurrentTrackIdx,
+  } = useAudio()
 
-  const handlePlay = (id: string, isPlaying: boolean) => {
+  const handlePlay = (id: string, isPlaying: boolean, idx: number) => {
     setIsPlaying(isPlaying)
-    onPlay?.(id)
+    setCurrentTrackId(id)
+    setCurrentTrackIdx(idx)
   }
 
   const columns: ColumnDef<Audio>[] = useMemo(
@@ -44,11 +49,11 @@ const MusicList: FC<MusicListProps> = ({ onPlay}) => {
           return (
             <>
               {isCurrent && isPlaying ? (
-                <Button variant="secondary" onClick={() => handlePlay(row.original.id, false)}>
+                <Button variant="secondary" onClick={() => handlePlay(row.original.id, false, row.index)}>
                   <Pause size={20} />
                 </Button>
               ) : (
-                <Button variant="secondary" onClick={() => handlePlay(row.original.id, true)}>
+                <Button variant="secondary" onClick={() => handlePlay(row.original.id, true, row.index)}>
                   <Play size={20} />
                 </Button>
               )}
@@ -57,7 +62,7 @@ const MusicList: FC<MusicListProps> = ({ onPlay}) => {
         },
       },
     ],
-    [lang, currentTrackId, isPlaying]
+    [lang, currentTrackId, currentTrackIdx, isPlaying]
   )
 
   return <DataTable<Audio> data={playList} columns={columns} />

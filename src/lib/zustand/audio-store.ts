@@ -44,9 +44,11 @@ type AudioState = {
   open: boolean
   isPlaying: boolean
   currentTrackId: string | null
+  currentTrackIdx: number
   setOpen: (open: boolean) => void
   setIsPlaying: (isPlaying: boolean) => void
   setCurrentTrackId: (id: string | null) => void
+  setCurrentTrackIdx: (idx: number) => void
 }
 
 const store: StateCreator<AudioState> = (set) => ({
@@ -54,11 +56,13 @@ const store: StateCreator<AudioState> = (set) => ({
   open: false,
   isPlaying: false,
   currentTrackId: null,
+  currentTrackIdx: -1,
   setOpen: (open: boolean) => set(() => ({ open })),
   setIsPlaying: (isPlaying: boolean) => set(() => ({ isPlaying })),
   setCurrentTrackId: (id: string | null) => set(() => ({ currentTrackId: id })),
+  setCurrentTrackIdx: (idx: number) => set(() => ({ currentTrackIdx: idx })),
 })
 
-const useAudioStore = create(store);
+const useAudioStore = create(store)
 
 export default useAudioStore
