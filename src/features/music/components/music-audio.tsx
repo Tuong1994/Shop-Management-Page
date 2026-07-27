@@ -3,11 +3,12 @@ import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { Paragraph } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { Minus } from "lucide-react"
+import { FastForward, List, Minus, Pause, Play, Rewind } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import AudioPlayer from "react-h5-audio-player"
 import Image from "@/components/page/image"
 import useAudio from "../hooks/use-audio"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const MusicAudio: FC = () => {
   const {
@@ -56,38 +57,54 @@ const MusicAudio: FC = () => {
     >
       <DrawerContent>
         <div className="p-3 pt-5">
-          <div className="flex items-center gap-4">
-            <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
-            <Separator orientation="vertical" />
-            <Paragraph>{playList[currentTrackIdx]?.name}</Paragraph>
-            <Separator orientation="vertical" />
-            <div className="flex-1">
-              <AudioPlayer
-                autoPlay
-                ref={playerRef}
-                src={playList[currentTrackIdx]?.src}
-                layout="horizontal-reverse"
-                className="audio-player-custom"
-                onClickPrevious={handlePrevTrack}
-                onClickNext={handleNextTrack}
-                onEnded={handleNextTrack}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-              />
-            </div>
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button variant="secondary">
-                    <Minus />
-                  </Button>
-                }
-              />
-              <TooltipContent>
-                Collapse
-              </TooltipContent>
-            </Tooltip>
-          </div>
+          <Accordion>
+            <AccordionItem>
+              <div className="flex items-center gap-8 p-2">
+                <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
+                <Separator orientation="vertical" />
+                <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
+                <Separator orientation="vertical" />
+                <div className="flex-1">
+                  <AudioPlayer
+                    autoPlay
+                    showFilledVolume
+                    ref={playerRef}
+                    src={playList[currentTrackIdx]?.src}
+                    layout="horizontal-reverse"
+                    className="audio-player-custom"
+                    onClickPrevious={handlePrevTrack}
+                    onClickNext={handleNextTrack}
+                    onEnded={handleNextTrack}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    customAdditionalControls={[]}
+                    customIcons={{
+                      play: <Play size={18} />,
+                      pause: <Pause size={18} />,
+                      forward: <FastForward size={18} />,
+                      rewind: <Rewind size={18} />,
+                    }}
+                  />
+                </div>
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Button variant="ghost">
+                        <Minus />
+                      </Button>
+                    }
+                  />
+                  <TooltipContent>Collapse</TooltipContent>
+                </Tooltip>
+                <AccordionTrigger>
+                  <List />
+                </AccordionTrigger>
+              </div>
+              <AccordionContent>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque at dolores qui perspiciatis sunt placeat aperiam tempora pariatur culpa voluptatem.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </DrawerContent>
     </Drawer>
