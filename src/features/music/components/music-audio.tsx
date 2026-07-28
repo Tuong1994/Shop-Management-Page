@@ -3,12 +3,16 @@ import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { Paragraph } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { FastForward, List, Minus, Pause, Play, Rewind } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Card, CardContent } from "@/components/ui/card"
+import { FastForward, Minus, Pause, Play, Rewind } from "lucide-react"
+import { useLocation } from "react-router"
+import { getRouteSubname } from "@/lib/router/helper"
+import { routerPaths } from "@/lib/router/paths"
 import AudioPlayer from "react-h5-audio-player"
 import Image from "@/components/page/image"
 import useAudio from "../hooks/use-audio"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const MusicAudio: FC = () => {
   const {
@@ -21,7 +25,19 @@ const MusicAudio: FC = () => {
     setIsPlaying,
   } = useAudio()
 
+  const location = useLocation()
+
   const playerRef = useRef<AudioPlayer>(null)
+
+  const pathname = getRouteSubname(location)
+
+  const showList = pathname !== routerPaths.MUSIC
+
+  const handlePlay = (id: string, isPlaying: boolean, idx: number) => {
+    setIsPlaying(isPlaying)
+    setCurrentTrackId(id)
+    setCurrentTrackIdx(idx)
+  }
 
   const handleCloseAudio = () => {
     setCurrentTrackId(null)
@@ -60,6 +76,17 @@ const MusicAudio: FC = () => {
           <Accordion>
             <AccordionItem>
               <div className="flex items-center gap-8 p-2">
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Button variant="ghost">
+                        <Minus />
+                      </Button>
+                    }
+                  />
+                  <TooltipContent>Collapse</TooltipContent>
+                </Tooltip>
+                <Separator orientation="vertical" />
                 <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
                 <Separator orientation="vertical" />
                 <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
@@ -86,23 +113,42 @@ const MusicAudio: FC = () => {
                     }}
                   />
                 </div>
-                <Tooltip>
-                  <TooltipTrigger
-                    render={
-                      <Button variant="ghost">
-                        <Minus />
-                      </Button>
-                    }
-                  />
-                  <TooltipContent>Collapse</TooltipContent>
-                </Tooltip>
-                <AccordionTrigger>
-                  <List />
-                </AccordionTrigger>
+                {showList && (
+                  <>
+                    <Separator orientation="vertical" />
+                    <AccordionTrigger>List</AccordionTrigger>
+                  </>
+                )}
               </div>
-              <AccordionContent>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque at dolores qui perspiciatis sunt placeat aperiam tempora pariatur culpa voluptatem.
-              </AccordionContent>
+
+              {showList && (
+                <AccordionContent>
+                  {playList.map((audio, index) => {
+                    const isCurrent = currentTrackId === audio.id
+                    return (
+                      <Card key={audio.id} className="p-0 not-last:mb-2">
+                        <CardContent className="flex items-center justify-center gap-8 p-1">
+                          <Image imgWidth="45px" imgHeight="45px" src={audio.img} />
+                          <Separator orientation="vertical" />
+                          <Paragraph>{audio.name}</Paragraph>
+                          <Separator orientation="vertical" />
+                          <>
+                            {isCurrent && isPlaying ? (
+                              <Button variant="secondary" onClick={() => handlePlay(audio.id, false, index)}>
+                                <Pause />
+                              </Button>
+                            ) : (
+                              <Button variant="secondary" onClick={() => handlePlay(audio.id, true, index)}>
+                                <Play />
+                              </Button>
+                            )}
+                          </>
+                        </CardContent>
+                      </Card>
+                    )
+                  })}
+                </AccordionContent>
+              )}
             </AccordionItem>
           </Accordion>
         </div>
