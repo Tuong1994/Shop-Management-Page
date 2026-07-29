@@ -1,4 +1,4 @@
-import { useEffect, useRef, type FC } from "react"
+import { useEffect, useRef, useState, type FC } from "react"
 import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { Paragraph } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
@@ -10,7 +10,8 @@ import { FastForward, Minus, Pause, Play, Rewind } from "lucide-react"
 import { useLocation } from "react-router"
 import { getRouteSubname } from "@/lib/router/helper"
 import { routerPaths } from "@/lib/router/paths"
-import AudioPlayer from "react-h5-audio-player"
+import { cn } from "@/lib/utils"
+import AudioPlayer, { RHAP_UI } from "react-h5-audio-player"
 import Image from "@/components/page/image"
 import useAudio from "../hooks/use-audio"
 
@@ -24,6 +25,8 @@ const MusicAudio: FC = () => {
     setCurrentTrackIdx,
     setIsPlaying,
   } = useAudio()
+
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
   const location = useLocation()
 
@@ -55,6 +58,8 @@ const MusicAudio: FC = () => {
     setCurrentTrackIdx(idx < playList.length - 1 ? idx + 1 : 0)
   }
 
+  const handleCollapse = () => setIsCollapsed(!isCollapsed)
+
   useEffect(() => {
     if (!playerRef.current) return
     const audio = playerRef.current.audio.current
@@ -71,7 +76,7 @@ const MusicAudio: FC = () => {
       open={currentTrackId !== null}
       onOpenChange={handleCloseAudio}
     >
-      <DrawerContent>
+      <DrawerContent className={cn("transition-[width] delay-75", isCollapsed && "w-50")}>
         <div className="p-3 pt-5">
           <Accordion>
             <AccordionItem>
@@ -79,49 +84,68 @@ const MusicAudio: FC = () => {
                 <Tooltip>
                   <TooltipTrigger
                     render={
-                      <Button variant="ghost">
+                      <Button variant="ghost" onClick={handleCollapse}>
                         <Minus />
                       </Button>
                     }
                   />
                   <TooltipContent>Collapse</TooltipContent>
                 </Tooltip>
-                <Separator orientation="vertical" />
-                <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
-                <Separator orientation="vertical" />
-                <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
-                <Separator orientation="vertical" />
-                <div className="flex-1">
-                  <AudioPlayer
-                    autoPlay
-                    showFilledVolume
-                    ref={playerRef}
-                    src={playList[currentTrackIdx]?.src}
-                    layout="horizontal-reverse"
-                    className="audio-player-custom"
-                    onClickPrevious={handlePrevTrack}
-                    onClickNext={handleNextTrack}
-                    onEnded={handleNextTrack}
-                    onPlay={() => setIsPlaying(true)}
-                    onPause={() => setIsPlaying(false)}
-                    customAdditionalControls={[]}
-                    customIcons={{
-                      play: <Play size={18} />,
-                      pause: <Pause size={18} />,
-                      forward: <FastForward size={18} />,
-                      rewind: <Rewind size={18} />,
-                    }}
-                  />
+
+                <>
+                  <Separator orientation="vertical" />
+                </>
+
+                <div
+                  className={cn(
+                    "flex flex-1 items-center gap-8 transition-opacity",
+                    isCollapsed && "opacity-0"
+                  )}
+                >
+                  <Separator orientation="vertical" />
+                  <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
+                  <Separator orientation="vertical" />
+                  <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
+                  <Separator orientation="vertical" />
+                  <div className="flex-1">
+                    <AudioPlayer
+                      autoPlay
+                      muted
+                      showFilledVolume
+                      showJumpControls={false}
+                      showSkipControls={false}
+                      ref={playerRef}
+                      src={playList[currentTrackIdx]?.src}
+                      layout="horizontal-reverse"
+                      className="audio-player-custom"
+                      customAdditionalControls={[]}
+                      customVolumeControls={[]}
+                      customProgressBarSection={[]}
+                      customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
+                      customIcons={{
+                        play: <Play size={18} />,
+                        pause: <Pause size={18} />,
+                        forward: <FastForward size={18} />,
+                        rewind: <Rewind size={18} />,
+                      }}
+                      onClickPrevious={handlePrevTrack}
+                      onClickNext={handleNextTrack}
+                      onEnded={handleNextTrack}
+                      onPlay={() => setIsPlaying(true)}
+                      onPause={() => setIsPlaying(false)}
+                    />
+                  </div>
+
+                  {showList && (
+                    <>
+                      <Separator orientation="vertical" />
+                      <AccordionTrigger>List</AccordionTrigger>
+                    </>
+                  )}
                 </div>
-                {showList && (
-                  <>
-                    <Separator orientation="vertical" />
-                    <AccordionTrigger>List</AccordionTrigger>
-                  </>
-                )}
               </div>
 
-              {showList && (
+              {showList && !isCollapsed && (
                 <AccordionContent>
                   {playList.map((audio, index) => {
                     const isCurrent = currentTrackId === audio.id
