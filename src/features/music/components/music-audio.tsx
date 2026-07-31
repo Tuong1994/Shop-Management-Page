@@ -76,11 +76,11 @@ const MusicAudio: FC = () => {
       open={currentTrackId !== null}
       onOpenChange={handleCloseAudio}
     >
-      <DrawerContent className={cn("transition-[width] delay-75", isCollapsed && "w-50")}>
+      <DrawerContent className={cn("transition-[width]", isCollapsed && "w-120 min-w-max")}>
         <div className="p-3 pt-5">
           <Accordion>
             <AccordionItem>
-              <div className="flex items-center gap-8 p-2">
+              <div className="flex items-center gap-2 p-2">
                 <Tooltip>
                   <TooltipTrigger
                     render={
@@ -92,57 +92,57 @@ const MusicAudio: FC = () => {
                   <TooltipContent>Collapse</TooltipContent>
                 </Tooltip>
 
-                <>
-                  <Separator orientation="vertical" />
-                </>
-
-                <div
-                  className={cn(
-                    "flex flex-1 items-center gap-8 transition-opacity",
-                    isCollapsed && "opacity-0"
-                  )}
-                >
-                  <Separator orientation="vertical" />
-                  <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
-                  <Separator orientation="vertical" />
-                  <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
-                  <Separator orientation="vertical" />
-                  <div className="flex-1">
-                    <AudioPlayer
-                      autoPlay
-                      muted
-                      showFilledVolume
-                      showJumpControls={false}
-                      showSkipControls={false}
-                      ref={playerRef}
-                      src={playList[currentTrackIdx]?.src}
-                      layout="horizontal-reverse"
-                      className="audio-player-custom"
-                      customAdditionalControls={[]}
-                      customVolumeControls={[]}
-                      customProgressBarSection={[]}
-                      customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
-                      customIcons={{
-                        play: <Play size={18} />,
-                        pause: <Pause size={18} />,
-                        forward: <FastForward size={18} />,
-                        rewind: <Rewind size={18} />,
-                      }}
-                      onClickPrevious={handlePrevTrack}
-                      onClickNext={handleNextTrack}
-                      onEnded={handleNextTrack}
-                      onPlay={() => setIsPlaying(true)}
-                      onPause={() => setIsPlaying(false)}
-                    />
+                {!isCollapsed && (
+                  <div className="flex items-center gap-8">
+                    <Separator orientation="vertical" />
+                    <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
+                    <Separator orientation="vertical" />
+                    <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
+                    <Separator orientation="vertical" />
                   </div>
+                )}
 
-                  {showList && (
-                    <>
-                      <Separator orientation="vertical" />
-                      <AccordionTrigger>List</AccordionTrigger>
-                    </>
-                  )}
+                <div className="flex-1">
+                  <AudioPlayer
+                    autoPlay
+                    muted
+                    ref={playerRef}
+                    src={playList[currentTrackIdx]?.src}
+                    layout="horizontal-reverse"
+                    className="audio-player-custom px-0!"
+                    showFilledVolume
+                    showSkipControls={false}
+                    showJumpControls={!isCollapsed}
+                    customAdditionalControls={[]}
+                    customVolumeControls={[RHAP_UI.VOLUME]}
+                    customProgressBarSection={
+                      !isCollapsed ? [RHAP_UI.CURRENT_TIME, RHAP_UI.PROGRESS_BAR, RHAP_UI.DURATION] : [RHAP_UI.CURRENT_TIME, RHAP_UI.PROGRESS_BAR]
+                    }
+                    // customControlsSection={
+                    //   !isCollapsed
+                    //     ? [RHAP_UI.ADDITIONAL_CONTROLS, RHAP_UI.MAIN_CONTROLS, RHAP_UI.VOLUME_CONTROLS]
+                    //     : [RHAP_UI.MAIN_CONTROLS, RHAP_UI.VOLUME_CONTROLS]
+                    // }
+                    customIcons={{
+                      play: <Play size={18} />,
+                      pause: <Pause size={18} />,
+                      forward: <FastForward size={18} />,
+                      rewind: <Rewind size={18} />,
+                    }}
+                    onClickPrevious={handlePrevTrack}
+                    onClickNext={handleNextTrack}
+                    onEnded={handleNextTrack}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                  />
                 </div>
+
+                {showList && !isCollapsed && (
+                  <div className="transition-opacity">
+                    <Separator orientation="vertical" />
+                    <AccordionTrigger>List</AccordionTrigger>
+                  </div>
+                )}
               </div>
 
               {showList && !isCollapsed && (
