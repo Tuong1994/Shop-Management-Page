@@ -45,7 +45,7 @@ const MusicList: FC = () => {
       {
         id: "action",
         cell: ({ row }) => {
-          const isCurrent = currentTrackId === row.original.id
+          const isCurrent = playList[currentTrackIdx]?.id === row.original.id
           return (
             <>
               {isCurrent && isPlaying ? (

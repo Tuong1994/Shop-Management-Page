@@ -1,5 +1,5 @@
-import useAudioStore from "@/lib/zustand/audio-store"
 import { useShallow } from "zustand/shallow"
+import useAudioStore from "@/lib/zustand/audio-store"
 
 const useAudio = () => {
   const {
