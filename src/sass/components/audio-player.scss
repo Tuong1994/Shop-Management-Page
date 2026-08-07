@@ -35,3 +35,12 @@
     }
   }
 }
+
+.audio-player-mobile {
+  .rhap_progress-section {
+    flex: 0;
+  }
+  .rhap_controls-section {
+    flex: 1
+  }
+}

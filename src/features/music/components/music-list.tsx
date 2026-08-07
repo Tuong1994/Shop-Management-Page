@@ -11,15 +11,8 @@ import useAudio from "../hooks/use-audio"
 const MusicList: FC = () => {
   const { lang } = useLocale()
 
-  const {
-    playList,
-    currentTrackId,
-    currentTrackIdx,
-    isPlaying,
-    setIsPlaying,
-    setCurrentTrackId,
-    setCurrentTrackIdx,
-  } = useAudio()
+  const { playList, currentTrackIdx, isPlaying, setIsPlaying, setCurrentTrackId, setCurrentTrackIdx } =
+    useAudio()
 
   const handlePlay = (id: string, isPlaying: boolean, idx: number) => {
     setIsPlaying(isPlaying)
@@ -39,8 +32,8 @@ const MusicList: FC = () => {
         header: () => <div className="font-bold">Name</div>,
       },
       {
-        accessorKey: "writer",
-        header: () => <div className="font-bold">Writer</div>,
+        accessorKey: "author",
+        header: () => <div className="font-bold">Author</div>,
       },
       {
         id: "action",
@@ -62,7 +55,7 @@ const MusicList: FC = () => {
         },
       },
     ],
-    [lang, currentTrackId, currentTrackIdx, isPlaying]
+    [lang, currentTrackIdx, isPlaying]
   )
 
   return <DataTable<Audio> data={playList} columns={columns} />

@@ -2,8 +2,8 @@ import Draggable, { type DraggableProps } from "react-draggable"
 import { useRef, type FC, type ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils" // nếu bạn dùng shadcn
-import { useRender } from "@/hooks"
 import { X } from "lucide-react"
+import { useRender } from "@/hooks"
 
 interface DrawerDraggaleProps {
   children?: ReactNode
@@ -30,7 +30,7 @@ const DrawerDraggale: FC<DrawerDraggaleProps> = ({
 
   return (
     render && (
-      <Draggable bounds="body" position={position} nodeRef={nodeRef} disabled={disabled} onDrag={onDrag}>
+      <Draggable cancel="button" bounds="body" position={position} nodeRef={nodeRef} disabled={disabled} onDrag={onDrag}>
         <div
           ref={nodeRef}
           className={cn(
@@ -42,19 +42,18 @@ const DrawerDraggale: FC<DrawerDraggaleProps> = ({
         >
           <div
             className={cn(
-              "rounded-[20px] bg-background border shadow-lg",
+              "rounded-[20px] bg-background border shadow-lg p-2.5",
               "transition-transform duration-300 ease-out",
               "bottom-0 translate-y-full",
               open && "bottom-0 translate-y-0 animate-slide-in-up"
             )}
           >
-            <div className="flex items-center justify-end px-2 pt-2">
-              <Button variant="outline" onClick={onClose}>
-                <X />
+            <div className="flex items-center justify-end gap-4 border rounded-[20px] px-2.5 py-1">
+              {children}
+              <Button variant="outline" className="w-8 h-8" onClick={onClose}>
+                <X className="size-3" />
               </Button>
             </div>
-
-            <div className="px-2">{children}</div>
           </div>
         </div>
       </Draggable>

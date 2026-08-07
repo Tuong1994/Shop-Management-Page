@@ -40,7 +40,7 @@ const AudioDesktop: FC<AudioDesktopProps> = ({
   }, [isPlaying])
 
   return (
-    <Accordion>
+    <Accordion className="border-0">
       <AccordionItem>
         <div className="flex items-center gap-2 p-2">
           <Tooltip>

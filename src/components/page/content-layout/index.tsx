@@ -34,7 +34,7 @@ const ContentLayout: FC<ContentLayoutProps> = ({
 
   const hasTabItems = tabItems.length > 0
 
-  const isResponsive = (isMobile || isTablet) && pathname !== routerPaths.BANK
+  const isResponsive = (isMobile || isTablet) && pathname !== routerPaths.BANK && pathname !== routerPaths.MUSIC
 
   const renderTabItems = () => {
     if (isResponsive) return null

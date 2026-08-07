@@ -26,6 +26,8 @@ const MusicAudio: FC = () => {
 
   const showList = pathname !== routerPaths.MUSIC
 
+  const disabled = !isMobile ? !isCollapsed : false
+
   const handlePlay = (id: string, isPlaying: boolean, idx: number) => {
     setIsPlaying(isPlaying)
     setCurrentTrackId(id)
@@ -51,7 +53,6 @@ const MusicAudio: FC = () => {
   const handleCollapse = () => setIsCollapsed(!isCollapsed)
 
   const handleDrag = (e: MouseEvent, data: DraggableData) => {
-    e.preventDefault()
     setPosition({ x: data.x, y: data.y })
   }
 
@@ -61,27 +62,25 @@ const MusicAudio: FC = () => {
 
   return (
     <DrawerDraggale
-      className={cn("transition-[width]", isCollapsed && "w-120 min-w-max")}
+      className={cn("transition-[width]", isCollapsed && "w-120 min-w-max", isMobile && "w-65")}
       position={position}
-      disabled={!isCollapsed}
+      disabled={disabled}
       open={currentTrackId !== null}
       onDrag={handleDrag}
       onClose={handleCloseAudio}
     >
-      <div className="p-3 pt-5">
-        {!isMobile ? (
-          <AudioDesktop
-            isCollapsed={isCollapsed}
-            showList={showList}
-            onCollapsed={handleCollapse}
-            onPrevTrack={handlePrevTrack}
-            onNextTrack={handleNextTrack}
-            onPlay={handlePlay}
-          />
-        ) : (
-          <AudioMobile />
-        )}
-      </div>
+      {!isMobile ? (
+        <AudioDesktop
+          isCollapsed={isCollapsed}
+          showList={showList}
+          onCollapsed={handleCollapse}
+          onPrevTrack={handlePrevTrack}
+          onNextTrack={handleNextTrack}
+          onPlay={handlePlay}
+        />
+      ) : (
+        <AudioMobile />
+      )}
     </DrawerDraggale>
   )
 }
