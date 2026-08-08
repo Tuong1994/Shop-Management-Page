@@ -1,4 +1,4 @@
-import { useEffect, useRef, type FC } from "react"
+import { forwardRef, type ForwardRefRenderFunction } from "react"
 import { Paragraph } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card, CardContent } from "@/components/ui/card"
 import { FastForward, Minus, Pause, Play, Rewind } from "lucide-react"
+import { useViewport } from "@/hooks"
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player"
 import Image from "@/components/page/image"
 import useAudio from "../../hooks/use-audio"
@@ -19,25 +20,13 @@ interface AudioDesktopProps {
   onPlay?: (id: string, isPlaying: boolean, index: number) => void
 }
 
-const AudioDesktop: FC<AudioDesktopProps> = ({
-  isCollapsed,
-  showList,
-  onCollapsed,
-  onPrevTrack,
-  onNextTrack,
-  onPlay,
-}) => {
+const AudioDesktop: ForwardRefRenderFunction<AudioPlayer, AudioDesktopProps> = (
+  { isCollapsed, showList, onCollapsed, onPrevTrack, onNextTrack, onPlay },
+  ref
+) => {
   const { playList, currentTrackIdx, isPlaying, setIsPlaying } = useAudio()
 
-  const playerRef = useRef<AudioPlayer>(null)
-
-  useEffect(() => {
-    if (!playerRef.current) return
-    const audio = playerRef.current.audio.current
-    if (!audio) return
-    if (isPlaying) audio.play()
-    else audio.pause()
-  }, [isPlaying])
+  const { isDesktop } = useViewport()
 
   return (
     <Accordion className="border-0">
@@ -57,8 +46,12 @@ const AudioDesktop: FC<AudioDesktopProps> = ({
           {!isCollapsed && (
             <div className="flex items-center gap-8">
               <Separator orientation="vertical" />
-              <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
-              <Separator orientation="vertical" />
+              {isDesktop && (
+                <>
+                  <Image imgWidth="65px" imgHeight="65px" src={playList[currentTrackIdx]?.img} />
+                  <Separator orientation="vertical" />
+                </>
+              )}
               <Paragraph className="text-[16px]">{playList[currentTrackIdx]?.name}</Paragraph>
               <Separator orientation="vertical" />
             </div>
@@ -68,7 +61,7 @@ const AudioDesktop: FC<AudioDesktopProps> = ({
             <AudioPlayer
               autoPlay
               muted
-              ref={playerRef}
+              ref={ref}
               src={playList[currentTrackIdx]?.src}
               layout="horizontal-reverse"
               className="audio-player-custom p-0!"
@@ -137,4 +130,4 @@ const AudioDesktop: FC<AudioDesktopProps> = ({
   )
 }
 
-export default AudioDesktop
+export default forwardRef(AudioDesktop)

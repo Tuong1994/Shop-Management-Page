@@ -1,4 +1,4 @@
-import { useEffect, useRef, type FC } from "react"
+import { forwardRef, type ForwardRefRenderFunction } from "react"
 import { FastForward, Pause, Play, Rewind } from "lucide-react"
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player"
 import useAudio from "../../hooks/use-audio"
@@ -8,25 +8,15 @@ interface AudioMobileProps {
   onNextTrack?: () => void
 }
 
-const AudioMobile: FC<AudioMobileProps> = ({ onPrevTrack, onNextTrack }) => {
-  const { playList, currentTrackIdx, isPlaying, setIsPlaying } = useAudio()
-
-  const playerRef = useRef<AudioPlayer>(null)
-
-  useEffect(() => {
-    if (!playerRef.current) return
-    const audio = playerRef.current.audio.current
-    if (!audio) return
-    if (isPlaying) audio.play()
-    else audio.pause()
-  }, [isPlaying])
+const AudioMobile: ForwardRefRenderFunction<AudioPlayer, AudioMobileProps> = ({ onPrevTrack, onNextTrack }, ref) => {
+  const { playList, currentTrackIdx, setIsPlaying } = useAudio()
 
   return (
     <>
       <AudioPlayer
         autoPlay
         muted
-        ref={playerRef}
+        ref={ref}
         src={playList[currentTrackIdx]?.src}
         layout="horizontal"
         className="audio-player-custom audio-player-mobile p-0!"
@@ -34,7 +24,7 @@ const AudioMobile: FC<AudioMobileProps> = ({ onPrevTrack, onNextTrack }) => {
         showSkipControls={false}
         showJumpControls={false}
         customAdditionalControls={[]}
-        customProgressBarSection={[]}
+        customProgressBarSection={[RHAP_UI.CURRENT_TIME]}
         customVolumeControls={[RHAP_UI.VOLUME]}
         customIcons={{
           play: <Play size={12} />,
@@ -52,4 +42,4 @@ const AudioMobile: FC<AudioMobileProps> = ({ onPrevTrack, onNextTrack }) => {
   )
 }
 
-export default AudioMobile
+export default forwardRef(AudioMobile)
