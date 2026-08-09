@@ -108,7 +108,9 @@ const common_en = {
       supplier: "Supplier",
       storage: "Storage",
       role: "Role",
-      changeDate: "Last change"
+      changeDate: "Last change",
+      songName: "Name",
+      author: "Author"
     },
   },
   pagination: {

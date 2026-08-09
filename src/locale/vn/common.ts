@@ -108,7 +108,9 @@ const common_vn = {
       supplier: "Nhà cung cấp",
       storage: "Tồn kho",
       role: "Chức vụ",
-      changeDate: "Ngày thay đổi"
+      changeDate: "Ngày thay đổi",
+      songName: "Tên bài hát",
+      author: "Tác giả",
     },
   },
   pagination: {

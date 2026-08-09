@@ -10,6 +10,7 @@ import { useViewport } from "@/hooks"
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player"
 import Image from "@/components/page/image"
 import useAudio from "../../hooks/use-audio"
+import useLocale from "@/locale/use-locale"
 
 interface AudioDesktopProps {
   isCollapsed: boolean
@@ -24,6 +25,8 @@ const AudioDesktop: ForwardRefRenderFunction<AudioPlayer, AudioDesktopProps> = (
   { isCollapsed, showList, onCollapsed, onPrevTrack, onNextTrack, onPlay },
   ref
 ) => {
+  const { lang } = useLocale()
+
   const { playList, currentTrackIdx, isPlaying, setIsPlaying } = useAudio()
 
   const { isDesktop } = useViewport()
@@ -40,7 +43,9 @@ const AudioDesktop: ForwardRefRenderFunction<AudioPlayer, AudioDesktopProps> = (
                 </Button>
               }
             />
-            <TooltipContent>{!isCollapsed ? "Collapse" : "Expand"}</TooltipContent>
+            <TooltipContent>
+              {!isCollapsed ? lang.music.audio.collapse : lang.music.audio.expand}
+            </TooltipContent>
           </Tooltip>
 
           {!isCollapsed && (
@@ -92,7 +97,7 @@ const AudioDesktop: ForwardRefRenderFunction<AudioPlayer, AudioDesktopProps> = (
           {showList && !isCollapsed && (
             <div className="transition-opacity">
               <Separator orientation="vertical" />
-              <AccordionTrigger>List</AccordionTrigger>
+              <AccordionTrigger>{lang.music.audio.list}</AccordionTrigger>
             </div>
           )}
         </div>

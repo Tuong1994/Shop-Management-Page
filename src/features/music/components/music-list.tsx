@@ -29,11 +29,11 @@ const MusicList: FC = () => {
       },
       {
         accessorKey: "name",
-        header: () => <div className="font-bold">Name</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.songName}</div>,
       },
       {
         accessorKey: "author",
-        header: () => <div className="font-bold">Author</div>,
+        header: () => <div className="font-bold">{lang.common.table.head.author}</div>,
       },
       {
         id: "action",
