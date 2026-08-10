@@ -17,18 +17,18 @@ const CartMobile: FC<CartMobileProps> = () => {
   const handleTrigger = () => setOpen(!open)
 
   return (
-    <Drawer direction="right" handleOnly open={open} onOpenChange={handleTrigger}>
+    <Drawer swipeDirection="right" open={open} onOpenChange={handleTrigger}>
       <DrawerTrigger>
         <CartIcon />
       </DrawerTrigger>
-      <DrawerContent className="min-w-screen">
+      <DrawerContent className="w-[calc(100% - 8px)]">
         <DrawerHeader className="flex flex-row items-center justify-between p-2">
           <DrawerTitle>{lang.market.cart.title}</DrawerTitle>
           <Button className="h-8 w-8 p-0" onClick={handleTrigger}>
             <X />
           </Button>
         </DrawerHeader>
-        <div className="no-scroll overflow-y-auto">
+        <div className="no-scroll overflow-y-auto p-2">
           <CartTable />
           <div className="mt-1 rounded-[20px] bg-primary p-2 text-white">
             <CartSummary />

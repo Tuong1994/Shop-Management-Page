@@ -63,6 +63,7 @@ const MusicAudio: FC = () => {
   const handleCollapse = () => setIsCollapsed(!isCollapsed)
 
   const handleDrag = (e: MouseEvent, data: DraggableData) => {
+    e.stopPropagation()
     setPosition({ x: data.x, y: data.y })
   }
 

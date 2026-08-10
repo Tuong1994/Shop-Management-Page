@@ -24,7 +24,7 @@ interface ProductsFilterProps {
   onCancel?: () => void
 }
 
-const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
+const ProductsFilter: FC<ProductsFilterProps> = ({ onCancel }) => {
   const initialQuery: ApiQuery = {
     keywords: "",
     categoryId: "",
@@ -53,7 +53,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({ table, onCancel }) => {
     }))
   }
 
-  const handleFilter = (formData: FormData) => {
+  const handleFilter = () => {
     console.log(apiQuery)
   }
 

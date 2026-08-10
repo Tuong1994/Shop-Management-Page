@@ -9,7 +9,7 @@ interface PaymentsMobileProps {
 
 const PaymentsMobile: FC<PaymentsMobileProps> = ({ open, onOpenChange }) => {
   return (
-    <Drawer direction="right" open={open} onOpenChange={onOpenChange}>
+    <Drawer swipeDirection="right" open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
         <PaymentsDetail />
       </DrawerContent>

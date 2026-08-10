@@ -45,7 +45,7 @@ const StaffsListFilter: FC<StaffsListFitlerProps> = ({ onCancel }) => {
     }))
   }
 
-  const handleFilter = (formData: FormData) => {
+  const handleFilter = () => {
     console.log(apiQuery)
   }
 
