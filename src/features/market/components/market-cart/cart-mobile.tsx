@@ -1,5 +1,6 @@
 import { useState, type FC } from "react"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CartIcon from "./cart-icon"
@@ -17,25 +18,25 @@ const CartMobile: FC<CartMobileProps> = () => {
   const handleTrigger = () => setOpen(!open)
 
   return (
-    <Drawer swipeDirection="right" open={open} onOpenChange={handleTrigger}>
-      <DrawerTrigger>
+    <Sheet open={open} onOpenChange={handleTrigger}>
+      <SheetTrigger>
         <CartIcon />
-      </DrawerTrigger>
-      <DrawerContent className="w-[calc(100% - 8px)]">
-        <DrawerHeader className="flex flex-row items-center justify-between p-2">
-          <DrawerTitle>{lang.market.cart.title}</DrawerTitle>
+      </SheetTrigger>
+      <SheetContent showCloseButton={false} className="min-w-screen">
+        <SheetHeader className="flex flex-row items-center justify-between p-2">
+          <SheetTitle>{lang.market.cart.title}</SheetTitle>
           <Button className="h-8 w-8 p-0" onClick={handleTrigger}>
             <X />
           </Button>
-        </DrawerHeader>
+        </SheetHeader>
         <div className="no-scroll overflow-y-auto p-2">
           <CartTable />
           <div className="mt-1 rounded-[20px] bg-primary p-2 text-white">
             <CartSummary />
           </div>
         </div>
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   )
 }
 

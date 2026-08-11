@@ -24,7 +24,7 @@ const ContentLayoutMobile: FC<ContentLayoutMobileProps> = ({ tabItems, bottomCon
         <PanelRight size={25} />
       </DrawerTrigger>
       <DrawerContent>
-        <div className="no-scrollbar overflow-y-auto p-1.5">
+        <div className="no-scrollbar overflow-y-auto py-2.5 px-1.5">
           <DrawerDescription className="mb-2.5">{lang.market.menu}</DrawerDescription>
           {tabItems.map((tab) => (
             <LocaleLink key={tab.id} to={tab.path} className="block">
