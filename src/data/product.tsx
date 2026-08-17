@@ -1,7 +1,7 @@
-import type { Locale } from "@/locale/type"
-import { Badge } from "@/components/ui/badge"
-import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/product.enum"
 import type { ReactNode } from "react"
+import type { Locale } from "@/locale/type"
+import { Badge, EBadgeColor } from "@/components/ui/badge"
+import { EProductDisplay, EProductUnit, EStorageStatus } from "@/models/product/product.enum"
 
 export const renderProductDisplay = (display: EProductDisplay, lang: Locale) => {
   const displays: Record<EProductDisplay, string> = {
@@ -10,7 +10,10 @@ export const renderProductDisplay = (display: EProductDisplay, lang: Locale) => 
     [EProductDisplay.FREEZER]: lang.product.display.freezer,
   }
   return (
-    <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+    <Badge
+      color={EBadgeColor.BLUE}
+      // className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300"
+    >
       {displays[display]}
     </Badge>
   )
@@ -34,7 +37,10 @@ export const renderProductUnit = (unit: EProductUnit, lang: Locale) => {
     [EProductUnit.TUBE]: lang.product.unit.tube,
   }
   return (
-    <Badge className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+    <Badge
+      color={EBadgeColor.PURPLE}
+      // className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300"
+    >
       {units[unit]}
     </Badge>
   )
@@ -43,12 +49,18 @@ export const renderProductUnit = (unit: EProductUnit, lang: Locale) => {
 export const renderStorageStatus = (storage: EStorageStatus, lang: Locale) => {
   const storages: Record<EStorageStatus, ReactNode> = {
     [EStorageStatus.IN_STOCK]: (
-      <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
+      <Badge
+        color={EBadgeColor.GREEN}
+        // className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
+      >
         {lang.product.storage.inStock}
       </Badge>
     ),
     [EStorageStatus.OUT_OF_STOCK]: (
-      <Badge className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300">
+      <Badge
+        color={EBadgeColor.RED}
+        // className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
+      >
         {lang.product.storage.outOfStock}
       </Badge>
     ),
