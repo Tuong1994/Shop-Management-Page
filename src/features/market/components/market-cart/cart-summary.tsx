@@ -12,11 +12,11 @@ const CartSummary: FC<CartSummaryProps> = () => {
   return (
     <>
       <div>
-        <InfoRow name="Order" descript="$11.10" />
-        <InfoRow name="Shipping" descript="$30.00" />
+        <InfoRow name={lang.market.cart.order} descript="$11.10" />
+        <InfoRow name={lang.market.cart.shipping} descript="$30.00" />
         <Separator />
         <InfoRow
-          name="Total"
+          name={lang.market.cart.total}
           descript="$41.10"
           nameProps={{ className: "font-bold text-lg" }}
           descriptProps={{ className: "font-bold text-lg" }}
@@ -26,7 +26,7 @@ const CartSummary: FC<CartSummaryProps> = () => {
         <InfoRow name="Balance" descript="$200.00" />
         <InfoRow name="Remaining" descript="$158.90" />
         <Button className="w-full cursor-pointer bg-white text-black transition-colors hover:bg-black hover:text-white">
-          {lang.market.cart.purchase}
+          {lang.common.actions.purchase}
         </Button>
       </div>
     </>

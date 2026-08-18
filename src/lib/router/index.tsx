@@ -18,8 +18,10 @@ import BillsPage from "@/pages/management/bills"
 import GrowthPage from "@/pages/management/growth"
 import StoragePage from "@/pages/management/storage"
 import StaffsPage from "@/pages/management/staffs"
+import AuthPage from "@/pages/auth"
+import LoginPage from "@/pages/auth/login"
 
-export const router = createBrowserRouter([
+export const mainRouter = createBrowserRouter([
   {
     path: "/:locale?",
     element: <AppLayout />,
@@ -34,33 +36,33 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to={routerPaths.MARKET.PRODUCTS} replace />
+            element: <Navigate to={routerPaths.MARKET.PRODUCTS} replace />,
           },
           {
             path: routerPaths.MARKET.PRODUCTS,
-            element: <ProductPage />
+            element: <ProductPage />,
           },
           {
             path: routerPaths.MARKET.FURNITURES,
-            element: <FurnituresPage />
+            element: <FurnituresPage />,
           },
           {
             path: routerPaths.MARKET.PAINTS,
-            element: <PaintsPage />
+            element: <PaintsPage />,
           },
           {
             path: routerPaths.MARKET.FLOOR,
-            element: <FloorPage />
+            element: <FloorPage />,
           },
           {
             path: routerPaths.MARKET.TOOLS,
-            element: <ToolsPage />
+            element: <ToolsPage />,
           },
           {
             path: routerPaths.MARKET.VEHICLES,
-            element: <VehiclesPage />
+            element: <VehiclesPage />,
           },
-        ]
+        ],
       },
       {
         path: routerPaths.MANAGEMENT.INDEX,
@@ -68,25 +70,25 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to={routerPaths.MANAGEMENT.BILLS} replace />
+            element: <Navigate to={routerPaths.MANAGEMENT.BILLS} replace />,
           },
           {
             path: routerPaths.MANAGEMENT.BILLS,
-            element: <BillsPage />
+            element: <BillsPage />,
           },
           {
             path: routerPaths.MANAGEMENT.GROWTH,
-            element: <GrowthPage />
+            element: <GrowthPage />,
           },
           {
             path: routerPaths.MANAGEMENT.STORAGE,
-            element: <StoragePage />
+            element: <StoragePage />,
           },
           {
             path: routerPaths.MANAGEMENT.STAFFS,
-            element: <StaffsPage />
+            element: <StaffsPage />,
           },
-        ]
+        ],
       },
       {
         path: routerPaths.BANK,
@@ -99,6 +101,40 @@ export const router = createBrowserRouter([
       {
         path: routerPaths.MUSIC,
         element: <MusicPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
+    ],
+  },
+])
+
+export const authRouter = createBrowserRouter([
+  {
+    path: "/:locale?",
+    element: <AuthPage />,
+    children: [
+      {
+        path: "auth",
+        children: [
+          {
+            index: true,
+            element: <Navigate to={routerPaths.AUTH.LOGIN} replace />,
+          },
+          {
+            path: routerPaths.AUTH.LOGIN,
+            element: <LoginPage />,
+          },
+          {
+            path: "*",
+            element: <NotFoundPage />,
+          },
+        ],
+      },
+      {
+        index: true,
+        element: <Navigate to={`auth/${routerPaths.AUTH.LOGIN}`} replace />,
       },
       {
         path: "*",

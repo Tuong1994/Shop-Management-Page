@@ -83,6 +83,7 @@ const common_vn = {
     remove: "Xóa",
     filter: "Lọc",
     cancel: "Hủy",
+    purchase: "Thanh toán",
   },
   table: {
     head: {
@@ -111,6 +112,7 @@ const common_vn = {
       changeDate: "Ngày thay đổi",
       songName: "Tên bài hát",
       author: "Tác giả",
+      total: "Tổng giá"
     },
   },
   pagination: {

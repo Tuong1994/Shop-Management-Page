@@ -2,13 +2,12 @@ export const routerPaths = {
   HOME: "/",
   MARKET: {
     INDEX: "market",
-    PRODUCTS: 'products',
+    PRODUCTS: "products",
     FURNITURES: "furnitures",
     PAINTS: "paints",
     FLOOR: "floor",
     TOOLS: "tools",
     VEHICLES: "vehicles",
-
   },
   MANAGEMENT: {
     INDEX: "management",
@@ -20,7 +19,10 @@ export const routerPaths = {
   BANK: "bank",
   PRICING: "pricing",
   MUSIC: "music",
-  AUTH_SIGN_IN: "/auth/signIn",
-  AUTH_FORGOT_PASSWORD: "/auth/forgotPassword",
-  AUTH_RESET_PASSWORD: "/auth/resetPassword/:token",
+  AUTH: {
+    LOGIN: "login",
+    REGISTER: "register",
+    FORGOT_PASSWORD: "forgotPassword",
+    RESET_PASSWORD: "resetPassword/:token",
+  },
 } as const

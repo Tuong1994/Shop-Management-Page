@@ -21,7 +21,6 @@ const market_vn = {
     total: "Tổng cộng",
     balance: "Số dư",
     remaining: "Còn lại",
-    purchase: "Thanh toán",
   },
   products: {
     display: "Trưng bày",

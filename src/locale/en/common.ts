@@ -83,6 +83,7 @@ const common_en = {
     remove: "Remove",
     filter: "Filter",
     cancel: "Cancel",
+    purchase: "Purchase",
   },
   table: {
     head: {
@@ -110,7 +111,8 @@ const common_en = {
       role: "Role",
       changeDate: "Last change",
       songName: "Name",
-      author: "Author"
+      author: "Author",
+      total: "Total",
     },
   },
   pagination: {

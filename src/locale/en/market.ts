@@ -21,7 +21,6 @@ const market_en = {
     total: "Total",
     balance: "Balance",
     remaining: "Remaining",
-    purchase: "Purchase",
   },
   products: {
     display: "Display",

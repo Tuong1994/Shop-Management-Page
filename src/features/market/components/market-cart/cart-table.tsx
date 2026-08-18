@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import QuantityControl from "@/components/page/quantity-control"
+import useLocale from "@/locale/use-locale"
 
 interface CartTableProps {}
 
@@ -37,6 +38,8 @@ const initialCartItems: Pick<CartItem, "id" | "product" | "quantity">[] = [
 ]
 
 const CartTable: FC<CartTableProps> = () => {
+  const {lang} = useLocale()
+
   const [cartItems, setCartItems] =
     useState<Pick<CartItem, "id" | "product" | "quantity">[]>(initialCartItems)
 
@@ -50,10 +53,12 @@ const CartTable: FC<CartTableProps> = () => {
       <TableCaption>A list of your recent products.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-25 font-bold">Product name</TableHead>
-          <TableHead className="font-bold">Unit</TableHead>
-          <TableHead className="font-bold">Price</TableHead>
-          <TableHead className="text-right font-bold">Total</TableHead>
+          <TableHead className="w-25 font-bold">
+            {lang.common.table.head.productName}
+          </TableHead>
+          <TableHead className="font-bold">{lang.common.table.head.unit}</TableHead>
+          <TableHead className="font-bold">{lang.common.table.head.price}</TableHead>
+          <TableHead className="text-right font-bold">{lang.common.table.head.total}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
