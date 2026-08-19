@@ -36,7 +36,7 @@ const LoansListCard: FC<LoansListCardProps> = ({ loanType = ELoanType.BASIC }) =
       </CardContent>
       <CardFooter className="gap-2">
         <Slider defaultValue={[50]} max={100} step={1} className="mx-auto w-full max-w-xs" />
-        <Button>Take loan</Button>
+        <Button>{lang.bank.actions.take}</Button>
       </CardFooter>
     </Card>
   )

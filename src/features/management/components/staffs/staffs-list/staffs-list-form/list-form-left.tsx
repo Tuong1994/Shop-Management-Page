@@ -32,11 +32,11 @@ const ListFormLeft: FC<ListFormLeftProps> = () => {
             <FieldLabel>{lang.common.form.label.email}</FieldLabel>
             <Input placeholder={lang.common.form.placeholder.enter} />
           </Field>
-          <Button variant="destructive">Change password</Button>
+          <Button variant="destructive">{lang.management.hiring.staffForm.changePassword}</Button>
         </div>
       </FieldGroup>
 
-      <FieldSeparator className="my-4">General</FieldSeparator>
+      <FieldSeparator className="my-4">{lang.management.hiring.staffForm.general}</FieldSeparator>
       <FieldGroup className={groupClassName}>
         <Field>
           <FieldLabel>{lang.common.form.label.firstName}</FieldLabel>
@@ -92,19 +92,19 @@ const ListFormLeft: FC<ListFormLeftProps> = () => {
         </Field>
       </FieldGroup>
 
-      <FieldSeparator className="my-4">Permission</FieldSeparator>
+      <FieldSeparator className="my-4">{lang.management.hiring.staffForm.permission.title}</FieldSeparator>
       <div className="grid grid-cols-1 gap-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
         <div className="flex items-center gap-2">
           <Switch />
-          <FieldLabel>Create</FieldLabel>
+          <FieldLabel>{lang.management.hiring.staffForm.permission.create}</FieldLabel>
         </div>
         <div className="flex items-center gap-2">
           <Switch />
-          <FieldLabel>Update</FieldLabel>
+          <FieldLabel>{lang.management.hiring.staffForm.permission.update}</FieldLabel>
         </div>
         <div className="flex items-center gap-2">
           <Switch />
-          <FieldLabel>Remove</FieldLabel>
+          <FieldLabel>{lang.management.hiring.staffForm.permission.remove}</FieldLabel>
         </div>
       </div>
     </>

@@ -83,6 +83,7 @@ const common_en = {
     remove: "Remove",
     filter: "Filter",
     cancel: "Cancel",
+    uploadPhoto: "Upload photo",
     purchase: "Purchase",
   },
   table: {

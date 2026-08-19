@@ -83,6 +83,7 @@ const common_vn = {
     remove: "Xóa",
     filter: "Lọc",
     cancel: "Hủy",
+    uploadPhoto: "Tải ảnh lên",
     purchase: "Thanh toán",
   },
   table: {

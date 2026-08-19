@@ -3,11 +3,16 @@ const management_vn = {
   tabItems: {
     bills: "Hóa đơn",
     growth: "Mở rộng mặt bằng",
-    storage: "Mở rộng kho",
+    storage: "Kho",
     staffs: "Nhân viên",
     hiring: "Tuyển dụng",
   },
-   bills: {
+  growth: {
+    description: "Mua phần này để mở rộng quy mô kinh doanh",
+    storeExpanded: "Cửa hàng đã được mở rộng",
+    storageExpanded: "Kho chứa đã được mở rộng",
+  },
+  bills: {
     title: "Danh sách hóa đơn",
     rents: "Danh sách tiền thuê",
     bill: "Hóa đơn",
@@ -17,7 +22,7 @@ const management_vn = {
     date: "Ngày",
     day: "Ngày",
     pay: "Trả",
-    daysLeft: "Ngày còn lại"
+    daysLeft: "Ngày còn lại",
   },
   storage: {
     productForm: {
@@ -37,6 +42,17 @@ const management_vn = {
     customerService: "Hỗ trợ khách hàng tại kiosk tự thanh toán",
     janitor: "Dọn rác và lau chùi đổ vỡ để giữ cửa hàng sạch sẽ",
     security: "Bắt kẻ trộm hàng cố gắng lấy cắp sản phẩm",
+    staffForm: {
+      title: "Cập nhật nhân viên",
+      general: "Thông tin chung",
+      changePassword: "Đổi mật khẩu",
+      permission: {
+        title: "Phân quyền",
+        create: "Tạo mới",
+        update: "Cập nhật",
+        remove: "Xóa",
+      },
+    },
   },
   actions: {
     more: "Chi tiết",

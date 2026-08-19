@@ -23,7 +23,7 @@ const PaymentsCard: FC<PaymentsCardProps> = () => {
 
   return (
     <Card>
-      <CardHeader className="text-lg">Repayment</CardHeader>
+      <CardHeader className="text-lg">{lang.bank.repayment}</CardHeader>
       <CardContent className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-[15px]">
         {!isResponsive && <MailOpen size={70} />}
 
@@ -44,7 +44,7 @@ const PaymentsCard: FC<PaymentsCardProps> = () => {
       </CardContent>
       <CardFooter className="items-center justify-between">
         <div>
-          <Paragraph>Late fee</Paragraph>
+          <Paragraph>{lang.bank.lateFee}</Paragraph>
           <TextMuted>{formatMoney(0)}</TextMuted>
           <Paragraph className="text-xl">{formatMoney(96.68)}</Paragraph>
         </div>

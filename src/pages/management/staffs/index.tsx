@@ -2,11 +2,14 @@ import type { FC } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import StaffsList from "@/features/management/components/staffs/staffs-list"
 import HiringList from "@/features/management/components/staffs/hiring-list"
+import useLocale from "@/locale/use-locale"
 
 const StaffsPage: FC = () => {
+  const {lang} = useLocale()
+
   const tabs = [
-    { id: "staffs", title: "Staffs", content: <StaffsList /> },
-    { id: "hiring", title: "Hiring", content: <HiringList /> },
+    { id: "staffs", title: lang.management.tabItems.staffs, content: <StaffsList /> },
+    { id: "hiring", title: lang.management.tabItems.hiring, content: <HiringList /> },
   ]
 
   return (

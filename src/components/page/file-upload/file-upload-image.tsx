@@ -45,7 +45,7 @@ const FileUploadImage: FC<FileUploadImageProps> = ({
           <DropdownMenuContent side="left" align="start">
             <DropdownMenuItem onClick={onUpload} className="flex cursor-pointer items-center gap-2">
               <ImageUp className="h-4 w-4" />
-              <span>Upload photo</span>
+              <span>{lang.common.actions.uploadPhoto}</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer text-red-400 focus:text-red-400" onClick={onRemove}>
               <Trash className="h-4 w-4" />

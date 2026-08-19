@@ -7,6 +7,11 @@ const management_en = {
     staffs: "Staffs",
     hiring: "Hiring",
   },
+  growth: {
+    description: "Purchase this section to expand your business",
+    storeExpanded: "Store expanded",
+    storageExpanded: "Storage expanded"
+  },
   bills: {
     title: "Bills",
     rents: "Rents",
@@ -37,6 +42,17 @@ const management_en = {
     customerService: "Assist shoppers at the self-checkout kiosks",
     janitor: "Clean up trash and spills to keep customers happy",
     security: "Catch shoplifters who try to steal your products",
+    staffForm: {
+      title: "Update staff",
+      general: "General",
+      changePassword: "Change password",
+      permission: {
+        title: "Permission",
+        create: "Create",
+        update: "Update",
+        remove: "Remove"
+      }
+    }
   },
   actions: {
     more: "More",

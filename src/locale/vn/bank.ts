@@ -6,6 +6,12 @@ const bank_vn = {
   return: "Trả nợ",
   daily: "Trả góp hàng ngày",
   length: "Thời hạn vay",
+  repayment: "Trả nợ",
+  loanDetail: "Chi tiết khoản vay",
+  taken: "Khoản vay đã nhận",
+  remaining: "Số kỳ còn lại",
+  lateFee: "Phí chậm trả",
+  debt: "Tổng dư nợ",
   loanType: {
     basic: "Vay cơ bản",
     medium: "Vay trung cấp",

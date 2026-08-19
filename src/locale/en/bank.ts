@@ -6,6 +6,12 @@ const bank_en = {
   return: "Return payment",
   daily: "Daily payment",
   length: "Loan term length",
+  repayment: "Repayment",
+  loanDetail: "Loan detail",
+  taken: "Loans taken",
+  remaining: "Payments remaining",
+  lateFee: "Late fee",
+  debt: "Total debt",
   loanType: {
     basic: "Basic loan",
     medium: "Medium loan",
