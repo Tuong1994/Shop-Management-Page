@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import InfoRow from "@/components/page/info-row"
-import FileUpload from "@/components/page/file-upload"
+import FileUpload from "@/components/control/file-upload"
 import useLocale from "@/locale/use-locale"
 
 interface ProductFormLeftProps {}

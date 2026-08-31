@@ -5,7 +5,7 @@ import { Paragraph, TextSmall } from "@/components/ui/typography"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { formatMoney } from "@/lib/utils"
-import QuantityControl from "@/components/page/quantity-control"
+import QuantityControl from "@/components/control/quantity-control"
 import CardProducts from "./card-products"
 import CardFurnitures from "./card-furnitures"
 import CardPaints from "./card-paints"
@@ -40,7 +40,7 @@ const MarketCard: FC<MarketCardProps> = ({ tabType = ETabType.PRODUCTS }) => {
           {renderCards()}
           <Separator className="my-2.5" />
           <div className="flex justify-center">
-            <Button>{lang.market.cart.purchase}</Button>
+            <Button>{lang.common.actions.purchase}</Button>
           </div>
         </CardContent>
       ) : (

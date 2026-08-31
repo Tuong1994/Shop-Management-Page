@@ -12,9 +12,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
-import FileUpload from "@/components/page/file-upload"
+import FileUpload from "@/components/control/file-upload"
 import useLocale from "@/locale/use-locale"
-import DatePicker from "@/components/page/date-picker"
+import DatePicker from "@/components/control/date-picker"
 
 interface ListFormLeftProps {}
 

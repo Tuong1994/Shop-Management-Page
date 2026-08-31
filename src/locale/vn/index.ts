@@ -1,3 +1,4 @@
+import auth_vn from "./auth"
 import bank_vn from "./bank"
 import common_vn from "./common"
 import header_vn from "./header"
@@ -11,13 +12,14 @@ import user_vn from "./user"
 export const vn = {
   common: common_vn,
   header: header_vn,
+  auth: auth_vn,
   management: management_vn,
   market: market_vn,
   bank: bank_vn,
   pricing: pricing_vn,
   music: music_vn,
   product: product_vn,
-  user: user_vn
+  user: user_vn,
 }
 
 export type VN = typeof vn

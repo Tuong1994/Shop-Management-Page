@@ -20,6 +20,7 @@ export const routerPaths = {
   PRICING: "pricing",
   MUSIC: "music",
   AUTH: {
+    INDEX: "auth",
     LOGIN: "login",
     REGISTER: "register",
     FORGOT_PASSWORD: "forgotPassword",

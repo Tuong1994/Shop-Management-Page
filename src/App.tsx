@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router"
 import { authRouter, mainRouter } from "./lib/router"
 
 export function App() {
-  const isAuth = true
+  const isAuth = false
 
   return <RouterProvider router={isAuth ? mainRouter : authRouter} />
 }

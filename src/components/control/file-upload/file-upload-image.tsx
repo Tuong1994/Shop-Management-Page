@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import { ACCEPT_IMAGE_FILE_TYPE } from "."
-import Image from "../image"
+import Image from "../../page/image"
 import useLocale from "@/locale/use-locale"
 
 interface FileUploadImageProps extends ImgHTMLAttributes<HTMLImageElement> {

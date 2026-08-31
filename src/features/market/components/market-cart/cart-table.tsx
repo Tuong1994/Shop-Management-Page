@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import QuantityControl from "@/components/page/quantity-control"
+import QuantityControl from "@/components/control/quantity-control"
 import useLocale from "@/locale/use-locale"
 
 interface CartTableProps {}

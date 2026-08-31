@@ -20,6 +20,8 @@ import StoragePage from "@/pages/management/storage"
 import StaffsPage from "@/pages/management/staffs"
 import AuthPage from "@/pages/auth"
 import LoginPage from "@/pages/auth/login"
+import RegisterPage from "@/pages/auth/register"
+import ForgotPasswordPage from "@/pages/auth/forget-password"
 
 export const mainRouter = createBrowserRouter([
   {
@@ -116,7 +118,7 @@ export const authRouter = createBrowserRouter([
     element: <AuthPage />,
     children: [
       {
-        path: "auth",
+        path: routerPaths.AUTH.INDEX,
         children: [
           {
             index: true,
@@ -127,6 +129,14 @@ export const authRouter = createBrowserRouter([
             element: <LoginPage />,
           },
           {
+            path: routerPaths.AUTH.REGISTER,
+            element: <RegisterPage />,
+          },
+          {
+            path: routerPaths.AUTH.FORGOT_PASSWORD,
+            element: <ForgotPasswordPage />,
+          },
+          {
             path: "*",
             element: <NotFoundPage />,
           },
@@ -134,7 +144,7 @@ export const authRouter = createBrowserRouter([
       },
       {
         index: true,
-        element: <Navigate to={`auth/${routerPaths.AUTH.LOGIN}`} replace />,
+        element: <Navigate to={`${routerPaths.AUTH.INDEX}/${routerPaths.AUTH.LOGIN}`} replace />,
       },
       {
         path: "*",
