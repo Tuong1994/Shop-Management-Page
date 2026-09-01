@@ -22,6 +22,7 @@ import AuthPage from "@/pages/auth"
 import LoginPage from "@/pages/auth/login"
 import RegisterPage from "@/pages/auth/register"
 import ForgotPasswordPage from "@/pages/auth/forget-password"
+import GeneralPage from "@/pages/general"
 
 export const mainRouter = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ export const mainRouter = createBrowserRouter([
       {
         path: routerPaths.MUSIC,
         element: <MusicPage />,
+      },
+      {
+        path: routerPaths.GENERAL,
+        element: <GeneralPage />
       },
       {
         path: "*",

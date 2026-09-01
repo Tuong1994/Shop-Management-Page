@@ -19,6 +19,7 @@ export const routerPaths = {
   BANK: "bank",
   PRICING: "pricing",
   MUSIC: "music",
+  GENERAL: "general",
   AUTH: {
     INDEX: "auth",
     LOGIN: "login",

@@ -1,5 +1,5 @@
 import type { Locale } from "@/locale/type"
-import { Banknote, DollarSign, Music, ShoppingCart, Store } from "lucide-react"
+import { Banknote, Component, DollarSign, Music, ShoppingCart, Store } from "lucide-react"
 
 export enum EPageType {
   MARKET = "market",
@@ -7,6 +7,7 @@ export enum EPageType {
   BANK = "bank",
   PRICING = "pricing",
   MUSIC = "music",
+  GENERAL = "general"
 }
 
 export const getPageIcon = (key: EPageType, iconSize = 45) => {
@@ -16,6 +17,7 @@ export const getPageIcon = (key: EPageType, iconSize = 45) => {
     [EPageType.BANK]: <Banknote size={iconSize} />,
     [EPageType.PRICING]: <DollarSign size={iconSize} />,
     [EPageType.MUSIC]: <Music size={iconSize} />,
+    [EPageType.GENERAL]: <Component size={iconSize} />
   }
   return icons[key]
 }
@@ -27,6 +29,7 @@ export const getPageTitle = (key: EPageType, lang: Locale) => {
     [EPageType.BANK]: lang.bank.title,
     [EPageType.PRICING]: lang.pricing.title,
     [EPageType.MUSIC]: lang.music.title,
+    [EPageType.GENERAL]: lang.general.title,
   }
   return titles[key]
 }

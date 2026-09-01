@@ -7,9 +7,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { LogOutIcon } from "lucide-react"
+import { Component, LogOutIcon } from "lucide-react"
+import { routerPaths } from "@/lib/router/paths"
 import LocaleDropdown from "../locale-dropdown"
 import ThemeDropdown from "../theme-dropdown"
+import LocaleLink from "@/locale/locale-link"
 import useLocale from "@/locale/use-locale"
 
 const Profile: FC = () => {
@@ -23,6 +25,11 @@ const Profile: FC = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem>
+          <Component />
+          <LocaleLink to={routerPaths.GENERAL}>{lang.general.title}</LocaleLink>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <LocaleDropdown />
         <ThemeDropdown />
         <DropdownMenuSeparator />

@@ -11,19 +11,20 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
 import FileUpload from "@/components/control/file-upload"
 import DatePicker from "@/components/control/date-picker"
+import FormLayout from "@/components/control/form-layout"
+import LabelRequired from "@/components/control/label-required"
 import useLocale from "@/locale/use-locale"
 
-interface ListFormLeftProps {}
+interface GeneralUserFormProps {}
 
-const ListFormLeft: FC<ListFormLeftProps> = () => {
+const GeneralUserForm: FC<GeneralUserFormProps> = () => {
   const { lang } = useLocale()
 
   const groupClassName = "grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2"
 
-  return (
+  const left = (
     <>
       <FieldGroup className="grid grid-cols-1 gap-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
         <FileUpload className="col-span-1" />
@@ -91,24 +92,79 @@ const ListFormLeft: FC<ListFormLeftProps> = () => {
           <DatePicker />
         </Field>
       </FieldGroup>
-
-      <FieldSeparator className="my-4">{lang.management.hiring.staffForm.permission.title}</FieldSeparator>
-      <div className="grid grid-cols-1 gap-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
-        <div className="flex items-center gap-2">
-          <Switch />
-          <FieldLabel>{lang.management.hiring.staffForm.permission.create}</FieldLabel>
-        </div>
-        <div className="flex items-center gap-2">
-          <Switch />
-          <FieldLabel>{lang.management.hiring.staffForm.permission.update}</FieldLabel>
-        </div>
-        <div className="flex items-center gap-2">
-          <Switch />
-          <FieldLabel>{lang.management.hiring.staffForm.permission.remove}</FieldLabel>
-        </div>
-      </div>
     </>
   )
+
+  const right = (
+    <>
+      <FieldGroup className={groupClassName}>
+        <Field>
+          <FieldLabel>{lang.common.form.label.address_en}</FieldLabel>
+          <Input placeholder={lang.common.form.placeholder.enter} />
+        </Field>
+        <Field>
+          <FieldLabel>{lang.common.form.label.address_vn}</FieldLabel>
+          <Input placeholder={lang.common.form.placeholder.enter} />
+        </Field>
+        <Field>
+          <FieldLabel>{lang.common.form.label.ward}</FieldLabel>
+          <Select name="ward">
+            <SelectTrigger>
+              <SelectValue placeholder={lang.common.form.placeholder.select} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+        <Field>
+          <FieldLabel>{lang.common.form.label.district}</FieldLabel>
+          <Select name="district">
+            <SelectTrigger>
+              <SelectValue placeholder={lang.common.form.placeholder.select} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+        <Field>
+          <FieldLabel>{lang.common.form.label.city}</FieldLabel>
+          <Select name="city">
+            <SelectTrigger>
+              <SelectValue placeholder={lang.common.form.placeholder.select} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+      </FieldGroup>
+    </>
+  )
+
+  return <FormLayout left={left} right={right} />
 }
 
-export default ListFormLeft
+export default GeneralUserForm

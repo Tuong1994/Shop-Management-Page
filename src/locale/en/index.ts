@@ -1,6 +1,7 @@
 import auth_en from "./auth"
 import bank_en from "./bank"
 import common_en from "./common"
+import general_en from "./general"
 import header_en from "./header"
 import management_en from "./management"
 import market_en from "./market"
@@ -18,8 +19,9 @@ export const en = {
   bank: bank_en,
   pricing: pricing_en,
   music: music_en,
+  general: general_en,
   product: product_en,
-  user: user_en
+  user: user_en,
 }
 
 export type EN = typeof en

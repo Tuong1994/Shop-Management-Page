@@ -1,6 +1,7 @@
 import auth_vn from "./auth"
 import bank_vn from "./bank"
 import common_vn from "./common"
+import general_vn from "./general"
 import header_vn from "./header"
 import management_vn from "./management"
 import market_vn from "./market"
@@ -20,6 +21,7 @@ export const vn = {
   music: music_vn,
   product: product_vn,
   user: user_vn,
+  general: general_vn,
 }
 
 export type VN = typeof vn
