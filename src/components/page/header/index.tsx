@@ -1,7 +1,7 @@
 import type { FC } from "react"
-import Logo from "./logo"
 import Profile from "./profile"
 import Fund from "./fund"
+import Logo from "../logo"
 
 const Header: FC = () => {
   return (

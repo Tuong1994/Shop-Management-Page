@@ -1,0 +1,37 @@
+.audio-player-custom {
+  --primary: oklch(0.511 0.096 186.391);
+  border: unset;
+  box-shadow: unset;
+  background: transparent;
+}
+.audio-player-custom .rhap_main-controls button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+}
+.audio-player-custom .rhap_volume-controls svg {
+  color: var(--primary);
+}
+.audio-player-custom .rhap_volume-controls .rhap_volume-bar {
+  margin-right: 10px;
+}
+.audio-player-custom .rhap_volume-controls .rhap_volume-bar .rhap_volume-indicator,
+.audio-player-custom .rhap_volume-controls .rhap_volume-bar .rhap_volume-filled {
+  background: var(--primary);
+}
+.audio-player-custom .rhap_progress-bar .rhap_progress-indicator,
+.audio-player-custom .rhap_progress-bar .rhap_progress-filled {
+  background: var(--primary);
+}
+
+.audio-player-mobile .rhap_progress-section {
+  flex: 0;
+}
+.audio-player-mobile .rhap_controls-section {
+  flex: 1;
+  margin-left: 0px;
+}/*# sourceMappingURL=audio-player.css.map */

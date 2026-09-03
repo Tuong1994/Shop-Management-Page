@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;display=swap');
+      
+      .brand-color {
+        fill: oklch(0.511 0.096 186.391);
+      }
+      
+      .brand-stroke {
+        stroke: oklch(0.511 0.096 186.391);
+      }
+      
+      .logo-text {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 32px;
+        letter-spacing: 2px;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(0, -10)">
+    <!-- Store Front Roof / Awning -->
+    <path class="brand-color" d="M 120 160 L 280 160 L 290 190 L 110 190 Z" />
+    
+    <!-- Awning Scallops (Retail Detail) -->
+    <path class="brand-color" d="
+      M 110 190 A 15 15 0 0 0 140 190 
+      A 15 15 0 0 0 170 190 
+      A 15 15 0 0 0 200 190 
+      A 15 15 0 0 0 230 190 
+      A 15 15 0 0 0 260 190 
+      A 15 15 0 0 0 290 190 
+      L 285 180 L 115 180 Z" />
+
+    <!-- Store Base Pillars & Door -->
+    <rect class="brand-color" x="125" y="205" width="22" height="65" rx="3" />
+    <rect class="brand-color" x="253" y="205" width="22" height="65" rx="3" />
+    
+    <!-- Glass Door Outer Outline -->
+    <rect class="brand-stroke" x="160" y="205" width="80" height="65" rx="4" fill="none" stroke-width="6" />
+    
+    <!-- Glass Door Center Line -->
+    <line class="brand-stroke" x1="200" y1="208" x2="200" y2="267" stroke-width="4" stroke-dasharray="60" />
+
+    <!-- Modern Shopping Handle Accent on Top -->
+    <path class="brand-stroke" d="M 170 160 C 170 125, 230 125, 230 160" fill="none" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+  <!-- Brand Name Text -->
+  <text x="200" y="325" class="brand-color logo-text" text-anchor="middle">S-M</text>
+</svg>
