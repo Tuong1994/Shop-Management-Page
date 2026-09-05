@@ -1,4 +1,5 @@
 const header_vn = {
+   revenue: "Tổng doanh thu",
   profile: {
     locale: {
       title: "Ngôn ngữ",

@@ -46,10 +46,10 @@ const HomePage: FC = () => {
   return (
     <div className="flex min-h-screen overflow-hidden md:h-screen lg:h-screen">
       <div className="flex w-full items-center justify-center overflow-auto md:w-1/3 lg:w-1/2 lg:overflow-hidden lg:pt-0 lg:pb-0">
-        <div>
+        <div className="w-70 p-0 pt-20 pb-10 md:px-10 md:pt-20 md:pb-5 lg:w-100 md:landscape:pt-150 lg:landscape:pt-0">
           <HomeStoreSelect />
           <Separator className="mt-5 mb-10" />
-          <div className="grid w-70 grid-cols-2 gap-5 p-0 pt-20 pb-10 md:grid-cols-1 md:px-10 md:pt-20 md:pb-5 lg:w-100 lg:grid-cols-2 md:landscape:pt-120 lg:landscape:pt-0">
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-1 lg:grid-cols-2">
             {items.map((item, idx) => (
               <HomeItem key={item.name + idx} icon={item.icon} name={item.name} path={item.path} />
             ))}

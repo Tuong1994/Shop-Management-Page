@@ -1,4 +1,5 @@
 const header_en = {
+  revenue: "Total revenue",
   profile: {
     locale: {
       title: "Language",

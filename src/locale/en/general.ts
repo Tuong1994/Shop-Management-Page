@@ -1,5 +1,7 @@
 const general_en = {
   title: "General",
+  branch: "Branch",
+  stores: "Stores",
   user: {
     title: "User",
     actions: {

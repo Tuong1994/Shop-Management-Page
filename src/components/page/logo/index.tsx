@@ -13,8 +13,6 @@ const Logo: FC<LogoProps> = ({ imgWidth = 70, imgHeight = 60, ...restProps }) =>
   return (
     <div className="cursor-pointer" onClick={handleNavigate}>
       <Image imgWidth={imgWidth} imgHeight={imgHeight} src="/logo.svg" {...restProps} />
-      {/* <div className="text-xl font-bold text-primary">Shop</div>
-      <div className="text-[10px]">Management</div> */}
     </div>
   )
 }

@@ -1,20 +1,12 @@
 import type { FC } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { formatMoney, formatPhoneNumber } from "@/lib/utils"
 import { Badge, EBadgeColor } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { getRouteWithSub } from "@/lib/router/helper"
 import { routerPaths } from "@/lib/router/paths"
+import StoresSelect from "@/components/page/stores-select"
 import InfoRow from "@/components/page/info-row"
 import LocaleLink from "@/locale/locale-link"
 import useLocale from "@/locale/use-locale"
@@ -27,19 +19,7 @@ const GeneralStoreInfo: FC<GeneralStoreInfoProps> = () => {
   return (
     <Card>
       <CardContent>
-        <Select>
-          <SelectTrigger className="mb-5 w-full">
-            <SelectValue placeholder={lang.common.form.placeholder.select} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Branch</SelectLabel>
-              <SelectItem value="#0001">Shop Tran khanh Du</SelectItem>
-              <SelectItem value="#0002">Shop Au Co</SelectItem>
-              <SelectItem value="#0003">Shop Le Dai Thanh</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <StoresSelect />
         <InfoRow name={lang.general.store.branchId} descript={<Badge color={EBadgeColor.BLUE}>#0001</Badge>} />
         <InfoRow name={lang.general.store.openHour} descript={<Badge color={EBadgeColor.GREEN}>6:00 - 23:00</Badge>} />
         <InfoRow name={lang.common.form.label.email} descript="branch.trankhanhdu@shop.com" />

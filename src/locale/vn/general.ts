@@ -1,5 +1,7 @@
 const general_vn = {
   title: "Thông tin chung",
+  branch: "Chi nhánh",
+  stores: "Các cửa hàng",
   user: {
     title: "Người dùng",
     actions: {

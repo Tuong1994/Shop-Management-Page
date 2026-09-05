@@ -1,13 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/nunito-sans";
+
+@import "@fontsource/poppins/300.css"; /* Light */
+@import "@fontsource/poppins/400.css"; /* Regular */
+@import "@fontsource/poppins/400-italic.css"; /* Regular Italic */
+@import "@fontsource/poppins/600.css"; /* Semi-Bold */
+@import "@fontsource/poppins/700.css"; /* Bold */
+
+/* @import "@fontsource-variable/nunito-sans"; */
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* --font-sans: "Nunito Sans Variable", sans-serif; */
   --font-heading: var(--font-sans);
-  --font-sans: "Nunito Sans Variable", sans-serif;
+  --font-sans: "Poppins", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
