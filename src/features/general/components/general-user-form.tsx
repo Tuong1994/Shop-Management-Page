@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Title } from "@/components/ui/typography"
 import FileUpload from "@/components/control/file-upload"
 import DatePicker from "@/components/control/date-picker"
 import FormLayout from "@/components/control/form-layout"
@@ -30,7 +31,7 @@ const GeneralUserForm: FC<GeneralUserFormProps> = () => {
         <FileUpload className="col-span-1" />
         <div className="col-span-2">
           <Field className="mb-4">
-            <FieldLabel>{lang.common.form.label.email}</FieldLabel>
+            <LabelRequired>{lang.common.form.label.email}</LabelRequired>
             <Input placeholder={lang.common.form.placeholder.enter} />
           </Field>
           <Button variant="destructive">{lang.management.hiring.staffForm.changePassword}</Button>
@@ -164,7 +165,12 @@ const GeneralUserForm: FC<GeneralUserFormProps> = () => {
     </>
   )
 
-  return <FormLayout left={left} right={right} />
+  return (
+    <>
+      <Title className="mb-3" level={4}>{lang.general.user.title}</Title>
+      <FormLayout left={left} right={right} />
+    </>
+  )
 }
 
 export default GeneralUserForm

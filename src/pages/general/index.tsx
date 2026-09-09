@@ -8,10 +8,10 @@ const GeneralPage: FC = () => {
   return (
     <ContentLayout pageType={EPageType.GENERAL}>
       <div className="grid grid-cols-3 gap-5">
-        <div className="col-span-2">
+        <div className="3xs:col-span-3 lg:col-span-2">
           <GeneralUserForm />
         </div>
-        <div className="col-span-1">
+        <div className="3xs:col-span-3 lg:col-span-1">
           <GeneralStoreInfo />
         </div>
       </div>

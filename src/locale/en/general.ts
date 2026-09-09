@@ -9,6 +9,7 @@ const general_en = {
     },
   },
   store: {
+    title: "Store",
     branchId: "Branch ID",
     openHour: "Open hour",
     expanded: "Expanded",

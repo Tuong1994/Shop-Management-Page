@@ -15,7 +15,7 @@ const HomeItem: FC<HomeItemProps> = ({ path = routerPaths.HOME, icon = <HdIcon /
     <Link to={path}>
       <Card className="group flex cursor-pointer flex-col items-center justify-center transition-colors hover:bg-primary hover:text-white">
         <div className="transition-transform group-hover:scale-120">{icon}</div>
-        <span className="text-xl font-semibold text-primary transition-colors group-hover:text-white">
+        <span className="text-lg text-primary transition-colors group-hover:text-white">
           {name}
         </span>
       </Card>

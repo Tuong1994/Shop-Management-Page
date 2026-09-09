@@ -9,6 +9,7 @@ const general_vn = {
     },
   },
   store: {
+    title: "Cửa hàng",
     branchId: "Chi nhánh ID",
     openHour: "Giờ mở cửa",
     expanded: "Diện tích",
